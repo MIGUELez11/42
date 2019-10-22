@@ -1,0 +1,6 @@
+Credentials cache: API:31E2ABD0-4293-49B5-858B-041FE54C72D7
+        Principal: mflorido@42MADRID.COM
+
+  Issued                Expires               Principal
+Oct  2 05:36:44 2019  Oct  2 15:36:44 2019  krbtgt/42MADRID.COM@42MADRID.COM
+Oct  2 06:11:51 2019  Oct  2 15:36:44 2019  host/vogsphere.42madrid.com@42MADRID.COM

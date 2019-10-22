@@ -1,0 +1,5 @@
+Credentials cache: API:6D05C676-32FE-4F1C-B2BC-1F4C55E9C9F5
+        Principal: mflorido@42MADRID.COM
+
+  Issued                Expires               Principal
+Sep 30 16:46:21 2019  Oct  1 02:46:21 2019  krbtgt/42MADRID.COM@42MADRID.COM
