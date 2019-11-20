@@ -76,7 +76,7 @@ char		**ft_split(char const *s, char c)
 	j[0] = -1;
 	if (s == NULL)
 		return (NULL);
-	r = ft_calloc(ft_get_nsep(s, c) + 2, sizeof(char *));
+	r = ft_calloc(ft_get_nsep(s, c) + 1, sizeof(char *));
 	if (r == NULL)
 		return (NULL);
 	j[2] = -1;
