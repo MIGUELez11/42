@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:11:00 by mflorido          #+#    #+#             */
-/*   Updated: 2019/11/18 22:51:57 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:23:34 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*ft_allocmem(char const *s1, size_t j, size_t k)
 	if (k == (size_t)-1)
 		return (ft_calloc(1, sizeof(char)));
 	else
-		return (ft_calloc(size - j - (size - k) + 2, sizeof(char)));
+		return (ft_calloc((size - j) - (size - k) + 2, sizeof(char)));
 }
 
 char		*ft_strtrim(char const *s1, char const *set)
