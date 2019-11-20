@@ -11,52 +11,68 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static int	ft_containschar(char const *s1, char c)
+int			ft_ischar(char s1, char const *set)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] && s1[i] != c)
+	while (set[i])
+	{
+		if (s1 == set[i])
+			return (1);
 		i++;
-	if (s1[i] == c)
-		return (1);
+	}
 	return (0);
 }
 
-static char	*ft_allocmem(char const *s1, size_t j, size_t k)
+int			ft_frstocc(char const *s1, char const *set)
 {
-	size_t size;
+	int i;
 
-	size = ft_strlen(s1);
-	if (k == (size_t)-1)
-		return (ft_calloc(1, sizeof(char)));
-	else
-		return (ft_calloc((size - j) - (size - k) + 2, sizeof(char)));
+	i = 0;
+	while (s1[i] && ft_ischar(s1[i], set))
+	{
+		i++;	
+	}
+	return (i);
+}
+
+int			ft_lsttocc(char const *s1, char const *set)
+{
+	int i;
+	int size;
+
+	size = ft_strlen(s1) - 1;
+	i = 0;
+	while (s1[size - i] && ft_ischar(s1[size - i], set))
+	{
+		i++;	
+	}
+	return (size - i + 1);
+
 }
 
 char		*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
 	char	*r;
+	int		start;
+	int		end;
+	int		i;
 
-	if (s1 == NULL)
+	if (!s1)
+		return (NULL);
+	start = ft_frstocc(s1, set);
+	end = ft_lsttocc(s1, set);
+	i = 0;
+	r = ft_calloc((end - start) + 1, sizeof(char));
+	if (!r)
 		return (NULL);
 	i = 0;
-	j = 0;
-	k = ft_strlen(s1) - 1;
-	while (s1[j] && ft_containschar(set, s1[j]))
-		j++;
-	while (s1[k] && ft_containschar(set, s1[k]))
-		k--;
-	r = ft_allocmem(s1, j, k);
-	if (r == NULL)
-		return (NULL);
-	while (i + j <= k && s1[i + j])
+	while (start + i < end)
 	{
-		r[i] = s1[i + j];
+		r[i] = s1[i + start];
 		i++;
 	}
 	r[i] = 0;
