@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:11:00 by mflorido          #+#    #+#             */
-/*   Updated: 2019/11/20 12:23:34 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/20 19:59:29 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_frstocc(char const *s1, char const *set)
 	i = 0;
 	while (s1[i] && ft_ischar(s1[i], set))
 	{
-		i++;	
+		i++;
 	}
 	return (i);
 }
@@ -48,10 +48,9 @@ int			ft_lsttocc(char const *s1, char const *set)
 	i = 0;
 	while (s1[size - i] && ft_ischar(s1[size - i], set))
 	{
-		i++;	
+		i++;
 	}
 	return (size - i + 1);
-
 }
 
 char		*ft_strtrim(char const *s1, char const *set)
@@ -64,7 +63,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (NULL);
 	start = ft_frstocc(s1, set);
-	end = ft_lsttocc(s1, set);
+	end = ((size_t)start == ft_strlen(s1) ? start : ft_lsttocc(s1, set));
 	i = 0;
 	r = ft_calloc((end - start) + 1, sizeof(char));
 	if (!r)
