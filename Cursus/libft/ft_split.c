@@ -3,74 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gconde-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 10:10:55 by gconde-m          #+#    #+#             */
-/*   Updated: 2019/11/20 20:11:05 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/21 14:44:10 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/22 08:45:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**ft_mallocsize(char const *s, char c)
+int		ft_get_nsep(char const *s, char c)
 {
-	char	*aux;
-	char	**aux2;
-	int		fil;
-
-	fil = 0;
-	aux = (char*)s;
-	while (*aux)
-	{
-		while (*aux == c)
-			aux++;
-		if (*aux != '\0')
-			fil++;
-		while (*aux != c && *aux)
-			aux++;
-	}
-	aux2 = (char**)malloc((fil + 1) * sizeof(char*));
-	if (aux2 == NULL)
-		return (NULL);
-	aux2[fil] = NULL;
-	return (aux2);
-}
-
-static char		**ft_copy(const char *s, char c)
-{
-	size_t	len;
-	char	**tab;
-	int		i;
+	int i;
+	int	nsep;
 
 	i = 0;
-	len = 0;
-	tab = ft_mallocsize(s, c);
-	if (tab == NULL)
-		return (NULL);
-	while (*s)
+	nsep = 0;
+	while (s[i])
 	{
-		while (*s == c)
-			s++;
-		if (*s != '\0')
-		{
-			while (s[len] != c && s[len])
-				len++;
-			tab[i++] = ft_substr(s, 0, len);
-			s += len;
-		}
-		len = 0;
+		while (s[i] == c)
+			i++;
+		if (s[i])
+			nsep++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	tab[i] = NULL;
-	return (tab);
+	return (nsep);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **tab;
+	char	**r;
+	int		nsep;
+	int		i;
+	int		size;
 
 	if (!s)
 		return (NULL);
-	tab = ft_copy(s, c);
-	return (tab);
+	nsep = ft_get_nsep(s, c);
+	r = ft_calloc(nsep + 1, sizeof(char *));
+	if (!r)
+		return (NULL);
+	r[nsep] = NULL;
+	i = 0;
+	while (i < nsep)
+	{
+		size = 0;
+		while (*s == c)
+			s++;
+		while (s[size] && s[size] != c)
+			size++;
+		r[i++] = ft_substr(s, 0, size);
+		s += size;
+	}
+	return (r);
 }
-
