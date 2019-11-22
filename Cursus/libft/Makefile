@@ -72,5 +72,3 @@ bonus:		$(OBB)
 main:		$(OBJ) $(OBB)
 			@$(CC) $(FLAGS) $(OBJ) $(OBB) main.c
 			./a.out
-
-.PHONY:		all $(NAME) OBJ OBB bonus clean fclean re
