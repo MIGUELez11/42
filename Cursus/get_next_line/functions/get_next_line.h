@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 11:29:34 by mflorido          #+#    #+#             */
-/*   Updated: 2019/12/28 13:39:56 by marvin           ###   ########.fr       */
+/*   Updated: 2019/12/30 17:09:11 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ typedef struct		s_fd_lst
 {
 	int					fd;
 	char				*buffer;
-	ssize_t					buffer_size;
-	ssize_t					buffer_max_size;
-	ssize_t					line_max_size;
+	ssize_t				buffer_size;
+	ssize_t				buffer_max_size;
+	ssize_t				line_max_size;
 	int					file_ended;
 	struct s_fd_lst		*next;
 	struct s_fd_lst		*prev;
 }					t_fd_lst;
 
 int					get_next_line(int fd, char **line);
+char				*read_line(int fd, t_fd_lst *this);
 
 #endif
