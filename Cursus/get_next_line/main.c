@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-int main()
-{
-	
-}
-=======
 #include "functions/get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -75,14 +69,14 @@ int main(int argc, char **argv)
 			lines = 0;
 			while((error = get_next_line(fd, &str)) > 0)
 			{
-				printf("%s\n", str);
+				//printf("%s\n", str);
 				free(str);
 				str = NULL;
 				lines++;
 			}
 			if (error > -1)
 			{
-				printf("%s\n", str);
+				//printf("%s\n", str);
 				lines++;
 				printf("\033[0;32mfile %4d/%d was read with %d lines\n\033[0m", file, argc - 1, lines);
 				free(str);
@@ -135,4 +129,3 @@ int main(int argc, char **argv)
 		file++;
 	}
 }
->>>>>>> 7f8e281809262605cca8d644bf7737c27d2c8ec6
