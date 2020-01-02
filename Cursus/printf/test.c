@@ -3,35 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 20:35:44 by mflorido          #+#    #+#             */
-/*   Updated: 2019/12/30 20:57:15 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/12/31 22:49:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 
-void test(int n_args, ...)
+void test(char *str, ...)
 {
 	va_list ap;
-	int r = 0;
-	int i = 0;
+	int		i = 0;
+	int		n_args;
 
-	va_start(ap, n_args);
-	while(i < n_args)
+	if(str)
 	{
-		r += va_arg(ap, int);
-		i++;
+		while (str[i])
+		{
+			if (str[i] == '%' && str[i - 1] != '%' && str[i + 1] != '%')
+				n_args++;
+			i++;
+		}
+		if (n_args == 6)
+		{
+			va_start(ap, str);
+			printf("%d\n", va_arg(ap, int));
+			printf("%s\n", va_arg(ap, char*));
+			printf("%c\n", va_arg(ap, int));
+			printf("%p\n", va_arg(ap, void*));
+			printf("%x\n", va_arg(ap, int));
+			printf("%X\n", va_arg(ap, int));
+			va_end(ap);
+		}
 	}
-	printf("%d", r);
 }
 
 int main()
 {
-	//test(2, 'n', 'n');
-printf("%x %X", 932453, 932453);
+	test("%d %s %c %p %x %X %%", 12, "hola que tal estas?", 'z', NULL, 93, 93);
 	return (0);
 }
 
