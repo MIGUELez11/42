@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 20:35:44 by mflorido          #+#    #+#             */
-/*   Updated: 2019/12/31 22:49:58 by marvin           ###   ########.fr       */
+/*   Updated: 2020/01/02 17:14:27 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,14 @@ void test(char *str, ...)
 	}
 }
 
+int	ft_printf(char *str, ...);
+
 int main()
 {
-	test("%d %s %c %p %x %X %%", 12, "hola que tal estas?", 'z', NULL, 93, 93);
+	ft_printf("\e[0;31mhola que tal estas? %dYo genial%c%f%c%% hoali\n");
+	ft_printf("Que tal?\033[0m");
+	ft_printf("\e[1;1H\e[2J");
+	ft_printf("Bien y tu?");
 	return (0);
 }
 
