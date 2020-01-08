@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   pf_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/08 14:41:52 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/01/08 19:54:30 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/08 16:46:15 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/08 16:47:47 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pf_parser(const char *str, int *iadd, va_list ap)
+int		pf_putchar(va_list ap)
 {
-	int i;
+	char c;
 
-	i = *iadd + 1;
-	if (str[i] == 'c')
-		pf_putchar(ap);
-	else if (str[i] == '%')
-		write(1, "%", 1);
-	else if (str[i] == 's')
-		pf_putstr(ap);
-	i++;
-	*iadd = i;
+	c = (char)va_arg(ap, int);
+	write(1, &c, 1);
+	return (1);
 }

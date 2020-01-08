@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 16:38:19 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/08 14:58:06 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/08 19:53:11 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int		ft_printf(const char *str, ...)
 {
-	int	i;
+	int		i;
+	va_list	ap;
 
+	va_start(ap, str);
 	i = 0;
 	while(str[i])
 	{
 		if (str[i] == '%')
-			parser(i);
+			pf_parser(str, &i, ap);
 //			i += 2;
 		else
 		{
