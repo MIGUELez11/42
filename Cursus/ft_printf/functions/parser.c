@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid>       +#+  +:+       +#+        */
+/*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 16:38:19 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/08 14:58:06 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/08 14:41:52 by miguelez1         #+#    #+#             */
+/*   Updated: 2020/01/08 15:09:39 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *str, ...)
+void	parser(int &iadd)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == '%')
-			parser(i);
-//			i += 2;
-		else
-		{
-			write(1, &str[i], 1);
-			i++;
-		}
-	}
+	i = *iadd;
+	
+	*iadd = i;
 }

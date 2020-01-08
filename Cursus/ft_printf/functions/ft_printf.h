@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 16:38:19 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/08 14:58:06 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/08 14:58:30 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/08 15:03:33 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef
+# define FT_PRINTF_H
 
-int		ft_printf(const char *str, ...)
-{
-	int	i;
+# include 
 
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == '%')
-			parser(i);
-//			i += 2;
-		else
-		{
-			write(1, &str[i], 1);
-			i++;
-		}
-	}
-}
+#endif
