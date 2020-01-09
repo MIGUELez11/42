@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 16:38:19 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/08 19:53:11 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/09 11:13:32 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int		ft_printf(const char *str, ...)
 			i++;
 		}
 	}
+	return (1);
 }
