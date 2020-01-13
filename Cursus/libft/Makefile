@@ -50,7 +50,7 @@ OBB		=	$(SRB:.c=.o)
 
 AR		=	ar rcs
 CC		=	clang
-FLAGS	=	-Wall -Werror -Wextra
+FLAGS	=	-Wall -Werror -Wextra #-L -3g
 
 all:		$(NAME)
 
@@ -72,3 +72,5 @@ bonus:		$(OBB)
 main:		$(OBJ) $(OBB)
 			@$(CC) $(FLAGS) $(OBJ) $(OBB) main.c
 			./a.out
+
+#.PHONY:		all $(NAME) OBJ OBB bonus clean fclean re

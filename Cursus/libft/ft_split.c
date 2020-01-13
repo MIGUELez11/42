@@ -6,13 +6,13 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:44:10 by mflorido          #+#    #+#             */
-/*   Updated: 2019/11/22 10:07:01 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/22 08:45:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_get_nsep(char const *s, char c)
+int		ft_get_nsep(char const *s, char c)
 {
 	int i;
 	int	nsep;
