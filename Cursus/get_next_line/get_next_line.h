@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 11:29:34 by mflorido          #+#    #+#             */
-/*   Updated: 2019/12/30 17:09:11 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/14 17:30:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_fd_lst
 	char				*buffer;
 	ssize_t				buffer_size;
 	ssize_t				buffer_max_size;
-	ssize_t				line_max_size;
+	ssize_t				line_avg_size;
 	int					file_ended;
 	struct s_fd_lst		*next;
 	struct s_fd_lst		*prev;

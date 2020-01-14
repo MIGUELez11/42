@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 11:29:16 by mflorido          #+#    #+#             */
-/*   Updated: 2019/12/30 17:09:39 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/09 19:09:53 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/14 17:31:28 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **	lst_init(file descriptor, previouse node)
@@ -38,7 +38,7 @@ static t_fd_lst	*lst_init(int fd, t_fd_lst *prev)
 	this->prev = prev;
 	this->buffer_size = 0;
 	this->buffer_max_size = 0;
-	this->line_max_size = BUFFER_SIZE;
+	this->line_avg_size = BUFFER_SIZE;
 	this->file_ended = 0;
 	return (this);
 }
