@@ -1,0 +1,6 @@
+.DS_Store
+.*.swp
+.*.swn
+a.out
+Output
+main[0-99].c
