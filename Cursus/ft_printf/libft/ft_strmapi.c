@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/14 18:19:09 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:46:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char c;
+	int		i;
+	char	*r;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	i = 0;
+	if (!s || !(r = ft_calloc(ft_strlen(s) + 1, sizeof(char))))
+		return (NULL);
+	while (s[i])
+	{
+		r[i] = (*f)(i, s[i]);
+		i++;
+	}
+	r[i] = 0;
+	return (r);
 }

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/09 09:57:44 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:46:25 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+char	*ft_strrchr(const char *s, int c)
 {
-	char c;
+	int i;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	i = ft_strlen(s);
+	while (i > 0 && s[i] != c)
+		i--;
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (NULL);
 }

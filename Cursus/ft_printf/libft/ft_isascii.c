@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/09 08:57:26 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/09 09:40:33 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		parser(t_printf_list *p_lst)
+int	ft_isascii(int c)
 {
-	char c;
-
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	if (c >= 0 && c <= '~' + 1)
+		return (1);
+	return (0);
 }

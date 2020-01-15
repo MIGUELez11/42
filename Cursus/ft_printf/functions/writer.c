@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   writer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/15 19:06:53 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/15 19:15:13 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		parser(t_printf_list *p_lst)
+int		writer(t_printf_list *p_lst)
 {
-	char c;
-
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
+	while (p_lst->str[p_lst->i])
+	{
+		if (p_lst->str[p_lst->i] == '%')
+			parser(p_lst);
+		else
+			write(1, &(p_lst->str[p_lst->i]), 1);
+		p_lst->i++;
+	}
 	return (1);
 }

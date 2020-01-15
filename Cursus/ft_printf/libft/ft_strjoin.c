@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/11 19:09:17 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/20 11:02:26 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char c;
+	int		size;
+	int		i;
+	int		j;
+	char	*r;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	r = malloc((size + 1) * sizeof(char));
+	if (r == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		r[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		r[i + j] = s2[j];
+		j++;
+	}
+	r[i + j] = 0;
+	return (r);
 }

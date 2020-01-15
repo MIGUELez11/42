@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/09 13:28:09 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:44:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char c;
+	size_t			i;
+	unsigned char	*p;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n && p[i] != (unsigned char)c && p[i])
+		i++;
+	if (p[i] == (unsigned char)c && i < n)
+		return ((void *)s + i);
+	return (NULL);
 }

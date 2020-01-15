@@ -1,6 +1,9 @@
 NAME		=	libftprintf.a
 EXEC		=	ft_printf.out
 
+LIBFTPATH	=	libft
+LIBFT		=	$(LIBFTPATH)/libft.a
+
 SRCDIR		=	functions
 OBJDIR		=	objects
 
@@ -15,16 +18,20 @@ RM			=	rm -rf
 
 $(NAME):	all
 all: 	$(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+	make -C $(LIBFTPATH) bonus
+	@ar rcs $(NAME) $(OBJ) $(LIBFT)
 
-c:	$(NAME)
-	@$(CC) $(FLAGS) -Wall -Wextra -Werror $(NAME) $(MAIN) -o $(EXEC)
+c:	$(OBJ	$(OBJ)) $(NAME)
+	@$(CC) $(FLAGS) -Wall -Wextra -Werror $(NAME) $(MAIN) $(LIBFT) -o $(EXEC)
+	@./$(EXEC) | sed "s/$$/$$/g"
 
 clean:
-	$(RM) $(OBJDIR)
+	@$(RM) $(OBJDIR)
+	@make -C $(LIBFTPATH) clean
 
 fclean:	clean
-	$(RM) $(NAME) $(EXEC)
+	@$(RM) $(NAME) $(EXEC)
+	@make -C $(LIBFTPATH) fclean
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 	@if [ ! -d $(OBJDIR) ]; then\

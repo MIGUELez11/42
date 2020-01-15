@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/16 11:38:26 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:55:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char c;
+	int		i;
+	int		size;
+	t_list	*aux;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	i = 0;
+	size = ft_lstsize(*lst);
+	while (i < size && *lst)
+	{
+		aux = (*lst)->next;
+		del((*lst)->content);
+		if (*lst != NULL)
+		{
+			free(*lst);
+		}
+		*lst = aux;
+	}
+	lst = NULL;
 }

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/16 10:51:53 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/23 13:34:31 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+t_list	*ft_lstnew(void const *content)
 {
-	char c;
+	t_list	*newl;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	newl = malloc(1 * sizeof(t_list *));
+	if (newl == NULL)
+		return (NULL);
+	if (content == NULL)
+		newl->content = NULL;
+	else
+		newl->content = (void *)content;
+	newl->next = NULL;
+	return (newl);
 }

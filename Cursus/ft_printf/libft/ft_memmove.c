@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/09 12:37:57 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:45:01 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char c;
+	size_t	i;
+	char	*p1;
+	char	*p2;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	p1 = (char *)dst;
+	p2 = (char *)src;
+	if (p1 == NULL && p2 == NULL)
+		return (NULL);
+	i = 0;
+	if (src > dst)
+		while (i < len)
+		{
+			p1[i] = p2[i];
+			i++;
+		}
+	else
+	{
+		while (len > 0)
+		{
+			p1[len - 1] = p2[len - 1];
+			len--;
+		}
+	}
+	i = 0;
+	return (dst);
 }

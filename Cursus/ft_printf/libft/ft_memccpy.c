@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/13 10:41:32 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/18 22:44:40 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char c;
+	size_t					i;
+	unsigned char			*p1;
+	unsigned char			*p2;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	i = 0;
+	p1 = (unsigned char *)dst;
+	p2 = (unsigned char *)src;
+	if (p1 == NULL && p2 == NULL)
+		return (NULL);
+	while (i < n)
+	{
+		p1[i] = p2[i];
+		if (p1[i] == (unsigned char)c)
+			return (dst + i + 1);
+		i++;
+	}
+	return (NULL);
 }

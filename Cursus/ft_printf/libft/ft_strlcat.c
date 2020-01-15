@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Created: 2019/11/09 09:22:01 by mflorido          #+#    #+#             */
+/*   Updated: 2019/11/20 10:10:24 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		parser(t_printf_list *p_lst)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	char c;
+	size_t	r;
+	size_t	i;
+	size_t	dstsize;
 
-	c = p_lst->str[++p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	return (1);
+	dstsize = ft_strlen(dst);
+	i = 0;
+	if (n <= dstsize)
+		r = (ft_strlen(src) + n);
+	else
+	{
+		r = (dstsize + ft_strlen(src));
+		while (i + dstsize + 1 < n && src[i])
+		{
+			dst[i + dstsize] = src[i];
+			i++;
+		}
+		dst[i + dstsize] = 0;
+	}
+	return (r);
 }
