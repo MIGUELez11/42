@@ -1,7 +1,8 @@
 .DS_Store
 .*.swp
 .*.swn
-a.out
+*.out
+*.o
 Output
 main[0-99].c
 main.c
