@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:25:49 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:44:47 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		parser(t_printf_list *p_lst)
 {
 	char c;
 
+	parse_flags(p_lst);
 	c = p_lst->str[++p_lst->i];
 	if (c == 'c')
 		parse_char(p_lst);

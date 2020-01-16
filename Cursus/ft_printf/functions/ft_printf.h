@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/15 20:57:59 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:42:50 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct	s_flags {
 	char		minus;
 	int			width;
+	int			precision;
 	char		point;
 	char		asterisk;
 

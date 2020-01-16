@@ -21,7 +21,7 @@ all: 	$(OBJ)
 	make -C $(LIBFTPATH) bonus
 	@ar rcs $(NAME) $(OBJ) $(LIBFT)
 
-c:	$(OBJ	$(OBJ)) $(NAME)
+c:	$(OBJ) $(NAME)
 	@$(CC) $(FLAGS) -Wall -Wextra -Werror $(NAME) $(MAIN) $(LIBFT) -o $(EXEC)
 	@./$(EXEC) | sed "s/$$/$$/g"
 
@@ -38,4 +38,6 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 		mkdir $(OBJDIR);\
 	fi
 	@$(CC) $(FLAGS)  -c $< -o $@
-
+linux:	
+	@gcc -Wall -Wextra -Werror -o $(EXEC) $(SRC) $(LIBFTPATH)/*.c $(MAIN)
+	@./$(EXEC) | sed "s/$$/$$/g"

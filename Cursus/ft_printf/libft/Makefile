@@ -72,5 +72,7 @@ bonus:		$(OBJ) $(OBB)
 main:		$(OBJ) $(OBB)
 			@$(CC) $(FLAGS) $(OBJ) $(OBB) main.c
 			./a.out
+so:
+			@gcc -shared -o libft.so -fPIC $(SRC)
 
 #.PHONY:		all $(NAME) OBJ OBB bonus clean fclean re
