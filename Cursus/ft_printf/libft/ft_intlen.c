@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 22:14:24 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/17 12:43:06 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/17 11:02:08 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/17 11:02:19 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_printf(const char *str, ...)
+int ft_intlen(int n)
 {
-	t_printf_list	*p_lst;
+    int i;
 
-	lst_init(&p_lst, str);
-	va_start(p_lst->ap, str);
-	writer(p_lst);
-	va_end(p_lst->ap);
-	return (p_lst->printed_chars);
+    i = 0;
+    while (n != 0)
+    {
+        n /= 10;
+        if (n != 0)
+            i++;
+    }
+    return (++i);
 }

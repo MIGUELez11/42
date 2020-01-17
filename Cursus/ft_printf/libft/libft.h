@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 09:43:03 by mflorido          #+#    #+#             */
-/*   Updated: 2019/11/23 10:28:42 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/17 11:03:38 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,11 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 		void (*del)(void *));
+
+/*
+** Extra functions
+*/
+
+int				ft_intlen(int n);
 
 #endif

@@ -4,5 +4,3 @@
 *.out
 *.o
 Output
-main[0-99].c
-main.c

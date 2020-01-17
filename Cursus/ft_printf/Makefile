@@ -22,6 +22,7 @@ all: 	$(OBJ)
 	@ar rcs $(NAME) $(OBJ) $(LIBFT)
 
 c:	$(OBJ) $(NAME)
+	clear
 	@$(CC) $(FLAGS) $(NAME) $(MAIN) $(LIBFT) -o $(EXEC)
 	@./$(EXEC) | sed "s/$$/$$/g"
 

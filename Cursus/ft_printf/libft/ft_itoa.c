@@ -6,13 +6,13 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:20:06 by mflorido          #+#    #+#             */
-/*   Updated: 2019/11/18 22:43:38 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:35:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(int n)
+int	ft_intlen(int n)
 {
 	int i;
 
