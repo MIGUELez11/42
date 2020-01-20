@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 13:59:03 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/20 13:56:09 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/20 20:00:33 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		parser(t_printf_list *p_lst)
+int		parse_int(t_printf_list *p_lst)
 {
-	char c;
+	int		n;
+	int		len;
 
-	parse_flags(p_lst);
-	c = p_lst->str[p_lst->i];
-	if (c == 'c')
-		parse_char(p_lst);
-	else if (c == 's')
-		parse_string(p_lst);
-	else if (c == '%')
-		parse_percent(p_lst);
-	else if (c == 'd' || c == 'i')
-		parse_int(p_lst);
+	n = va_arg(p_lst->ap, int);
+	len = (n >= 0 ? ft_intlen(n) : ft_intlen(n) + 1);
+	if (p_lst->flags.width && !p_lst->flags.minus && !p_lst->flags.zero)
+		put_repeated_char(' ', p_lst->flags.width - (p_lst->flags.precision - len));
+	if (n < 0)
+	{	
+		write(1, "-", 1);
+		n *= -1;
+	}
+	if (p_lst->flags.precision)
+		put_repeated_char('0', p_lst->flags.precision - len);
+	ft_putnbr_fd(n, 1);
 	return (1);
 }

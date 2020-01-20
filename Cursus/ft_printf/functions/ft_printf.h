@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/19 23:12:02 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/01/20 18:47:55 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-
-
 typedef struct	s_flags {
 	char		minus;
 	int			width;
 	int			precision;
 	char		point;
 	char		asterisk;
+	char		zero;
 
 }				t_flags;
 
@@ -45,7 +44,10 @@ int				writer(t_printf_list *p_lst);
 int				parse_flags(t_printf_list *p_lst);
 int				parser(t_printf_list *p_lst);
 int				parse_char(t_printf_list *p_lst);
+int				parse_percent(t_printf_list *p_lst);
 int				parse_string(t_printf_list *p_lst);
-int     		put_repeated_char(int c, int n);
+int				parse_int(t_printf_list *p_lst);
+int				put_repeated_char(int c, int n);
 int				flags_init(t_printf_list *p_lst);
+
 #endif

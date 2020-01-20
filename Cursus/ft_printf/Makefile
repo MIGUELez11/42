@@ -18,12 +18,13 @@ RM			=	rm -rf
 
 $(NAME):	all
 all: 	$(OBJ)
-	make -C $(LIBFTPATH) bonus
-	@ar rcs $(NAME) $(OBJ) $(LIBFT)
+	@make -C $(LIBFTPATH) bonus
+	@cp $(LIBFT) $(NAME)
+	@ar rcs $(NAME) $(OBJ)
 
 c:	$(OBJ) $(NAME)
-	clear
-	@$(CC) $(FLAGS) $(NAME) $(MAIN) $(LIBFT) -o $(EXEC)
+	@clear
+	@$(CC) $(FLAGS) $(NAME) $(MAIN) -o $(EXEC)
 	@./$(EXEC) | sed "s/$$/$$/g"
 
 clean:

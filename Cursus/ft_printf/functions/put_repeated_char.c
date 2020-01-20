@@ -6,13 +6,13 @@
 /*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 20:27:21 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/01/19 20:28:00 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/01/20 17:50:39 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     put_repeated_char(int c, int n)
+int	put_repeated_char(int c, int n)
 {
 	int i;
 
