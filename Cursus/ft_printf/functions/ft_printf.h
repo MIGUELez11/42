@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/19 20:28:31 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/01/19 23:12:02 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ int				parser(t_printf_list *p_lst);
 int				parse_char(t_printf_list *p_lst);
 int				parse_string(t_printf_list *p_lst);
 int     		put_repeated_char(int c, int n);
+int				flags_init(t_printf_list *p_lst);
 #endif

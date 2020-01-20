@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 19:54:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/19 20:27:12 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/01/19 23:42:11 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int		parse_char(t_printf_list *p_lst)
 		put_repeated_char(' ', p_lst->flags.width - 1);
 	else if (p_lst->flags.minus || p_lst->flags.width < 0)
 		put_repeated_char(' ', -p_lst->flags.width - 1);
+	p_lst->printed_chars += 1;
 	if (p_lst->flags.width > 0)
-		p_lst->printed_chars += p_lst->flags.width;
+		p_lst->printed_chars += p_lst->flags.width - 1;
 	else if (p_lst->flags.width < 0)
-		p_lst->printed_chars -= p_lst->flags.width;
-	p_lst->flags.width += 1;
-
+		p_lst->printed_chars -= p_lst->flags.width + 1;
 	return (1);
 }
