@@ -34,5 +34,6 @@
 [1;33m[String + int(-p)][0m hola, que tal 00042$
 [1;33m[String + int(*.*)][0m hola, que tal 00042$
 [1;33m[String + int(*)][0m hola, que tal    42$
+[1;33m[String + int(-*)][0m hola, que tal 42   $
 [1;33m[String + int(0)][0m hola, que tal 0000000042$
 [1;33m[String + int(-0)][0m hola, que tal 42        $

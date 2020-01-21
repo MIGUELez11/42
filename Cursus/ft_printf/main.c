@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 19:48:57 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/21 09:12:06 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int main()
 	printf("\e[1;33m[String + int(wp)]\e[0m hola, que tal %7.3d\n", 42);
 	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %1.10d\n", 42);
 	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %-1.10d\n", 42);
+	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %-8.4d\n", -42);
 
 
 }

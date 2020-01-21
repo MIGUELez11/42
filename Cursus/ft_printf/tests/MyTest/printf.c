@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 18:55:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/21 09:39:00 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int main()
 	printf("\e[1;33m[String + int(-p)]\e[0m hola, que tal %-.5d\n", 42);
 	printf("\e[1;33m[String + int(*.*)]\e[0m hola, que tal %*.*d\n", 5, 5, 42);
 	printf("\e[1;33m[String + int(*)]\e[0m hola, que tal %*d\n", 5, 42);
+	printf("\e[1;33m[String + int(-*)]\e[0m hola, que tal %*d\n", -5, 42);
 	printf("\e[1;33m[String + int(0)]\e[0m hola, que tal %010d\n", 42);
 	printf("\e[1;33m[String + int(-0)]\e[0m hola, que tal %-010d\n", 42);
 }
