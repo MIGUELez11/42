@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 18:47:55 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 12:04:01 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+/*
+**	type: t_flags
+**
+**	used to set which flags are set
+**
+**	minus		->	(0 - 1)
+**	width		->	(1 - max long int)
+**	precision	->	(0 - max long int) 
+**	point		->	(0 - 1)
+**	asterisk	->	(0 - 1)
+**	zero		->	(0 - 1)
+*/
+
 typedef struct	s_flags {
 	char		minus;
 	int			width;
@@ -28,6 +41,19 @@ typedef struct	s_flags {
 	char		zero;
 
 }				t_flags;
+
+/*	
+**	type: t_printf_list
+**
+**	used to 
+**
+**	conversors		->	a string with the allowed conversors
+**	ap				->	the ap_list
+**	printed_chars	->	the number of printed chars
+**	i				->	the current position on the main string
+**	flags			->	the flag structure
+**	str				->	the main string passed
+*/
 
 typedef struct	s_printf_list {
 	char		*conversors;

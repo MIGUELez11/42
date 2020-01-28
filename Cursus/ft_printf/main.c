@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/21 09:12:06 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 10:14:16 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_printf(const char *str, ...);
 
 int main()
 {
+	printf("Hola %6s %0.5d %-6s", "que", 42, "tal");
+	/*
 	ft_printf("\e[1;34m-------------- \e[1;31m ft_printf \e[1;34m---------------\e[0m\n\n");
 
 	ft_printf("\e[1;35m-------------- \e[1;31m  No Args  \e[1;35m---------------\e[0m\n");
@@ -109,6 +111,6 @@ int main()
 	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %1.10d\n", 42);
 	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %-1.10d\n", 42);
 	printf("\e[1;33m[String + int(-wp)]\e[0m hola, que tal %-8.4d\n", -42);
-
+*/
 
 }
