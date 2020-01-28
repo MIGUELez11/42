@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 20:21:41 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 18:48:49 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:14:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		parse_flags(t_printf_list *p_lst)
 		}
 		else if (c == '0')
 			p_lst->flags.zero = 1;
+		else
+			return (0);
 
 	}
 	return (1);
