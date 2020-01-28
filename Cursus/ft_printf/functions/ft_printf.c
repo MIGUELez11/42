@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:14:24 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/28 19:28:46 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:58:31 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 **	Example:
 **		ft_printf("Hola %6s %0.5d %-6s", "que", 42, "tal");
 **		Output: "Hola    que 00042 tal   "
-**
 */
 
 int		ft_printf(const char *str, ...)

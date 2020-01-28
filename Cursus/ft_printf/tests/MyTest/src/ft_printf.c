@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/28 20:30:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 21:13:09 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int main()
 	putnbr(ft_printf("%*c", -5, 'a'));
 	putnbr(ft_printf("hola que tal? %*c", -5, 'B'));
 	putnbr(ft_printf("%*c%*c%-*c", -5, 'a', 2, 'b', 6, 'c'));
-	//UNDEFINED putnbr(ft_printf("%.5c", 'a'));
+	/*//UNDEFINED */putnbr(ft_printf("%.5c", 'a'));
 	//UNDEFINED putnbr(ft_printf("%-.5c", 'a'));
 
 	write(1, "\e[33m------- \e[32mbasic input + str  \e[33m------\e[0m\n\n", 54);

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/28 20:32:44 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/28 21:23:15 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,6 @@ int main()
 	printf(", %d\n", printf("%*s", 25, "Hola, que tal?"));
 	printf(", %d\n", printf("%*s", -25, "Hola, que tal?"));
 	printf(", %d\n", printf("%-*s", 25, "Hola, que tal?"));
+	//UNDEFINED printf(", %d\n", printf("%.*s", 25, "Hola, que tal?"));
+	//UNDEFINED printf(", %d\n", printf("%-.*s", 25, "Hola, que tal?"));
 }
