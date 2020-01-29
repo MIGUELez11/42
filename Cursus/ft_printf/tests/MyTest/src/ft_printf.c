@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/28 21:13:09 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/29 21:15:30 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int main()
 	putnbr(ft_printf(""));
 	putnbr(ft_printf("Hello World!"));
 	putnbr(ft_printf("Hello World. How are you tonight. This is a test"));
-	write(1, "\e[33m------- \e[32mbasic input + char \e[33m------\e[0m\n\n", 54);
+
+	write(1, "\e[33m----------- \e[32mchar input \e[33m----------\e[0m\n\n", 54);
 	putnbr(ft_printf("%c", 'a'));
 	putnbr(ft_printf("%c", '\0'));
 	putnbr(ft_printf("%5c", 'a'));
@@ -58,10 +59,10 @@ int main()
 	putnbr(ft_printf("%*c", -5, 'a'));
 	putnbr(ft_printf("hola que tal? %*c", -5, 'B'));
 	putnbr(ft_printf("%*c%*c%-*c", -5, 'a', 2, 'b', 6, 'c'));
-	/*//UNDEFINED */putnbr(ft_printf("%.5c", 'a'));
+	//UNDEFINED putnbr(ft_printf("%.5c", 'a'));
 	//UNDEFINED putnbr(ft_printf("%-.5c", 'a'));
 
-	write(1, "\e[33m------- \e[32mbasic input + str  \e[33m------\e[0m\n\n", 54);
+	write(1, "\e[33m----------- \e[32mstr input \e[33m-----------\e[0m\n\n", 54);
 	putnbr(ft_printf("%s", NULL));
 	putnbr(ft_printf("%s", ""));
 	putnbr(ft_printf("%s", "Hola, que tal?"));
@@ -71,4 +72,49 @@ int main()
 	putnbr(ft_printf("%*s", 25, "Hola, que tal?"));
 	putnbr(ft_printf("%*s", -25, "Hola, que tal?"));
 	putnbr(ft_printf("%-*s", 25, "Hola, que tal?"));
+	putnbr(ft_printf("%.*s", 4, "Hola, que tal?"));
+	putnbr(ft_printf("%-.*s", 4, "Hola, que tal?"));
+	putnbr(ft_printf("%.*s", -4, "Hola, que tal?"));
+
+	write(1, "\e[33m----------- \e[32mint input \e[33m-----------\e[0m\n\n", 54);
+	putnbr(ft_printf("%d", 0));
+	putnbr(ft_printf("%d", 1));
+	putnbr(ft_printf("%d", -1));
+	putnbr(ft_printf("%d", 10));
+	putnbr(ft_printf("%d", -10));
+	putnbr(ft_printf("%d", 42));
+	putnbr(ft_printf("%d", -42));
+	putnbr(ft_printf("%d", 2147483647));
+	putnbr(ft_printf("%d", -2147483648));
+	putnbr(ft_printf("%0d", 42));
+	putnbr(ft_printf("%-d", 42));
+	putnbr(ft_printf("%5d", 42));
+	putnbr(ft_printf("%-5d", 42));
+	putnbr(ft_printf("%*d", 5, 42));
+	putnbr(ft_printf("%-*d", 5,  42));
+	putnbr(ft_printf("%*d", -5, 42));
+	putnbr(ft_printf("%5d", 42));
+	putnbr(ft_printf("%-5d", 42));
+	putnbr(ft_printf("%*d", 5, 42));
+	putnbr(ft_printf("%-*d", 5,  42));
+	putnbr(ft_printf("%*d", -5, 42));
+	putnbr(ft_printf("%.5d", 42));
+	putnbr(ft_printf("%-.5d", 42));
+	putnbr(ft_printf("%.*d", 5,  42));
+	putnbr(ft_printf("%-.*d", 5,  42));
+	putnbr(ft_printf("%.*d", -5, 42));
+	putnbr(ft_printf("%5.5d", 42));
+	putnbr(ft_printf("%-5.5d", 42));
+	putnbr(ft_printf("%*.5d", 5, 42));
+	putnbr(ft_printf("%-*.5d", 5,  42));
+	putnbr(ft_printf("%*.5d", -5, 42));
+	putnbr(ft_printf("%5.*d", 5,  42));
+	putnbr(ft_printf("%-5.*d", 5,  42));
+	putnbr(ft_printf("%5.*d", -5,  42));
+	putnbr(ft_printf("%*.*d", 5, 5, 42));
+	putnbr(ft_printf("%-*.*d", 5, 5, 42));
+	putnbr(ft_printf("%*.*d", -5, -5, 42));
+	putnbr(ft_printf("%05.5d", 42));
+	putnbr(ft_printf("%0*.*d", 5, 5, 42));
+	putnbr(ft_printf("%0*.*d", -5, -5, 42));
 }

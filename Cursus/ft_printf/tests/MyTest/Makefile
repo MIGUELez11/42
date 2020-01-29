@@ -6,7 +6,7 @@
 #    By: mflorido <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:33:33 by mflorido          #+#    #+#              #
-#    Updated: 2020/01/28 20:42:56 by mflorido         ###   ########.fr        #
+#    Updated: 2020/01/29 20:55:45 by mflorido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all: clean
 	@./$(OBJ_PATH)/$(FT_PRINTF_TEST) | sed "s/$$/$$/g" >  $(FT_PRINTF_TEST)_output
 	@./$(OBJ_PATH)/$(PRINTF_TEST) | sed "s/$$/$$/g" > $(PRINTF_TEST)_output
 	@printf "\e[1;33mdiff $(PRINTF_TEST)_output $(FT_PRINTF_TEST)_output\e[0m\n"
-	@diff --text $(PRINTF_TEST)_output $(FT_PRINTF_TEST)_output 2>difference || cat difference 
+	@colordiff --text $(PRINTF_TEST)_output $(FT_PRINTF_TEST)_output 2>difference || cat difference 
 clean:
 	@rm -rf $(OBJ_PATH)
 fclean: clean

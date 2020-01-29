@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parseChar.c                                        :+:      :+:    :+:   */
+/*   putnbr_abs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:54:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 15:08:51 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/29 20:46:49 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/29 20:48:58 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		parse_char(t_printf_list *p_lst)
+void	putnbr_abs(int n, int fd)
 {
-	char	c;
+	char		c;
+	long int	n2;
 
-	c = (char)va_arg(p_lst->ap, int);
-	pos_width(p_lst, 1);
-	write(1, &c, 1);
-	p_lst->printed_chars += 1;
-	neg_width(p_lst, 1);
-	return (1);
+	if (n < 0)
+		n2 = -(long int)n;
+	else
+		n2 = n;
+	if (n2 > 9)
+		putnbr_abs(n2 / 10, fd);
+	c = (n2 % 10) + '0';
+	write(fd, &c, 1);
 }

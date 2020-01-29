@@ -6,7 +6,7 @@
 /*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 20:10:23 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/01/28 21:00:03 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:06:17 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ int		parse_string(t_printf_list *p_lst)
 	if (!str)
 		str = "(null)";
 	strlen = ft_strlen(str);
-	/*if (p_lst->flags.point && p_lst->flags.precision < 0)
-		p_lst->flags.precision = 0;*/
-	/*if (p_lst->flags.precision < strlen && p_lst->flags.precision >= 0)
-		strlen = p_lst->flags.precision;*/
+	if (p_lst->flags.precision < strlen && p_lst->flags.precision >= 0)
+		strlen = p_lst->flags.precision;
 	i = 0;
 	pos_width(p_lst, strlen);
 	write(1, &str[i], strlen);
-	pos_neg_width(p_lst, strlen);
+	neg_width(p_lst, strlen);
 	p_lst->printed_chars += strlen;
 	return (1);
 }
