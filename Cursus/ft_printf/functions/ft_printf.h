@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 20:48:36 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:10:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int				put_repeated_char(int c, int n);
 int				flags_init(t_printf_list *p_lst);
 int				pos_width(t_printf_list *p_lst, int strlen);
 int				neg_width(t_printf_list *p_lst, int strlen);
+int				pos_precision(t_printf_list *p_lst, int *strlen);
 void			putnbr_abs(int n, int fd);
 
 #endif

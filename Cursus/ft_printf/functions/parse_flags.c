@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 20:21:41 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 21:15:48 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:05:13 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int		parse_flags(t_printf_list *p_lst)
 		if (p_lst->str[p_lst->i] == '-')
 			p_lst->flags.minus = 1;
 		else if (p_lst->str[p_lst->i] == '.')
+		{
 			p_lst->flags.point = 1;
+			p_lst->flags.precision = 0;
+		}
 		else if (p_lst->str[p_lst->i] == '*' && p_lst->flags.point == 0)
 			p_lst->flags.width = va_arg(p_lst->ap, int);
 		else if (p_lst->str[p_lst->i] == '*' && p_lst->flags.point == 1)
