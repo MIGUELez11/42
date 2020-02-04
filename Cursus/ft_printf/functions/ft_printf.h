@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/30 15:10:08 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/03 20:53:59 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,13 @@ int				parse_char(t_printf_list *p_lst);
 int				parse_percent(t_printf_list *p_lst);
 int				parse_string(t_printf_list *p_lst);
 int				parse_int(t_printf_list *p_lst);
+int				parse_uint(t_printf_list *p_lst);
 int				put_repeated_char(int c, int n);
 int				flags_init(t_printf_list *p_lst);
 int				pos_width(t_printf_list *p_lst, int strlen);
 int				neg_width(t_printf_list *p_lst, int strlen);
 int				pos_precision(t_printf_list *p_lst, int *strlen);
 void			putnbr_abs(int n, int fd);
+void			putunbr(unsigned int n, int fd);
 
 #endif

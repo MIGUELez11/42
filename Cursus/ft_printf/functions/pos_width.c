@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 10:20:45 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/30 18:00:09 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/03 20:44:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	pos_width(t_printf_list *p_lst, int strlen)
 				put_repeated_char('0', p_lst->flags.width - strlen);
 			else if ((p_lst->flags.precision - strlen) > 0)
 			{
-				put_repeated_char(' ', p_lst->flags.width - p_lst->flags.precision);
-				put_repeated_char('0', p_lst->flags.precision - strlen);
+				put_repeated_char(' ', p_lst->flags.width - strlen);
+				//put_repeated_char('0', p_lst->flags.precision - strlen);
 			}
 			else if (!p_lst->flags.zero)
 				put_repeated_char(' ', p_lst->flags.width - p_lst->flags.precision);
