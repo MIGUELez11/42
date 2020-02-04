@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_node.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 07:50:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/04 21:22:52 by mflorido         ###   ########.fr       */
+/*   Created: 2020/02/04 20:23:12 by mflorido          #+#    #+#             */
+/*   Updated: 2020/02/04 20:47:22 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "functions/ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *str, ...);
-
-int main()
+void free_node(t_printf_list **p_lst)
 {
-	ft_printf("%");
-	ft_printf("%5");
-	ft_printf("%05");
-	ft_printf("%-05");
-	ft_printf("%-5");
+	if ((*p_lst)->conversors)
+		free((*p_lst)->conversors);
+	if (*p_lst)
+		free(*p_lst);
 }

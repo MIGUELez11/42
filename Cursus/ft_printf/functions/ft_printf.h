@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/04 19:49:31 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/04 20:26:18 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int				pos_precision(t_printf_list *p_lst, int *strlen);
 void			putnbr_abs(int n, int fd);
 void			putunbr(unsigned int n, int fd);
 int				ft_uintlen(unsigned int n);
+void			free_node(t_printf_list **p_lst);
 
 #endif

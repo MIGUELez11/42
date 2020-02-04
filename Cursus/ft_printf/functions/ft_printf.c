@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:14:24 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/28 20:58:31 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/04 21:21:25 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 int		ft_printf(const char *str, ...)
 {
 	t_printf_list	*p_lst;
+	int				printed_chars;
 
 	if (!str)
 		return (-1);
@@ -49,5 +50,7 @@ int		ft_printf(const char *str, ...)
 	va_start(p_lst->ap, str);
 	writer(p_lst);
 	va_end(p_lst->ap);
-	return (p_lst->printed_chars);
+	printed_chars = p_lst->printed_chars;
+	free_node(&p_lst);
+	return (printed_chars);
 }
