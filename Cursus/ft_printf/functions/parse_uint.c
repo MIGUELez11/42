@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:56:09 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/03 20:54:58 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:49:15 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		parse_uint(t_printf_list *p_lst)
 	int			len;
 
 	n = va_arg(p_lst->ap, unsigned int);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_intlen(n));
+	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_uintlen(n));
 	if (p_lst->flags.width < 0)
 	{
 		p_lst->flags.width *= -1;
