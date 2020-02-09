@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 09:43:03 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/17 11:03:38 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:33:12 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 */
 
 int				ft_intlen(int n);
+void			ft_uppercase(char *str);
+char				*ft_itoh(int n);
 
 #endif
