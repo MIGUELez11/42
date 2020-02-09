@@ -6,7 +6,7 @@
 /*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 16:27:07 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/02/09 16:34:02 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/09 16:48:19 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,5 @@ void	ft_uppercase(char *str)
 		if (str[i] >= 'a' && str[i] <= 'z')
 			str[i] += 'A' - 'a';
 		i--;
-	}
-}
-
-int main()
-{
-	char *str;
-	int i = 0;
-
-	while (i <= 30000)
-	{
-		str = ft_itoh(i);
-		ft_uppercase(str);
-		printf("%s\n", str);
-		free(str);
-		i++;
 	}
 }
