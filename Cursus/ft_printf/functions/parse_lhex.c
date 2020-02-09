@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:56:09 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/09 18:11:57 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/09 18:36:26 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		parse_int(t_printf_list *p_lst)
 		p_lst->printed_chars += 1;
 	}
 	num = ft_itoh((n < 0 ? -(long)n : n));
-	ft_putstr_fd(1, num);
+	ft_putstr_fd(num, 1);
 	free(num);
 	if((!p_lst->flags.minus && p_lst->flags.width > len && p_lst->flags.precision == -1 && p_lst->flags.zero) || (p_lst->flags.precision > len))
 	{
