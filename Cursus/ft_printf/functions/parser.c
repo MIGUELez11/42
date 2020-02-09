@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/05 16:59:25 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/09 18:15:04 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ int		parser(t_printf_list *p_lst)
 			parse_int(p_lst);
 		else if (c == 'u')
 			parse_uint(p_lst);
-		else
-		{
-			//printf("\nEsta es otra cagada %c\n", c);
-			//write(1, "a", 1);
-			return (0);
-		}
-		return (1);
+		else if (c == 'x')
+			parse_lhex(p_lst);
+		else if (c == 'X')
+			parse_uhex(p_lst);
 	}
-	return (0);
+	return (1);
 }
