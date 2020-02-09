@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parseChar.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:54:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 15:08:51 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/17 11:02:08 by mflorido          #+#    #+#             */
+/*   Updated: 2020/02/04 19:51:24 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		parse_char(t_printf_list *p_lst)
+int ft_uintlen(unsigned int n)
 {
-	char	c;
+    int i;
 
-	c = (char)va_arg(p_lst->ap, int);
-	pos_width(p_lst, 1);
-	write(1, &c, 1);
-	p_lst->printed_chars += 1;
-	neg_width(p_lst, 1);
-	return (1);
+    i = 0;
+    while (n != 0)
+    {
+        n /= 10;
+        if (n != 0)
+            i++;
+    }
+    return (++i);
 }

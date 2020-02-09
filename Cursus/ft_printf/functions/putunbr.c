@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parseChar.c                                        :+:      :+:    :+:   */
+/*   putnbr_abs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:54:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 15:08:51 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/29 20:46:49 by mflorido          #+#    #+#             */
+/*   Updated: 2020/02/03 20:54:40 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		parse_char(t_printf_list *p_lst)
+void	putunbr(unsigned int n, int fd)
 {
-	char	c;
+	char		c;
 
-	c = (char)va_arg(p_lst->ap, int);
-	pos_width(p_lst, 1);
-	write(1, &c, 1);
-	p_lst->printed_chars += 1;
-	neg_width(p_lst, 1);
-	return (1);
+	if (n > 9)
+		putunbr(n / 10, fd);
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
 }

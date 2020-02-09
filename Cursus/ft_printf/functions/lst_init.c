@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 08:06:26 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 18:48:11 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:50:39 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int			lst_init(t_printf_list **p_lst, const char *str)
 	(*p_lst)->printed_chars = 0;
 	(*p_lst)->str = str;
 	(*p_lst)->conversors = ft_strdup("cspdiuxX%");
+	if (!(*p_lst)->conversors)
+	{
+		free(*p_lst);
+		return (-1);
+	}
 	flags_init(*p_lst);
 	return (1);
 }

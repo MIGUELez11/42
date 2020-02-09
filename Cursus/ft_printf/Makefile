@@ -11,7 +11,7 @@ SRC			=	$(shell find functions -name "*.c")
 OBJ			=	$(shell find functions -name "*.c" | sed "s/$(SRCDIR)\//$(OBJDIR)\//g" | rev | sed "s/c\./o./" | rev)
 
 CC			=	gcc
-FLAGS		+=	-Wall -Wextra -Werror
+#FLAGS		+=	-Wall -Wextra -Werror
 MAIN		=	main.c
 
 RM			=	rm -rf

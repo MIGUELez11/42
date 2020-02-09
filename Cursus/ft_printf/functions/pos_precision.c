@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parseChar.c                                        :+:      :+:    :+:   */
+/*   pos_precision.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:54:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/29 15:08:51 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/28 21:21:01 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/30 15:11:32 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		parse_char(t_printf_list *p_lst)
+int	pos_precision(t_printf_list *p_lst, int *strlen)
 {
-	char	c;
-
-	c = (char)va_arg(p_lst->ap, int);
-	pos_width(p_lst, 1);
-	write(1, &c, 1);
-	p_lst->printed_chars += 1;
-	neg_width(p_lst, 1);
-	return (1);
+	if (p_lst->flags.precision < *strlen && p_lst->flags.precision >= 0)
+		*strlen = p_lst->flags.precision;
+	return (1);	
 }

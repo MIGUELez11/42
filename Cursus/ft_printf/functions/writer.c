@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 19:06:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/19 23:29:08 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/05 17:00:43 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		writer(t_printf_list *p_lst)
 			write(1, &(p_lst->str[p_lst->i]), 1);
 			p_lst->printed_chars += 1;
 		}
-		p_lst->i++;
+		if (p_lst->str[p_lst->i])
+			p_lst->i++;
 	}
 	return (1);
 }
