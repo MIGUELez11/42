@@ -34,7 +34,10 @@ SRC		=	ft_atoi.c\
 			ft_substr.c\
 			ft_tolower.c\
 			ft_toupper.c\
-			ft_intlen.c
+			ft_intlen.c\
+			ft_itoh.c\
+			ft_uppercase.c
+
 
 SRB		=	ft_lstadd_back_bonus.c\
 			ft_lstadd_front_bonus.c\

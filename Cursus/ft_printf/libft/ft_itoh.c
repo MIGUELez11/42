@@ -6,7 +6,7 @@
 /*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 09:51:06 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/02/09 16:56:35 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/11 19:13:26 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdio.h>
 
 
-char	*ft_itoh(int n)
+char	*ft_itoh(long int n)
 {
-	int		i;
-	int		n2;
-	char	*str;
-	int		isneg;
+	int			i;
+	long int	n2;
+	char		*str;
+	int			isneg;
 
 	isneg = 0;
 	i = 1;
