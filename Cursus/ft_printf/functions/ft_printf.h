@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/09 18:38:08 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/11 21:35:49 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int				parse_int(t_printf_list *p_lst);
 int				parse_uint(t_printf_list *p_lst);
 int				parse_uhex(t_printf_list *p_lst);
 int				parse_lhex(t_printf_list *p_lst);
+int				parse_poin(t_printf_list *p_lst);
 int				put_repeated_char(int c, int n);
 int				flags_init(t_printf_list *p_lst);
 int				pos_width(t_printf_list *p_lst, int strlen);

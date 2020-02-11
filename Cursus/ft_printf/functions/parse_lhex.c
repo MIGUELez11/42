@@ -6,12 +6,11 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:56:09 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/11 21:20:23 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:25:23 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
 
 int		parse_lhex(t_printf_list *p_lst)
 {

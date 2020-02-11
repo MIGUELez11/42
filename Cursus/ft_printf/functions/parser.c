@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 08:03:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/09 18:15:04 by miguelez1        ###   ########.fr       */
+/*   Updated: 2020/02/11 21:32:05 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		parser(t_printf_list *p_lst)
 			parse_lhex(p_lst);
 		else if (c == 'X')
 			parse_uhex(p_lst);
+		else if (c == 'p')
+			parse_poin(p_lst);
 	}
 	return (1);
 }
