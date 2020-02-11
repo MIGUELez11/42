@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 21:32:14 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/11 21:42:51 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:44:42 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	parse_poin(t_printf_list *p_lst)
 	p_lst->printed_chars += 2;
 	if((!p_lst->flags.minus && p_lst->flags.width > len && p_lst->flags.precision == -1 && p_lst->flags.zero) || (p_lst->flags.precision > len))
 	{
-		put_repeated_char('0', (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision) - len);
-		p_lst->printed_chars += (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision) - len;
+		put_repeated_char('0', (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision + 2) - len);
+		p_lst->printed_chars += (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision + 2) - len;
 	}
 	if (!(p_lst->flags.precision == 0 && n == 0))
 		ft_putstr_fd(num, 1);
