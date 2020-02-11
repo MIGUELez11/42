@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 21:32:14 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/11 21:40:31 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:42:51 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_poin(t_printf_list *p_lst)
 	n = va_arg(p_lst->ap, unsigned long int);
 
 	num = ft_itoh(n);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_strlen(num) + 2);
+	len = (p_lst->flags.precision == 0 && n == 0 ? 2 : ft_strlen(num) + 2);
 	if (p_lst->flags.width < 0)
 	{
 		p_lst->flags.width *= -1;
@@ -42,7 +42,7 @@ int	parse_poin(t_printf_list *p_lst)
 	if (!(p_lst->flags.precision == 0 && n == 0))
 		ft_putstr_fd(num, 1);
 	free(num);
-	p_lst->printed_chars += len - (len == 0 ? 0 : 2);
+	p_lst->printed_chars += len - 2;
 
 	if (p_lst->flags.minus && p_lst->flags.width > len && p_lst->flags.width > p_lst->flags.precision)
 	{
