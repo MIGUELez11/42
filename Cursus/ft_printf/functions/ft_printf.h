@@ -86,6 +86,8 @@ void			putnbr_abs(int n, int fd);
 void			putunbr(unsigned int n, int fd);
 int				ft_uintlen(unsigned int n);
 void			free_node(t_printf_list **p_lst);
-
+int				width_spaces_before(t_printf_list *p_lst, int len);
+int				width_put_zeroes(t_printf_list *p_lst, int len);
+int				width_spaces_after(t_printf_list *p_lst, int len);
 
 #endif
