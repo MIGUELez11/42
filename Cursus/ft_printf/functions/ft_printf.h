@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 22:11:11 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/11 21:35:49 by mflorido         ###   ########.fr       */
+/*   Created: 2020/02/12 19:04:10 by mflorido          #+#    #+#             */
+/*   Updated: 2020/02/12 21:00:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **
 **	minus		->	(0 - 1)
 **	width		->	(1 - max long int)
-**	precision	->	(0 - max long int) 
+**	precision	->	(0 - max long int)
 **	point		->	(0 - 1)
 **	asterisk	->	(0 - 1)
 **	zero		->	(0 - 1)
@@ -42,10 +42,10 @@ typedef struct	s_flags {
 
 }				t_flags;
 
-/*	
+/*
 **	type: t_printf_list
 **
-**	used to 
+**	used to
 **
 **	conversors		->	a string with the allowed conversors
 **	ap				->	the ap_list

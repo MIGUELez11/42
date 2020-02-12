@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:56:09 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/11 21:25:23 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/12 19:25:48 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,12 @@ int		parse_lhex(t_printf_list *p_lst)
 		p_lst->flags.width *= -1;
 		p_lst->flags.minus = 1;
 	}
-	if (p_lst->flags.width && !p_lst->flags.minus && (!p_lst->flags.zero || p_lst->flags.precision != -1) &&  p_lst->flags.width > len && p_lst->flags.width > p_lst->flags.precision)
-	{
-		put_repeated_char(' ', p_lst->flags.width - (p_lst->flags.precision > len ? p_lst->flags.precision : len));
-		p_lst->printed_chars += p_lst->flags.width - (p_lst->flags.precision > len ? p_lst->flags.precision : len);
-	}
-	//
-	if((!p_lst->flags.minus && p_lst->flags.width > len && p_lst->flags.precision == -1 && p_lst->flags.zero) || (p_lst->flags.precision > len))
-	{
-		put_repeated_char('0', (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision) - len);
-		p_lst->printed_chars += (p_lst->flags.precision == -1 ? p_lst->flags.width : p_lst->flags.precision) - len; 
-	}
+	width_spaces_before(p_lst, len);
+	width_put_zeroes(p_lst, len);
 	if (!(p_lst->flags.precision == 0 && n == 0))
 		ft_putstr_fd(num, 1);
 	free(num);
 	p_lst->printed_chars += len;
-	
-	if (p_lst->flags.minus && p_lst->flags.width > len && p_lst->flags.width > p_lst->flags.precision)
-	{
-		put_repeated_char(' ', p_lst->flags.width - (p_lst->flags.precision > len ? p_lst->flags.precision : len));
-		p_lst->printed_chars += p_lst->flags.width - (p_lst->flags.precision > len ? p_lst->flags.precision : len); 
-	}
-	
+	width_spaces_after(p_lst, len);
 	return (1);
 }

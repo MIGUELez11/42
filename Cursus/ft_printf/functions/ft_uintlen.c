@@ -6,20 +6,20 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 11:02:08 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/04 19:51:24 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/12 19:24:02 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_uintlen(unsigned int n)
+int	ft_uintlen(unsigned int n)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (n != 0)
-    {
-        n /= 10;
-        if (n != 0)
-            i++;
-    }
-    return (++i);
+	i = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		if (n != 0)
+			i++;
+	}
+	return (++i);
 }

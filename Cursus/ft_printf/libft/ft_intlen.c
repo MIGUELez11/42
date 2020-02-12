@@ -6,22 +6,22 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 11:02:08 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/20 09:31:21 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:55:43 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_intlen(int n)
+int	ft_intlen(int n)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (n != 0)
-    {
-        n /= 10;
-        if (n != 0)
-            i++;
-    }
-    return (++i);
+	i = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		if (n != 0)
+			i++;
+	}
+	return (++i);
 }
