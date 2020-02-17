@@ -6,18 +6,18 @@
 /*   By: miguelez1 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 09:51:06 by miguelez1         #+#    #+#             */
-/*   Updated: 2020/02/12 18:58:38 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:06:17 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoh(long int n)
+char	*ft_itoh(unsigned long int n)
 {
-	int			i;
-	long int	n2;
-	char		*str;
-	int			isneg;
+	int					i;
+	unsigned long int	n2;
+	char				*str;
+	int					isneg;
 
 	isneg = 0;
 	i = 1;

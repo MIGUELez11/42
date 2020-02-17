@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 21:32:14 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/12 19:22:00 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:05:42 by miguelez1        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_poin(t_printf_list *p_lst)
 {
 	unsigned long int	n;
-	int					len;
+	long int			len;
 	char				*num;
 
 	n = va_arg(p_lst->ap, unsigned long int);
