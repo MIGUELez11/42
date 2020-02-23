@@ -1,0 +1,30 @@
+span {
+    color: white;
+}
+.Overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    animation: 0.4s ease-in forwards anim_appear;
+    opacity: 0; 
+    transform: scale(0.8) translate(-50%, -50%);
+    width: 300px;
+    height: 400px;
+    box-shadow: 0px 0px 10px 0px black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+@keyframes anim_appear {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+div.Overlay img {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    border-radius: 50%;
+}
