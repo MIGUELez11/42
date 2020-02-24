@@ -5,20 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <title>mflorido</title>
 </head>
 
 <body>
-    <div id="Cover">
-        <div id="Overlay">
-            <img src="https://miguelez11.com/Assets/IMG/MiguelAngelFlorido.png" alt="Miguel Ángel">
-            <p>Welcome to <strong>mflorido</strong>'s <em>ft_server</em>, you will find a running-base <em>debian buster
-                    (10)</em> server managed by nginx and the wordpress and phpmyadmin services</p>
-            <button onclick="document.getElementById('Cover').className = 'hide'; document.getElementById('Overlay').className = 'hide'">Continue</button>
-        </div>
+    <div id="Overlay">
+        <img src="https://miguelez11.com/Assets/IMG/MiguelAngelFlorido.png" alt="Miguel Ángel">
+        <p>Welcome to <strong>mflorido</strong>'s <em>ft_server</em>, you will find a running-base <em>debian buster
+                (10)</em> server managed by nginx and the wordpress and phpmyadmin services</p>
+        <button
+            onclick="document.getElementById('Cover').className = 'hide'; document.getElementById('Overlay').className = 'hide'">Continue</button>
     </div>
-    <a href="wordpress">Wordpress</a>
-    <a href="phpmyadmin">PhpMyAdmin</a>
+    <div id="Cover"></div>
+    <nav>
+        <div class="card" onclick="window.location = 'wordpress'">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/PhpMyAdmin_logo.png" alt="phpMyAdmin">
+        </div>
+        <div class="card" onclick="window.location = 'phpmyadmin'">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/WordPress.svg/1200px-WordPress.svg.png" alt="Wordpress">
+        </div>
+    </nav>
 </body>
 
 </html>

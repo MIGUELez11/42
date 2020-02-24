@@ -4,25 +4,31 @@ div#Cover {
     margin: 0px;
     width: 100vw;
     height: 100vh;
+    background-color: #000;
+    opacity: 0.8;
+    z-index: 1;
 }
 div#Cover.hide {
     animation: 1s ease-in forwards anim_hide;
 }
 @keyframes anim_hide {
+    to {
+        opacity: 0;
+    }
     100% {
         visibility: hidden;
     }
 }
 body {
     margin: 0px;
-    background-color: #F18F01
+    background-color: #F29918;
 }
 #Overlay {
     z-index: 2;
     position: absolute;
     left: 50%;
     top: 50%;
-    animation: 1s ease-in forwards anim_appear;
+    animation: 0.6s ease-in forwards anim_appear;
  /*   opacity: 0; */
     transform: translate(-50%, -50%) scale(0.0001) ;
     width: 300px;
@@ -78,5 +84,32 @@ div#Overlay img {
 div#Overlay.hide {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
-    animation: 1s ease-in forwards anim_disappear;
+    animation: 0.6s ease-in forwards anim_disappear;
+}
+
+nav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+nav .card {
+    margin: 20px;
+    width: auto;
+    height: auto;
+    padding: 15px 15px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 1px black;
+}
+nav .card:active {
+    box-shadow: 0 0 20px 1px black inset;
+}
+nav .card:hover {
+    cursor: pointer;
+}
+nav .card img {
+    width: 150px;
 }
