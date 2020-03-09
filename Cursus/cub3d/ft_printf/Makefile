@@ -43,3 +43,4 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 linux:	
 	@gcc -Wall -Wextra -Werror -o $(EXEC) $(SRC) $(LIBFTPATH)/*.c $(MAIN)
 	@./$(EXEC) | sed "s/$$/$$/g"
+re:	fclean $(NAME)
