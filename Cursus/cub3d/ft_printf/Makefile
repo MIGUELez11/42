@@ -40,7 +40,4 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 		mkdir $(OBJDIR);\
 	fi
 	@$(CC) $(FLAGS)  -c $< -o $@
-linux:	
-	@gcc -Wall -Wextra -Werror -o $(EXEC) $(SRC) $(LIBFTPATH)/*.c $(MAIN)
-	@./$(EXEC) | sed "s/$$/$$/g"
 re:	fclean $(NAME)

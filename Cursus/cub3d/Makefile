@@ -3,6 +3,7 @@ SRCS		=	$(shell find srcs -name "*.c")
 OBJS		=	$(shell find srcs -name "*.c" | rev | sed "s/c\./o\./g" | rev | sed "s/srcs/objs/g")
 NAME		=	cub3d
 MLX			=	libmlx.a
+GNL			=	get_next_line/libgnl.a
 FT_PRINTF	=	ft_printf/libftprintf.a
 
 CC			=	gcc
@@ -24,6 +25,11 @@ $(MLX):
 	@mv minilibx/$(MLX) .
 	@printf "\r\e[0;32mCompiled  \e[0;34mminilibx\e[0m"
 
+$(GNL):
+	@printf "\n\e[0;33mCompiling \e[0;34mget_next_line\e[0m"
+	@$(MAKE) -C get_next_line
+	@printf "\r\e[0;32mCompiled  \e[0;34mget_next_line\e[0m"
+
 $(FT_PRINTF):
 	@printf "\n\e[0;33mCompiling \e[0;34mft_printf\e[0m"
 	@$(MAKE) -C ft_printf
@@ -32,7 +38,7 @@ $(FT_PRINTF):
 
 # ------------- COMPILATION ---------------
 
-$(NAME):	$(MLX) $(FT_PRINTF) $(OBJS)
+$(NAME):	$(MLX) $(FT_PRINTF) $(OBJS) $(GNL)
 	@$(CC) $(FLAGS) -o $(NAME) $(DEP) $(OBJS) $(FT_PRINTF) 
 	@printf "\e[1;1H\e[2J\r\e[1;34m$(NAME)\e[1;32m successfully compiled\e[0m\n"
 	@tput cnorm
@@ -58,6 +64,10 @@ fclean:		clean
 	@printf "\rCleaned  \e[0;31mminilibx\e[0m"
 	@printf "\nCleaning \e[0;32mft_printf\e[0m"
 	@make -C ft_printf fclean
-	@printf "\rCleaning \e[0;31mft_printf\e[0m\n"
+	@printf "\Cleaned \e[0;31mft_printf\e[0m\n"
+	@printf "\nCleaning \e[0;32mget_next_line\e[0m"
+	@make -C get_next_line fclean
+	@printf "\Cleaned \e[0;31mget_next_line\e[0m\n"
+	
 
 re:	fclean $(NAME)
