@@ -39,7 +39,7 @@ $(FT_PRINTF):
 # ------------- COMPILATION ---------------
 
 $(NAME):	$(MLX) $(FT_PRINTF) $(OBJS) $(GNL)
-	@$(CC) $(FLAGS) -o $(NAME) $(DEP) $(OBJS) $(FT_PRINTF) 
+	@$(CC) $(FLAGS) -o $(NAME) $(DEP) $(OBJS) $(FT_PRINTF) $(GNL)
 	@printf "\e[1;1H\e[2J\r\e[1;34m$(NAME)\e[1;32m successfully compiled\e[0m\n"
 	@tput cnorm
 
@@ -71,3 +71,6 @@ fclean:		clean
 	
 
 re:	fclean $(NAME)
+
+parse: $(GNL) $(FT_PRINTF)
+	$(CC) $(FLAGS) main.c $(FT_PRINTF) $(GNL)
