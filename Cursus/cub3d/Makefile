@@ -8,11 +8,10 @@ FLAGS		+=	-Wall -Wextra -Werror
 SRCDIR		=	src
 OBJDIR		=	obj
 SRCS		=	${shell find ${SRCDIR} -name "*.c"}
-OBJS		=	$(shell echo ${SRCS} | sed "s/$(SRCDIR)\//$(OBJDIR)\//g" | rev | sed "s/c\./o./" | rev)
+OBJS		=	$(shell echo ${SRCS} | sed "s/$(SRCDIR)\//$(OBJDIR)\//g" | rev | sed "s/c\./o./g" | rev)
 
 ${NAME}: ${LIBFT} ${OBJS}
 	@${CC} -o ${NAME} ${FLAGS} ${OBJS} ${LIBFT}
-
 all: ${NAME}
 
 ${LIBFT}:
@@ -28,6 +27,9 @@ fclean: clean
 	@rm -rf ${NAME}
 
 re: fclean all
+
+test: ${LIBFT}
+	@gcc -o ${NAME} tests.c ${LIBFT}
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
 	@printf "compiling %s\n" "$<"
