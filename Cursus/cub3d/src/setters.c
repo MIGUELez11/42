@@ -6,11 +6,18 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/20 19:19:09 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/03 14:43:46 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	setup_player(t_cub_config *config)
+{
+	config->player.x = 0;
+	config->player.facing = 0;
+	config->player.y = 0;
+}
 
 void	setup_config(t_cub_config *config)
 {
@@ -23,6 +30,7 @@ void	setup_config(t_cub_config *config)
 	config->east = NULL;
 	config->sprite = NULL;
 	config->lst_map = NULL;
+	setup_player(config);
 }
 
 void	set_colors(char *position, char *value, t_cub_config *config)

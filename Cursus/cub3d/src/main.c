@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:41:46 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/20 20:14:52 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/03 14:28:11 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		main(int argc, char **argv)
 {
 	if (argc == 2 && validate_cub_file(argv[1]))
 	{
-		ft_printf("valid\n");
+		ft_printf("valid config\n");
 	}
 	else
 		ft_printf("No valid\n");

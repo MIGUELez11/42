@@ -6,18 +6,65 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/20 20:15:03 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/03 18:24:57 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		check_borders(t_cub_config *config)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (config->map[i])
+	{
+		j = -1;
+		while (config->map[i][++j])
+		{
+			if (config->map[i][j] != '1' && ((i == 0 || !config->map[i + 1]) ||
+			j == 0 || config->map[i][j + 1] == '\0'))
+				return (0);
+			if (ft_strchr("NSEW", config->map[i][j]))
+			{
+				if (config->player.facing)
+					return (0);
+				config->player.x = i;
+				config->player.y = j;
+				config->player.facing = config->map[i][j];
+			}
+		}
+		i++;
+	}
+	return (config->player.facing != '\0');
+}
+
+int		check_invalid_chars(t_cub_config *config)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (config->map[i])
+	{
+		j = 0;
+		while (config->map[i][j])
+		{
+			if (!ft_strrchr("NSEW012", config->map[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 void	parse_map(t_cub_config *config)
 {
-	t_list	*node;
-	size_t	i;
-	size_t	j;
-	size_t	length;
+	t_list *node;
+	size_t length;
+	size_t i;
 
 	length = ft_lstsize(config->lst_map);
 	node = config->lst_map;
@@ -30,24 +77,8 @@ void	parse_map(t_cub_config *config)
 		node = node->next;
 	}
 	ft_lstclear(&config->lst_map, free);
-	i = 0;
-	while (config->map[i])
-	{
-		j = 0;
-		while (config->map[i][j])
-		{
-			if ((i == 0 || i == length - 1) && config->map[i][j] != '1')
-				ft_printf("invalid map %d %d %c\n", i, j, config->map[i][j]);
-			else if ((j == 0 || j == ft_strlen(config->map[i]) - 1) &&
-			config->map[i][j] != '1')
-				ft_printf("invalid map %d %d %c\n", i, j, config->map[i][j]);
-			else if (config->map[i][j] != '0' && config->map[i][j] != '1'
-			&& config->map[i][j] != '2' && config->map[i][j] != 'N'
-			&& config->map[i][j] != 'S' && config->map[i][j] != 'E'
-			&& config->map[i][j] != 'W')
-				ft_printf("invalid map %d %d %c\n", i, j, config->map[i][j]);
-			j++;
-		}
-		i++;
-	}
+	if (!check_borders(config) || !check_invalid_chars(config))
+		cub_exit("Invalid map", EINVAL, config);
+	else
+		ft_printf("\nValid Map\n");
 }

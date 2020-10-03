@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/20 20:14:04 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/03 18:55:29 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	set_cub_config_value(char **value, t_cub_config *config)
 		set_sprites(value[0], value[1], config);
 	else if (!ft_strncmp(value[0], "F", 1) || !ft_strncmp(value[0], "C", 1))
 		set_colors(value[0], value[1], config);
-	else
-		ft_printf("Error");
 }
 
 void	get_cub_config_value(char **line, t_cub_config *config)

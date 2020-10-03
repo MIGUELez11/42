@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:54:30 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/20 20:11:56 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/09/21 08:32:50 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	cub_exit(char *msg, int code, t_cub_config *config)
 	ft_printf("%s (%s [%d])\n\e[0m", msg, strerror(code), code);
 	if (config)
 		clear_cub_config(config);
-
 	ft_printf("\n\n\n");
 	system("leaks cub3d");
 	exit(code);
