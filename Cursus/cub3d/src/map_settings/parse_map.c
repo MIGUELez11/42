@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/05 12:03:26 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/07 13:18:41 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		check_borders(t_cub_config *config)
 {
+	//For check borders lets look phone image 07/Oct/2020
 	size_t i;
 	size_t j;
 

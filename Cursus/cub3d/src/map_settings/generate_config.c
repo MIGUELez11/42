@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/05 12:02:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/07 13:17:59 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_cub_config_value(char **line, t_cub_config *config)
 			&& config->sprite && config->ceiling_set && config->floor_set
 			&& config->resolution_set)
 			ft_lstadd_back(&config->lst_map,
-			ft_lstnew(ft_strremovechar(*line, ' ')));
+			ft_lstnew(ft_strdup(*line) /*ft_strremovechar(*line, ' ')*/));
 		else
 		{
 			word[0] = ft_strtrim(*line, " ");
