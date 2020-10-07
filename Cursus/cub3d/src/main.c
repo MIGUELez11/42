@@ -6,11 +6,12 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:41:46 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/03 14:28:11 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:24:06 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game/game.h"
 
 char	*ft_strremovechar(const char *str, char c)
 {
@@ -88,13 +89,15 @@ char	*ft_removeduplicates(const char *str, const char *set)
 
 int		main(int argc, char **argv)
 {
-	if (argc == 2 && validate_cub_file(argv[1]))
+	t_cub_config	config;
+
+	ft_printf("argv: %s", argv[1]);
+	if (argc == 2 && validate_cub_file(argv[1], &config))
 	{
-		ft_printf("valid config\n");
+		ft_printf("Starting with the libx part\n");
+		initialize(&config);
 	}
 	else
-		ft_printf("No valid\n");
-	ft_printf("\n\n\n\n");
-	system("leaks cub3d");
+		cub_exit("Not valid map", EINVAL, NULL);
 	return (1);
 }

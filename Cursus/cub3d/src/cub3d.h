@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/03 14:35:02 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/06 10:42:28 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,10 @@ typedef struct	s_cub_config
 	t_player	player;
 }				t_cub_config;
 
-void			get_cub_config(int fd);
-int				validate_cub_file(char *filename);
-void			clear_cub_config(t_cub_config *config);
-void			set_sprites(char *position, char *value, t_cub_config *config);
-void			set_colors(char *position, char *value, t_cub_config *config);
-void			setup_config(t_cub_config *config);
-void			parse_map(t_cub_config *config);
+int				validate_cub_file(char *filename, t_cub_config *config);
 void			cub_exit(char *msg, int code, t_cub_config *config);
+void			initialize(t_cub_config *cub_config);
 
 void			print_config(t_cub_config *config);
-char			*ft_removeduplicates(const char *str, const char *set);
-char			*ft_strremovechar(const char *str, char c);
 
 #endif
