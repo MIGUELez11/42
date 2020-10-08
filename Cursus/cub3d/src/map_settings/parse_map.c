@@ -6,45 +6,72 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/07 13:18:41 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/08 17:54:07 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_settings.h"
 
-int		check_borders(t_cub_config *config)
+void	set_player_pos(t_coords coords, char facing, t_cub_config *config)
 {
-	//For check borders lets look phone image 07/Oct/2020
-	size_t i;
-	size_t j;
-
-	i = 0;
-	while (config->map[i])
+	if (ft_strchr("NSEW", config->map[coords.y][coords.x]))
 	{
-		j = -1;
-		while (config->map[i][++j])
+		if (config->player.facing)
+			cub_exit("The player was invoked multiple times", EINVAL, config);
+		config->player.x = coords.x;
+		config->player.y = coords.y;
+		config->player.facing = facing;
+	}
+}
+
+void	check_borders(t_coords coords, int prev_width, int next_width,
+t_cub_config *config)
+{
+	int x;
+	int y;
+
+	x = coords.x;
+	y = coords.y;
+	if (x == 0 || y == 0 || !config->map[y + 1] ||
+		config->map[y][x + 1] == ' ' || config->map[y][x + 1] == '\0' ||
+		config->map[y][x - 1] == ' ' || x > next_width ||
+		x > prev_width || config->map[y - 1][x] == ' ' ||
+		config->map[y + 1][x] == ' ')
+		cub_exit("The map has missing walls", EINVAL, config);
+}
+
+int		check_map_integrity(t_cub_config *config)
+{
+	t_coords	coords;
+	size_t		prev_width;
+	size_t		next_width;
+
+	coords.y = -1;
+	while (config->map[++coords.y])
+	{
+		if (coords.y > 0)
+			prev_width = ft_strlen(config->map[coords.y - 1]) - 1;
+		if (config->map[coords.y + 1])
+			next_width = ft_strlen(config->map[coords.y + 1]) - 1;
+		coords.x = -1;
+		while (config->map[coords.y][++coords.x])
 		{
-			if (config->map[i][j] != '1' && ((i == 0 || !config->map[i + 1]) ||
-			j == 0 || config->map[i][j + 1] == '\0'))
-				return (0);
-			if (ft_strchr("NSEW", config->map[i][j]))
+			if (ft_strrchr("02NSEW", config->map[coords.y][coords.x]))
 			{
-				if (config->player.facing)
-					return (0);
-				config->player.x = i;
-				config->player.y = j;
-				config->player.facing = config->map[i][j];
+				check_borders(coords, prev_width, next_width, config);
+				set_player_pos(coords, config->map[coords.y][coords.x], config);
 			}
 		}
-		i++;
 	}
-	return (config->player.facing != '\0');
+	if (!config->player.facing)
+		cub_exit("The player wasn't invoked at all", EINVAL, config);
+	return (1);
 }
 
 int		check_invalid_chars(t_cub_config *config)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (config->map[i])
@@ -52,7 +79,7 @@ int		check_invalid_chars(t_cub_config *config)
 		j = 0;
 		while (config->map[i][j])
 		{
-			if (!ft_strrchr("NSEW012", config->map[i][j]))
+			if (!ft_strrchr("NSEW012 ", config->map[i][j]))
 				return (0);
 			j++;
 		}
@@ -78,6 +105,6 @@ void	parse_map(t_cub_config *config)
 		node = node->next;
 	}
 	ft_lstclear(&config->lst_map, free);
-	if (!check_borders(config) || !check_invalid_chars(config))
+	if (!check_map_integrity(config) || !check_invalid_chars(config))
 		cub_exit("Invalid map", EINVAL, config);
 }
