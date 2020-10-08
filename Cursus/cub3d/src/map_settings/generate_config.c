@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/08 17:55:27 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/08 18:47:44 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	get_cub_config_value(char **line, t_cub_config *config)
 
 void	get_cub_config(int fd, t_cub_config *config)
 {
-	char			*line;
+	char	*line;
 
 	setup_config(config);
 	while (get_next_line(fd, &line))
