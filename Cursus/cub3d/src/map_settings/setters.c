@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/05 11:45:04 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/17 23:19:12 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	setup_player(t_cub_config *config)
 {
-	config->player.x = 0;
-	config->player.facing = 0;
-	config->player.y = 0;
+	t_coords	coords;
+
+	coords = (t_coords){.x = 0.0, .y = 0.0};
+	config->player = (t_player){.position = coords, .direction = coords,
+	.velocity = (t_coords){.x = 10.0, .y = 10.0}, .heading_set = 0,
+	.heading = 0};
 }
 
 void	setup_config(t_cub_config *config)
@@ -24,11 +27,11 @@ void	setup_config(t_cub_config *config)
 	config->ceiling_set = 0;
 	config->floor_set = 0;
 	config->resolution_set = 0;
-	config->north = NULL;
-	config->south = NULL;
-	config->west = NULL;
-	config->east = NULL;
-	config->sprite = NULL;
+	config->north = 0;
+	config->south = 0;
+	config->west = 0;
+	config->east = 0;
+	config->sprite = 0;
 	config->lst_map = NULL;
 	setup_player(config);
 }
@@ -57,6 +60,10 @@ void	set_colors(char *position, char *value, t_cub_config *config)
 
 void	set_sprites(char *position, char *value, t_cub_config *config)
 {
+	if (!check_extension(value, "xpm") && !check_extension(value, "png"))
+		cub_exit("Invalid image extension", EINVAL, config);
+	if (open(value, O_RDONLY) == -1)
+		cub_exit("Image does not exist", EEXIST, config);
 	if (!ft_strncmp(position, "NO", 2) && !config->north)
 		config->north = ft_strdup(value);
 	else if (!ft_strncmp(position, "SO", 2) && !config->south)

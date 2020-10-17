@@ -6,25 +6,36 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/08 17:54:07 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/17 23:18:27 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_settings.h"
 
-void	set_player_pos(t_coords coords, char facing, t_cub_config *config)
+void	set_player_pos(t_int_coords coords, char facing, t_cub_config *config)
 {
 	if (ft_strchr("NSEW", config->map[coords.y][coords.x]))
 	{
-		if (config->player.facing)
+		if (config->player.heading)
 			cub_exit("The player was invoked multiple times", EINVAL, config);
-		config->player.x = coords.x;
-		config->player.y = coords.y;
-		config->player.facing = facing;
+		ft_printf("\nx = %d, y = %d, fx = %f, fy = %f\n", coords.x, coords.y, (float)coords.x, (float)coords.y);
+		printf("\n");
+		config->player.position = (t_coords){.x = (float)coords.x,
+		.y = (float)coords.y};
+		if (facing == 'N')
+			config->player.heading = 270 * (M_PI / 180);
+		else if (facing == 'S')
+			config->player.heading = 90 * (M_PI / 180);
+		else if (facing == 'E')
+			config->player.heading = 0;
+		else if (facing == 'W')
+			config->player.heading = 180 * (M_PI / 180);
+		if (facing == 'N' || facing == 'S' || facing == 'E' || facing == 'W')
+			config->player.heading_set = 1;
 	}
 }
 
-void	check_borders(t_coords coords, int prev_width, int next_width,
+void	check_borders(t_int_coords coords, int prev_width, int next_width,
 t_cub_config *config)
 {
 	int x;
@@ -42,9 +53,9 @@ t_cub_config *config)
 
 int		check_map_integrity(t_cub_config *config)
 {
-	t_coords	coords;
-	size_t		prev_width;
-	size_t		next_width;
+	t_int_coords	coords;
+	size_t			prev_width;
+	size_t			next_width;
 
 	coords.y = -1;
 	while (config->map[++coords.y])
@@ -63,7 +74,7 @@ int		check_map_integrity(t_cub_config *config)
 			}
 		}
 	}
-	if (!config->player.facing)
+	if (!config->player.position.x)
 		cub_exit("The player wasn't invoked at all", EINVAL, config);
 	return (1);
 }

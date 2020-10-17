@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   game_controller.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/07 11:42:15 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/17 23:05:15 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,42 @@ void	clear_mlx_config(t_mlx_config *config)
 		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 		config->win_ptr = 0;
 	}
+	if (config->img.ptr)
+		mlx_destroy_image(config->mlx_ptr, config->img.ptr);
 	if (config->mlx_ptr)
 		mlx_free_mlx_ptr(config->mlx_ptr);
+}
+
+void	clear_img(t_img *img)
+{
+	if (img->ptr)
+		mlx_free_mlx_ptr(img->ptr);
+}
+
+int		update_loop(t_mlx_config *cnf)
+{
+	ft_printf("\e[1;31mw = %d \e[1;32ma = %d \e[1;33ms= %d \e[1;34md= %d\e[0m\r",cnf->keys.w, cnf->keys.a, cnf->keys.s, cnf->keys.d);
+	if (cnf->keys.w)
+		player_move(cnf, 1);
+	if (cnf->keys.s)
+		player_move(cnf, -1);
+	if (cnf->keys.a)
+		player_rotate(cnf, 1);
+	if (cnf->keys.d)
+		player_rotate(cnf, -1);
+	return (1);
 }
 
 void	initialize(t_cub_config *cub_config)
 {
 	t_mlx_config	config;
 
-	config.cub_config = cub_config;
+	config.cub_cfg = cub_config;
+	config.keys = (t_keys){.w = 0, .s = 0, .a = 0, .d = 0};
 	generate_window(&config);
 	set_event_listeners(&config);
+	initialize_graphics(&config);
+	player_controller(&config);
+	mlx_loop_hook(config.mlx_ptr, update_loop, &config);
 	mlx_loop(config.mlx_ptr);
 }

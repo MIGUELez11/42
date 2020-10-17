@@ -1,18 +1,28 @@
 NAME		=	cub3D
+
+OS			=	${shell echo $$OSTYPE | sed -E "s/[0-9]{0,}//g"}
 LIBFT_PATH	=	libft
 LIBFT		=	${LIBFT_PATH}/libft.a
 CC			=	gcc
 FLAGS		?=
 FLAGS		+=	-Wall -Wextra -Werror
+ifeq (${OS}, darwin)
+	SIZE	=	${shell osascript -e 'tell application "Finder" to get bounds of window of desktop' | sed -E "s/, /|/g" | tr "|" "\n" | sed -E "1,2 s/.{0,}//g"}
+	X		=	${shell echo ${SIZE} | sed -E "s/ [0-9]{0,}$$//g"}
+	Y_		=	${shell echo ${SIZE} | sed -E "s/[0-9]{0,} //g"}
+	Y		=	${shell echo $$((${Y_} - 125))}
+	FLAGS	+=	-DSCREEN_MAX_X=${X}
+	FLAGS	+=	-DSCREEN_MAX_Y=${Y}
+endif
 
 SRCDIR		=	src
 OBJDIR		=	obj
 SRCS		=	${shell find ${SRCDIR} -name "*.c"}
 OBJS		=	$(shell find ${SRCDIR} -name "*.c" | sed -E "s/^${SRCDIR}/${OBJDIR}/g" | sed -E "s/\.c$$/\.o/g")
 
-MLXPATH		=	minilibx
+MLXPATH		=	minilibx_swift
 MLX			=	${MLXPATH}/libmlx.a
-MLXDEPS		=	-I ${MLXPATH} -L ${MLXPATH} -lmlx -framework OpenGL -framework Appkit
+MLXDEPS		=	-I ${MLXPATH} -L ${MLXPATH} -lmlx -framework OpenGL -framework Appkit -lz
 
 
 ${NAME}: ${LIBFT} ${OBJS} ${LIBMF} ${MLX}
@@ -29,7 +39,7 @@ ${LIBFT}:
 
 clean:
 	@make -C ${LIBFT_PATH} clean
-	@rm -rf obj	
+	@rm -rf obj
 
 fclean: clean
 	@make -C ${LIBFT_PATH} fclean
@@ -39,7 +49,10 @@ fclean: clean
 re: fclean all
 
 test: ${LIBFT} ${MLX}
-	@gcc -o ${NAME} tests.c ${LIBFT} ${MLXDEPS}
+	@echo "'${OS}'"
+	@echo ${FLAGS}
+	@echo ${SIZE}
+	@echo "'${X}' '${Y}'"
 
 ${OBJDIR}/%.o:	${SRCDIR}/%.c
 	$(eval DIR := $(shell echo $@ | sed -E "s/\/[^/]+.\o$ //g"))

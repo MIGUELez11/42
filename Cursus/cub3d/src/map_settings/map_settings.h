@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:43:49 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/08 17:55:05 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/16 12:33:04 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "../cub3d.h"
 
-typedef struct	s_coords
+typedef struct	s_int_coords
 {
 	int			x;
 	int			y;
-}				t_coords;
+}				t_int_coords;
 
 void			get_cub_config(int fd, t_cub_config *config);
 void			clear_cub_config(t_cub_config *config);

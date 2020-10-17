@@ -1,20 +1,14 @@
 #include "minilibx/mlx.h"
 #include "src/cub3d.h"
+#include "src/map_settings/map_settings.h"
+
 
 int	main()
 {
-	char	**a;
-
-	a = malloc(sizeof(char *) * 2);
-	a[0] = malloc(sizeof(char) * 5);
-	a[0][0] = 'H';
-	a[0][1] = 'o';
-	a[0][2] = 'l';
-	a[0][3] = 'a';
-	a[0][4] = '\0';
-	a[1] = malloc(sizeof(char) * 2);
-	a[1][0] = '0';
-	a[1][1] = '\0';
-
-	ft_printf("a[0] = %s a[2][3]%c", a[0], a[1][29]);
+	t_int_coords	coords = {.x = 2, .y = 3};
+	ft_printf("int coords [%d, %d]", coords.x, coords.y);
+	t_coords		fcoords = {.x = (float)coords.x, .y = (float)coords.y};
+	printf("float coords [%f, %f]", fcoords.x, fcoords.y);
+	if (fcoords.x)
+		printf("A");
 }
