@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/17 23:18:27 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/19 21:55:12 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	set_player_pos(t_int_coords coords, char facing, t_cub_config *config)
 {
 	if (ft_strchr("NSEW", config->map[coords.y][coords.x]))
 	{
-		if (config->player.heading)
+		if (config->player.heading_set)
 			cub_exit("The player was invoked multiple times", EINVAL, config);
-		ft_printf("\nx = %d, y = %d, fx = %f, fy = %f\n", coords.x, coords.y, (float)coords.x, (float)coords.y);
 		printf("\n");
 		config->player.position = (t_coords){.x = (float)coords.x,
 		.y = (float)coords.y};
@@ -102,12 +101,11 @@ int		check_invalid_chars(t_cub_config *config)
 void	parse_map(t_cub_config *config)
 {
 	t_list *node;
-	size_t length;
 	size_t i;
 
-	length = ft_lstsize(config->lst_map);
+	config->map_height = ft_lstsize(config->lst_map) + 1;
 	node = config->lst_map;
-	if (!(config->map = ft_calloc(length + 1, sizeof(char *))))
+	if (!(config->map = ft_calloc(config->map_height, sizeof(char *))))
 		cub_exit("Unable to allocate enough memory", ENOMEM, config);
 	i = 0;
 	while (node)

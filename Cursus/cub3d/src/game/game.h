@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/17 23:13:31 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/19 21:30:04 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # ifndef DELTATIME
 #  define DELTATIME 0.0166
 # endif
+
 typedef struct		s_img
 {
 	void			*ptr;
@@ -59,5 +60,20 @@ void				initialize_graphics(t_mlx_config *cfg);
 void				player_controller(t_mlx_config *cnf);
 void				player_move(t_mlx_config *cnf, int direction);
 void				player_rotate(t_mlx_config *cnf, int direction);
+char				cub_map(t_mlx_config *cnf, int x, int y);
+
+void				put_color_to_pixel(t_coords coords, int color,
+t_img *img, void *mlx_p);
+
+double				vector_distance(t_coords a, t_coords b);
+t_coords			vector_unit(t_coords v);
+double				vector_angle(t_coords r, t_coords s);
+double				rad_deg(double angle, char *unit);
+t_coords			normalize_coord(t_coords coord);
+t_coords			vector_2points(t_coords p, t_coords q);
+t_coords			vector_perp(t_coords v);
+
+void				paint_walls(t_mlx_config *cfg);
+unsigned long		rgba_to_hex(int rgb[3]);
 
 #endif

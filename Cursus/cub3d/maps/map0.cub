@@ -1,13 +1,13 @@
-R 100 100
+R 1920 1080
 NO ./assets/blue.xpm
 SO ./assets/brick.xpm
 WE ./assets/wood.xpm
 EA ./assets/grey.xpm
 S ./assets/barrel.xpm
-F 220,100,0
-C 225,30,0
+F 0,0,255
+C 225,0,0
 
 1111
-1W01
+1N01
 1001
 1111
