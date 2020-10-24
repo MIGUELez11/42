@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/14 15:52:55 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:16:59 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ void	get_cub_config_value(char **line, t_cub_config *config)
 {
 	char	**splitted;
 	char	*word[2];
-	int		words;
 
 	if (*line && *line[0])
 	{
 		if (config->north && config->south && config->west && config->east
 			&& config->sprite && config->ceiling_set && config->floor_set
 			&& config->resolution_set)
-			ft_lstadd_back(&config->lst_map,
-			ft_lstnew(ft_strdup(*line)));
+			{
+				ft_lstadd_back(&config->lst_map,
+				ft_lstnew(ft_strdup(*line)));
+			}
 		else
 		{
 			word[0] = ft_strtrim(*line, " ");
 			word[1] = ft_removeduplicates(word[0], " ");
 			splitted = ft_split(word[1], ' ');
-			words = 0;
 			set_cub_config_value(splitted, config);
 			ft_freedouble((void **)splitted);
 			free(word[0]);

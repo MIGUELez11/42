@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:59:07 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:00:02 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,10 @@ int		update_loop(t_mlx_config *cnf)
 
 char	cub_map(t_mlx_config *cnf, int x, int y)
 {
-	ft_printf("Pito");
 	if (y < cnf->cub_cfg->map_height &&
-	(size_t)x < ft_strlen(cnf->cub_cfg->map[y]))
-	{
-		ft_printf("Dentro\n");
+	(size_t)x < ft_strlen(cnf->cub_cfg->map[y]) &&
+	y >= 0 && x >= 0)
 		return (cnf->cub_cfg->map[y][x]);
-	}
 	return ('\0');
 }
 

@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:57:57 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:06:54 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_cub_config
 {
 	t_list		*lst_map;
 	int			map_height;
+	int			map_width;
 	int			width;
 	int			height;
 	char		*north;

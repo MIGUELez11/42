@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:12:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:58:26 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/22 22:06:25 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ void		set_init_player_pos(t_mlx_config *cnf)
 		.x = (player->position.x + 0.5) * GRID,
 		.y = (player->position.y + 0.5) * GRID
 	};
-
 	player->direction = (t_coords){
 		.x = trunc(cos(player->heading) * 10000000000) / 10000000000,
 		.y = trunc(sin(player->heading) * 10000000000) / 10000000000
 	};
+	player->camerapos = (t_coords){
+		.x = player->position.x + player->direction.x * 10,
+		.y = player->position.y + player->direction.y * 10
+	};
+	player->cameradir = vector_perp(player->direction);
 }
 
 void		player_move(t_mlx_config *cnf, int direction)
@@ -37,6 +41,11 @@ void		player_move(t_mlx_config *cnf, int direction)
 	DELTATIME * direction;
 	player->position.y += player->velocity.y * player->direction.y *
 	DELTATIME * direction;
+	player->camerapos = (t_coords){
+		.x = player->position.x + player->direction.x * 10,
+		.y = player->position.y + player->direction.y * 10
+	};
+	player->cameradir = vector_perp(player->direction);
 }
 
 void		player_rotate(t_mlx_config *cnf, int direction)
@@ -54,9 +63,10 @@ void		player_rotate(t_mlx_config *cnf, int direction)
 	player->direction.x = trunc(cos(player->heading) * 100000000) / 100000000;
 	player->direction.y = trunc(sin(player->heading) * 100000000) / 100000000;
 	player->cameradir = vector_perp(player->direction);
-	player->camerapos = (t_coords){.x = player->position.x +
-	vector_unit(player->direction).x * 10, .y = player->position.y +
-	vector_unit(player->direction).y * 10};
+	player->camerapos = (t_coords){
+		.x = player->position.x + player->direction.x * 10,
+		.y = player->position.y + player->direction.y * 10
+	};
 }
 
 void		player_controller(t_mlx_config *cnf)

@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:55:12 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:20:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		check_map_integrity(t_cub_config *config)
 			}
 		}
 	}
-	if (!config->player.position.x)
+	if (!config->player.heading_set)
 		cub_exit("The player wasn't invoked at all", EINVAL, config);
 	return (1);
 }
@@ -100,17 +100,21 @@ int		check_invalid_chars(t_cub_config *config)
 
 void	parse_map(t_cub_config *config)
 {
-	t_list *node;
-	size_t i;
+	t_list	*node;
+	size_t	i;
+	size_t	len;
 
-	config->map_height = ft_lstsize(config->lst_map) + 1;
+	config->map_height = ft_lstsize(config->lst_map);
 	node = config->lst_map;
-	if (!(config->map = ft_calloc(config->map_height, sizeof(char *))))
+	if (!(config->map = ft_calloc(config->map_height + 1, sizeof(char *))))
 		cub_exit("Unable to allocate enough memory", ENOMEM, config);
 	i = 0;
 	while (node)
 	{
 		config->map[i++] = ft_strdup(node->content);
+		len = ft_strlen(node->content);
+		if (config->map_width < (int)len)
+			config->map_width = (int)len;
 		node = node->next;
 	}
 	ft_lstclear(&config->lst_map, free);

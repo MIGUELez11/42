@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 22:00:07 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:29:15 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_img *img, void *mlx_p)
 
 void			initialize_graphics(t_mlx_config *cfg)
 {
-	int i;
-	int j;
+	// int i;
+	// int j;
 
 	ft_printf("%d %d", SCREEN_MAX_X, SCREEN_MAX_Y);
 	cfg->img.ptr = mlx_new_image(cfg->mlx_ptr, cfg->cub_cfg->width,
@@ -65,19 +65,19 @@ void			initialize_graphics(t_mlx_config *cfg)
 	cfg->img.h = cfg->cub_cfg->height;
 	cfg->img.buff = mlx_get_data_addr(cfg->img.ptr, &cfg->img.bpp,
 	&cfg->img.line_size, &cfg->img.endian);
-	i = 0;
-	while (i < cfg->cub_cfg->width)
-	{
-		j = 0;
-		while (j < cfg->cub_cfg->height)
-		{
-			put_color_to_pixel((t_coords){.x = i, .y = j}, rgba_to_hex(j < cfg->cub_cfg->height / 4 ? cfg->cub_cfg->ceiling : cfg->cub_cfg->floor) + i*i + j*j, &cfg->img, cfg->mlx_ptr);
-			j++;
-		}
-		i++;
-	}
+	// i = 0;
+	// while (i < cfg->cub_cfg->width)
+	// {
+	// 	j = 0;
+	// 	while (j < cfg->cub_cfg->height)
+	// 	{
+	// 		put_color_to_pixel((t_coords){.x = i, .y = j}, rgba_to_hex(j < cfg->cub_cfg->height / 4 ? cfg->cub_cfg->ceiling : cfg->cub_cfg->floor) + i*i + j*j, &cfg->img, cfg->mlx_ptr);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	ft_printf("\nbpp %d ls %d endian %d\n", cfg->img.bpp, cfg->img.line_size,
 	cfg->img.endian);
-	// paint_walls(cfg);
+	paint_walls(cfg);
 	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 }

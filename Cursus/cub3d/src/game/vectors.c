@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:59:27 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:37:02 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:39:38 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_coords	vector_unit(t_coords v)
 	double	module;
 
 	module = vector_distance((t_coords){.x = 0, .y = 0}, v);
+	if (v.x == 0 && v.y == 0)
+		return (v);
 	return ((t_coords){.x = v.x / module, .y = v.y / module});
 }
 

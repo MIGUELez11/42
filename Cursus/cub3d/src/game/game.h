@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:30:04 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:33:54 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../../minilibx/mlx.h"
 
 # ifndef GRID
-#  define GRID 32
+#  define GRID 1
 # endif
 # ifndef DELTATIME
 #  define DELTATIME 0.0166
