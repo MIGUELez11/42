@@ -13,20 +13,23 @@ ifeq (${OS}, darwin)
 	Y		=	${shell echo $$((${Y_} - 125))}
 	FLAGS	+=	-DSCREEN_MAX_X=${X}
 	FLAGS	+=	-DSCREEN_MAX_Y=${Y}
+	MLXPATH		=	minilibx_swift
+	MLXDEPS		=	-I ${MLXPATH} -L ${MLXPATH} -lmlx -framework OpenGL -framework Appkit -lz
+else
+	MLXPATH		=	minilibx_linux
+	MLXDEPS		=	-L ${MLXPATH} -lmlx -lXext -lX11 -lm
 endif
 
+MLX			=	${MLXPATH}/libmlx.a
 SRCDIR		=	src
 OBJDIR		=	obj
 SRCS		=	${shell find ${SRCDIR} -name "*.c"}
 OBJS		=	$(shell find ${SRCDIR} -name "*.c" | sed -E "s/^${SRCDIR}/${OBJDIR}/g" | sed -E "s/\.c$$/\.o/g")
 
-MLXPATH		=	minilibx_swift
-MLX			=	${MLXPATH}/libmlx.a
-MLXDEPS		=	-I ${MLXPATH} -L ${MLXPATH} -lmlx -framework OpenGL -framework Appkit -lz
 
 
 ${NAME}: ${LIBFT} ${OBJS} ${LIBMF} ${MLX}
-	@${CC} -g -o ${NAME} ${FLAGS} ${OBJS} ${LIBFT} ${MLXDEPS}
+	@${CC} -o ${NAME} ${FLAGS} ${OBJS} ${LIBFT} ${MLXDEPS}
 
 all: ${NAME}
 

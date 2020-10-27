@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 11:41:10 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/17 20:42:42 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/27 23:26:22 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-int		mlx_exit(void *config)
+int mlx_exit(void *config)
 {
 	ft_printf("Hola");
 	if (config)
@@ -24,7 +24,7 @@ int		mlx_exit(void *config)
 	return (1);
 }
 
-int		release_key(int keycode, t_mlx_config *config)
+int release_key(int keycode, t_mlx_config *config)
 {
 	if (keycode == 53)
 		mlx_exit(config);
@@ -41,7 +41,7 @@ int		release_key(int keycode, t_mlx_config *config)
 	return (1);
 }
 
-int		press_key(int keycode, t_mlx_config *config)
+int press_key(int keycode, t_mlx_config *config)
 {
 	if (keycode == 53)
 		mlx_exit(config);
@@ -58,9 +58,9 @@ int		press_key(int keycode, t_mlx_config *config)
 	return (1);
 }
 
-void	set_event_listeners(t_mlx_config *config)
+void set_event_listeners(t_mlx_config *config)
 {
 	mlx_hook(config->win_ptr, 3, 1L << 1, release_key, config);
 	mlx_hook(config->win_ptr, 2, 1L << 1, press_key, config);
-	mlx_hook(config->win_ptr, 17, 0, mlx_exit, config);
+	mlx_hook(config->win_ptr, 17, 1L << 17, mlx_exit, config);
 }
