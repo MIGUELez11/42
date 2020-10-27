@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/24 19:00:02 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/27 17:11:31 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ char	cub_map(t_mlx_config *cnf, int x, int y)
 	y >= 0 && x >= 0)
 		return (cnf->cub_cfg->map[y][x]);
 	return ('\0');
+}
+
+double 	normalize_angle(double angle)
+{
+	angle = remainder(angle, (2 * M_PI));
+	if (angle < 0)
+		return angle + (2 * M_PI);
+	return angle;
 }
 
 void	initialize(t_cub_config *cub_config)

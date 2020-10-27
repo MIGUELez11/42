@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/23 10:29:15 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/27 17:14:59 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void			initialize_graphics(t_mlx_config *cfg)
 	// }
 	ft_printf("\nbpp %d ls %d endian %d\n", cfg->img.bpp, cfg->img.line_size,
 	cfg->img.endian);
-	paint_walls(cfg);
+	t_ray ray = new_ray(0);
+	ray_cast(&ray, cfg);
+	printf("Ray hit = %f, %f\n", ray.wall_hit_x, ray.wall_hit_y);
+
 	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 }

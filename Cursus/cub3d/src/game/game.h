@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/24 19:33:54 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/27 17:11:46 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../../minilibx/mlx.h"
 
 # ifndef GRID
-#  define GRID 1
+#  define GRID 32
 # endif
 # ifndef DELTATIME
 #  define DELTATIME 0.0166
@@ -52,6 +52,27 @@ typedef struct		s_mlx_config
 	float			time;
 }					t_mlx_config;
 
+typedef struct		s_ray
+{
+	double			ray_angle;
+	double			wall_hit_x;
+	double			wall_hit_y;
+	double			distance;
+	int				was_hit_vert;
+	int				is_ray_facing_down;
+	int				is_ray_facing_right;
+	double			hwall_hit_x;
+	double			hwall_hit_y;
+	double			vwall_hit_x;
+	double			vwall_hit_y;
+	int				found_horz_hit;
+	int				found_vert_hit;
+	double			xstep;
+	double			ystep;
+	double			xintercept;
+	double			yintercept;
+}					t_ray;
+
 void				clear_mlx_config(t_mlx_config *config);
 int					mlx_exit(void *config);
 void				generate_window(t_mlx_config *config);
@@ -72,6 +93,10 @@ double				rad_deg(double angle, char *unit);
 t_coords			normalize_coord(t_coords coord);
 t_coords			vector_2points(t_coords p, t_coords q);
 t_coords			vector_perp(t_coords v);
+
+t_ray				new_ray(double ray_angle);
+void				ray_cast(t_ray *ray, t_mlx_config *cfg);
+double 				normalize_angle(double angle);
 
 void				paint_walls(t_mlx_config *cfg);
 unsigned long		rgba_to_hex(int rgb[3]);
