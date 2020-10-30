@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_management.c                                :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 11:41:07 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/28 12:15:41 by mflorido         ###   ########.fr       */
+/*   Created: 2020/10/28 10:10:05 by mflorido          #+#    #+#             */
+/*   Updated: 2020/10/30 18:15:18 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	generate_window(t_mlx_config *config)
+int		map_check(t_mlx_config *cfg, double dx, double dy)
 {
-	if (!(config->mlx_ptr = mlx_init()))
-		cub_exit("Unable to start mlx", ENOMEM, config->cub_cfg);
-	if (!(config->win_ptr = mlx_new_window(config->mlx_ptr,
-	config->cub_cfg->width,
-	config->cub_cfg->height, "cub3D")))
+	int	x;
+	int	y;
+
+	x = floor(dx / GRID);
+	y = floor(dy / GRID);
+	if (y >= 0 && y < cfg->cub_cfg->map_height &&
+	x >= 0 && (size_t)x < ft_strlen(cfg->cub_cfg->map[y]))
 	{
-		free(config->mlx_ptr);
-		cub_exit("Unable to create mlx window", ENOMEM, config->cub_cfg);
+		if (cfg->cub_cfg->map[y][x] == '1')
+			return (1);
+		else if (cfg->cub_cfg->map[y][x] == '2')
+			return (2);
 	}
+	return (0);
 }

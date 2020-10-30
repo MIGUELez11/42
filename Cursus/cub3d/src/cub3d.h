@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/24 19:06:54 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/28 11:31:30 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ typedef struct	s_coords
 typedef struct	s_player
 {
 	t_coords	position;
-	t_coords	direction;
 	t_coords	velocity;
-	t_coords	camerapos;
-	t_coords	cameradir;
+	double		rotation_speed;
 	double		heading;
 	int			heading_set;
 }				t_player;

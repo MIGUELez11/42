@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:20:32 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 21:53:00 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:43:38 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void	print_config(t_cub_config *config)
 	if (config->player.position.x)
 		printf("Player position [%f, %f]\n",
 		config->player.position.x, config->player.position.y);
-	if (config->player.direction.x)
-		printf("Player direction [%f, %f]\n",
-		config->player.direction.x, config->player.direction.y);
 	if (config->player.velocity.x)
 		printf("Player velocity [%f, %f]\n",
 		config->player.velocity.x, config->player.velocity.y);

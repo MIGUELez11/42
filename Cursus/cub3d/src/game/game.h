@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/27 17:11:46 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:55:03 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # ifndef GRID
 #  define GRID 32
 # endif
+# ifndef FOV
+#  define FOV  60 * (M_PI / 180)
+# endif
 # ifndef DELTATIME
-#  define DELTATIME 0.0166
+#  define DELTATIME 0.25
 # endif
 
 typedef struct		s_img
@@ -41,16 +44,6 @@ typedef struct		s_keys
 	int				s;
 	int				d;
 }					t_keys;
-
-typedef struct		s_mlx_config
-{
-	t_cub_config	*cub_cfg;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_img			img;
-	t_keys			keys;
-	float			time;
-}					t_mlx_config;
 
 typedef struct		s_ray
 {
@@ -73,18 +66,59 @@ typedef struct		s_ray
 	double			yintercept;
 }					t_ray;
 
+typedef struct		s_mlx_config
+{
+	t_cub_config	*cub_cfg;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_player		*player;
+	t_ray			**rays;
+	t_img			img;
+	t_keys			keys;
+	float			time;
+	int				color;
+}					t_mlx_config;
+
 void				clear_mlx_config(t_mlx_config *config);
 int					mlx_exit(void *config);
 void				generate_window(t_mlx_config *config);
 void				set_event_listeners(t_mlx_config *config);
-void				initialize_graphics(t_mlx_config *cfg);
-void				player_controller(t_mlx_config *cnf);
-void				player_move(t_mlx_config *cnf, int direction);
-void				player_rotate(t_mlx_config *cnf, int direction);
-char				cub_map(t_mlx_config *cnf, int x, int y);
+void				player_controller(t_mlx_config *cfg);
+void				player_move(t_mlx_config *cfg, int direction);
+void				player_rotate(t_mlx_config *cfg, int direction);
+char				cub_map(t_mlx_config *cfg, int x, int y);
 
-void				put_color_to_pixel(t_coords coords, int color,
-t_img *img, void *mlx_p);
+void				put_color_to_pixel(t_coords coords,
+t_img *img, t_mlx_config *cfg);
+
+void				paint_walls(t_mlx_config *cfg);
+unsigned long		rgba_to_hex(int rgb[3]);
+
+/*
+** Defining rays.c functions
+*/
+
+t_ray				*new_ray(double ray_angle);
+void				ray_cast(t_ray *ray, t_mlx_config *cfg);
+
+/*
+** Defining rays2.c functions
+*/
+
+void				ray_cast_loopv(t_ray *ray, double next_vert_touch_x,
+					double next_vert_touch_y, t_mlx_config *cfg);
+void				ray_cast_looph(t_ray *ray, double next_horz_touch_x,
+					double next_horz_touch_y, t_mlx_config *cfg);
+
+/*
+** Defining map.c functions
+*/
+
+int					map_check(t_mlx_config *cfg, double dx, double dy);
+
+/*
+** Defining vectors.c functions
+*/
 
 double				vector_distance(t_coords a, t_coords b);
 t_coords			vector_unit(t_coords v);
@@ -93,12 +127,23 @@ double				rad_deg(double angle, char *unit);
 t_coords			normalize_coord(t_coords coord);
 t_coords			vector_2points(t_coords p, t_coords q);
 t_coords			vector_perp(t_coords v);
+double				normalize_angle(double angle);
 
-t_ray				new_ray(double ray_angle);
-void				ray_cast(t_ray *ray, t_mlx_config *cfg);
-double 				normalize_angle(double angle);
+/*
+** Defining graphic_control.c
+*/
 
-void				paint_walls(t_mlx_config *cfg);
-unsigned long		rgba_to_hex(int rgb[3]);
+void				initialize_graphics(t_mlx_config *cfg);
+t_img				create_image(int w, int h, t_mlx_config *cfg);
+void				draw_walls(t_mlx_config *cfg);
+
+/*
+** Defining draw.c
+*/
+
+void				draw_rect(t_coords a, t_coords b, t_img *img,
+					t_mlx_config *cfg);
+void				draw_line(t_coords a, t_coords b, t_img *img,
+					t_mlx_config *cfg);
 
 #endif

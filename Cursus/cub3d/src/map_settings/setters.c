@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/19 23:26:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:43:18 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	setup_player(t_cub_config *config)
 	t_coords	coords;
 
 	coords = (t_coords){.x = 0.0, .y = 0.0};
-	config->player = (t_player){.position = coords, .direction = coords,
+	config->player = (t_player){.position = coords,
 	.velocity = (t_coords){.x = 10.0, .y = 10.0}, .heading_set = 0,
 	.heading = 0};
 }

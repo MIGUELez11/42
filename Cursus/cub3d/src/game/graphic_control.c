@@ -6,37 +6,24 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/27 17:14:59 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/30 13:30:00 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-unsigned long	rgba_to_hex(int rgb[3])
-{
-	int r;
-	int g;
-	int b;
-
-	r = rgb[0];
-	g = rgb[1];
-	b = rgb[2];
-	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
-}
-
-/*
-** endian 0 = Least significant (Blue) byte first
-** endian 1 = Most significant (Alpha) byte first
-*/
-
-void			put_color_to_pixel(t_coords coords, int color,
-t_img *img, void *mlx_p)
+void			put_color_to_pixel(t_coords coords,
+t_img *img, t_mlx_config *cfg)
 {
 	int pixel;
+	int	color;
 
-	if (img->bpp)
-		color = mlx_get_color_value(mlx_p, color);
-	pixel = (coords.y * img->line_size) + (coords.x * 4);
+	color = cfg->color;
+	coords.x = floor(coords.x);
+	coords.y = floor(coords.y);
+	if (img->bpp != 32)
+		color = mlx_get_color_value(cfg->mlx_ptr, color);
+	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
 	if (img->endian == 1)
 	{
 		img->buff[pixel + 0] = (color >> 24);
@@ -53,34 +40,68 @@ t_img *img, void *mlx_p)
 	}
 }
 
+void			pick_wall_color(t_ray *ray, t_mlx_config *cfg)
+{
+	if (ray->was_hit_vert)
+	{
+		if (ray->wall_hit_x < cfg->player->position.x)
+			cfg->color = 0x00ffff0;
+		else
+			cfg->color = 0x00ff001;
+	}
+	else
+	{
+		if (ray->wall_hit_y < cfg->player->position.y)
+			cfg->color = 0xffff001;
+		else
+			cfg->color = 0xff00ff1;
+	}
+}
+
+void			draw_walls(t_mlx_config *cfg)
+{
+	int		i;
+	double	ray_angle;
+	double	correct_distance;
+	double	distance_projection_plane;
+	double	wall_strip_height;
+
+	cfg->img = create_image(cfg->cub_cfg->width, cfg->cub_cfg->height, cfg);
+	ray_angle = cfg->player->heading - (FOV / 2);
+	i = 0;
+	while (i < cfg->cub_cfg->width)
+	{
+		cfg->rays[i] = new_ray(ray_angle);
+		ray_cast(cfg->rays[i], cfg);
+		correct_distance = cfg->rays[i]->distance * cos(cfg->rays[i]->ray_angle
+		- cfg->player->heading);
+		distance_projection_plane = cfg->cub_cfg->width / 2 / tan(FOV / 2);
+		wall_strip_height = (GRID / correct_distance)
+		* distance_projection_plane;
+		pick_wall_color(cfg->rays[i], cfg);
+		draw_rect((t_coords){.x = i * 1, .y = (cfg->cub_cfg->height / 2) -
+		(wall_strip_height / 2)}, (t_coords){.x = 1, .y = wall_strip_height}
+		, &cfg->img, cfg);
+		i++;
+		ray_angle += FOV / cfg->cub_cfg->width;
+	}
+}
+
+t_img			create_image(int w, int h, t_mlx_config *cfg)
+{
+	t_img	img;
+
+	img.ptr = mlx_new_image(cfg->mlx_ptr, w,
+	h);
+	img.w = w;
+	img.h = h;
+	img.buff = mlx_get_data_addr(img.ptr, &img.bpp,
+	&img.line_size, &img.endian);
+	return (img);
+}
+
 void			initialize_graphics(t_mlx_config *cfg)
 {
-	// int i;
-	// int j;
-
-	ft_printf("%d %d", SCREEN_MAX_X, SCREEN_MAX_Y);
-	cfg->img.ptr = mlx_new_image(cfg->mlx_ptr, cfg->cub_cfg->width,
-	cfg->cub_cfg->height);
-	cfg->img.w = cfg->cub_cfg->width;
-	cfg->img.h = cfg->cub_cfg->height;
-	cfg->img.buff = mlx_get_data_addr(cfg->img.ptr, &cfg->img.bpp,
-	&cfg->img.line_size, &cfg->img.endian);
-	// i = 0;
-	// while (i < cfg->cub_cfg->width)
-	// {
-	// 	j = 0;
-	// 	while (j < cfg->cub_cfg->height)
-	// 	{
-	// 		put_color_to_pixel((t_coords){.x = i, .y = j}, rgba_to_hex(j < cfg->cub_cfg->height / 4 ? cfg->cub_cfg->ceiling : cfg->cub_cfg->floor) + i*i + j*j, &cfg->img, cfg->mlx_ptr);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	ft_printf("\nbpp %d ls %d endian %d\n", cfg->img.bpp, cfg->img.line_size,
-	cfg->img.endian);
-	t_ray ray = new_ray(0);
-	ray_cast(&ray, cfg);
-	printf("Ray hit = %f, %f\n", ray.wall_hit_x, ray.wall_hit_y);
-
-	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
+	cfg->img = create_image(cfg->cub_cfg->width, cfg->cub_cfg->height, cfg);
+	cfg->rays = ft_calloc(cfg->cub_cfg->width, sizeof(t_ray *));
 }
