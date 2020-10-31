@@ -15,9 +15,11 @@ ifeq (${OS}, darwin)
 	FLAGS	+=	-DSCREEN_MAX_Y=${Y}
 	MLXPATH		=	minilibx_swift
 	MLXDEPS		=	-I ${MLXPATH} -L ${MLXPATH} -lmlx -framework OpenGL -framework Appkit -lz
+	FLAGS		+=	-DOS=1
 else
 	MLXPATH		=	minilibx_linux
 	MLXDEPS		=	-L ${MLXPATH} -lmlx -lXext -lX11 -lm
+	FLAGS		+=	-DOS=0
 endif
 
 MLX			=	${MLXPATH}/libmlx.a

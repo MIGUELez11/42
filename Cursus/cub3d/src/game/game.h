@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/30 18:55:03 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/31 11:04:43 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,35 @@
 # ifndef GRID
 #  define GRID 32
 # endif
+
 # ifndef FOV
 #  define FOV  60 * (M_PI / 180)
 # endif
+
 # ifndef DELTATIME
 #  define DELTATIME 0.25
+# endif
+
+# ifndef OS
+/*
+*linux -> 0
+*macos -> 1
+*/
+#  define OS 1
+# endif
+
+# if OS == 0
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+#  define ESC 65307
+# elif OS == 1
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
+#  define ESC 53
 # endif
 
 typedef struct		s_img

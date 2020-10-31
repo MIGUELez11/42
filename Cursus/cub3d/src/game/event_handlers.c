@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 11:41:10 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/30 11:29:54 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/31 11:05:30 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int		mlx_exit(void *config)
 
 int		release_key(int keycode, t_mlx_config *config)
 {
-	if (keycode == 53)
+	ft_printf("A = %d D = %d W = %d S = %d\n", A, D, W, S);
+	if (keycode == ESC)
 		mlx_exit(config);
-	else if (keycode == 13)
+	else if (keycode == W)
 		config->keys.w = 0;
-	else if (keycode == 0)
+	else if (keycode == A)
 		config->keys.a = 0;
-	else if (keycode == 1)
+	else if (keycode == S)
 		config->keys.s = 0;
-	else if (keycode == 2)
+	else if (keycode == D)
 		config->keys.d = 0;
 	else
 		ft_printf("key %d released\n", keycode);
@@ -43,24 +44,25 @@ int		release_key(int keycode, t_mlx_config *config)
 
 int		press_key(int keycode, t_mlx_config *config)
 {
-	if (keycode == 53)
+	ft_printf("A = %d D = %d W = %d S = %d\n", A, D, W, S);
+	if (keycode == ESC)
 		mlx_exit(config);
-	else if (keycode == 13)
+	else if (keycode == W)
 		config->keys.w = 1;
-	else if (keycode == 0)
+	else if (keycode == A)
 		config->keys.a = 1;
-	else if (keycode == 1)
+	else if (keycode == S)
 		config->keys.s = 1;
-	else if (keycode == 2)
+	else if (keycode == D)
 		config->keys.d = 1;
 	else
-		ft_printf("key %d pressed\n", keycode);
+		ft_printf("key %d pressed\n\n", keycode);
 	return (1);
 }
 
 void	set_event_listeners(t_mlx_config *config)
 {
 	mlx_hook(config->win_ptr, 3, 1L << 1, release_key, config);
-	mlx_hook(config->win_ptr, 2, 1L << 1, press_key, config);
+	mlx_hook(config->win_ptr, 2, 1L << 0, press_key, config);
 	mlx_hook(config->win_ptr, 17, 1L << 17, mlx_exit, config);
 }
