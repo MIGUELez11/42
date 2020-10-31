@@ -33,6 +33,7 @@
 
 
 void	*mlx_init();
+void 	mlx_free_mlx_ptr(void *mlx_ptr);
 /*
 **  needed before everything else.
 **  return (void *)0 if failed

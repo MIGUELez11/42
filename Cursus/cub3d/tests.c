@@ -1,4 +1,4 @@
-#include "minilibx/mlx.h"
+#include "minilibx_linux/mlx.h"
 #include "src/cub3d.h"
 #include "libft/libft.h"
 #include <stdio.h>
@@ -8,6 +8,8 @@
 
 int	main()
 {
-	ft_lstnew("Hola");
+	void *mlx = mlx_init();
+	mlx_free_mlx_ptr(mlx);
+	ft_printf(":(");
 	return (1);
 }

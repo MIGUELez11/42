@@ -12,7 +12,11 @@
 
 void mlx_free_mlx_ptr(void *mlx_ptr)
 {
-	free(mlx_ptr);
+	t_xvar	*xvar;
+
+	xvar = ((t_xvar *)mlx_ptr);
+	XCloseDisplay(xvar->display);
+	free(xvar);
 }
 
 void *mlx_init()
