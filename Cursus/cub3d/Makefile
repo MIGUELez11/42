@@ -54,10 +54,7 @@ fclean: clean
 re: fclean all
 
 test: ${LIBFT} ${MLX}
-	@echo "'${OS}'"
-	@echo ${FLAGS}
-	@echo ${SIZE}
-	@echo "'${X}' '${Y}'"
+	@${CC} ${FLAGS} -o ${NAME} tests.c ${MLXDEPS} ${LIBFT}
 
 ${OBJDIR}/%.o:	${SRCDIR}/%.c
 	$(eval DIR := $(shell echo $@ | sed -E "s/\/[^/]+.\o$ //g"))

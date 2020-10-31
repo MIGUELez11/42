@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 10:44:22 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/10/31 11:12:42 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ void get_cub_config_value(char **line, t_cub_config *config)
 
 	if (*line && *line[0])
 	{
-		if (config->north && config->south && config->west && config->east && config->sprite && config->ceiling_set && config->floor_set && config->resolution_set)
+		if (config->north && config->south && config->west && config->east &&
+		config->sprite && config->ceiling_set && config->floor_set &&
+		config->resolution_set)
 		{
-			ft_lstadd_back(&config->lst_map,
-						   ft_lstnew(ft_strdup(*line)));
+			ft_lstadd_back(&config->lst_map, ft_lstnew(ft_strdup(*line)));
 		}
 		else
 		{

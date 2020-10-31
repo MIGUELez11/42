@@ -8,6 +8,6 @@
 
 int	main()
 {
-	printf("Hola %f", tan(4.577));
+	ft_lstnew("Hola");
 	return (1);
 }

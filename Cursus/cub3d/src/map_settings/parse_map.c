@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:19:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/28 12:35:37 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/10/31 11:23:09 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	parse_map(t_cub_config *config)
 	size_t	len;
 
 	config->map_height = ft_lstsize(config->lst_map);
+	config->map_width = 0;
 	node = config->lst_map;
 	if (!(config->map = ft_calloc(config->map_height + 1, sizeof(char *))))
 		cub_exit("Unable to allocate enough memory", ENOMEM, config);

@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 11:41:10 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 11:05:30 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/10/31 11:10:11 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		mlx_exit(void *config)
 
 int		release_key(int keycode, t_mlx_config *config)
 {
-	ft_printf("A = %d D = %d W = %d S = %d\n", A, D, W, S);
 	if (keycode == ESC)
 		mlx_exit(config);
 	else if (keycode == W)
@@ -44,7 +43,6 @@ int		release_key(int keycode, t_mlx_config *config)
 
 int		press_key(int keycode, t_mlx_config *config)
 {
-	ft_printf("A = %d D = %d W = %d S = %d\n", A, D, W, S);
 	if (keycode == ESC)
 		mlx_exit(config);
 	else if (keycode == W)
