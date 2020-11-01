@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:00:03 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:07:44 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 17:29:53 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** /////////////////////////////////////////
 */
 
-void	ray_cast_v(t_ray *ray, t_mlx_config *cfg)
+void	ray_cast_v(t_ray *ray, t_mlx_config *cfg, int wall_type)
 {
 	double	next_vert_touch_x;
 	double	next_vert_touch_y;
@@ -34,7 +34,7 @@ void	ray_cast_v(t_ray *ray, t_mlx_config *cfg)
 	ray->ystep *= (ray->is_ray_facing_down && ray->ystep < 0) ? -1 : 1;
 	next_vert_touch_x = ray->xintercept;
 	next_vert_touch_y = ray->yintercept;
-	ray_cast_loopv(ray, next_vert_touch_x, next_vert_touch_y, cfg);
+	ray_cast_loopv(ray, next_vert_touch_x, next_vert_touch_y, cfg, wall_type);
 }
 
 /*
@@ -43,7 +43,7 @@ void	ray_cast_v(t_ray *ray, t_mlx_config *cfg)
 ** ///////////////////////////////////////////
 */
 
-void	ray_cast_h(t_ray *ray, t_mlx_config *cfg)
+void	ray_cast_h(t_ray *ray, t_mlx_config *cfg, int wall_type)
 {
 	double	next_horz_touch_x;
 	double	next_horz_touch_y;
@@ -59,7 +59,7 @@ void	ray_cast_h(t_ray *ray, t_mlx_config *cfg)
 	ray->xstep *= (ray->is_ray_facing_right && ray->xstep < 0) ? -1 : 1;
 	next_horz_touch_x = ray->xintercept;
 	next_horz_touch_y = ray->yintercept;
-	ray_cast_looph(ray, next_horz_touch_x, next_horz_touch_y, cfg);
+	ray_cast_looph(ray, next_horz_touch_x, next_horz_touch_y, cfg, wall_type);
 }
 
 void	ray_cast_near(t_ray *ray, t_mlx_config *cfg)
@@ -82,14 +82,15 @@ void	ray_cast_near(t_ray *ray, t_mlx_config *cfg)
 	ray->was_hit_vert = vert_hit_distance < horz_hit_distance;
 }
 
-void	ray_cast(t_ray *ray, t_mlx_config *cfg)
+void	ray_cast(t_ray *ray, t_mlx_config *cfg, int wall_type)
 {
-	ray_cast_h(ray, cfg);
-	ray_cast_v(ray, cfg);
+	ray_cast_h(ray, cfg, wall_type);
+	ray_cast_v(ray, cfg, wall_type);
 	ray_cast_near(ray, cfg);
-	ray->hit_type = map_check(cfg, ray->wall_hit_x - (!ray->is_ray_facing_right
-	&& ray->was_hit_vert ? 1 : 0), ray->wall_hit_y - (!ray->is_ray_facing_down
-	&& !ray->was_hit_vert ? 1 : 0));
+	ray->hit_type = wall_type;
+	//  map_check(cfg, ray->wall_hit_x - (!ray->is_ray_facing_right
+	// && ray->was_hit_vert ? 1 : 0), ray->wall_hit_y - (!ray->is_ray_facing_down
+	// && !ray->was_hit_vert ? 1 : 0));
 }
 
 t_ray	*new_ray(double ray_angle)

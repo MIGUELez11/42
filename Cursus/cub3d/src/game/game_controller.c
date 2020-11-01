@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:08:31 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 17:28:11 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		update_loop(t_mlx_config *cfg)
 		if (cfg->img.ptr)
 			mlx_destroy_image(cfg->mlx_ptr, cfg->img.ptr);
 		draw_walls(cfg);
+		draw_objects(cfg);
 		mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 	}
 	return (1);
@@ -69,8 +70,6 @@ void	initialize(t_cub_config *cub_config)
 	cfg.keys = (t_keys){.w = 0, .s = 0, .a = 0, .d = 0};
 	generate_window(&cfg);
 	player_controller(&cfg);
-	printf("heading %f, oldP %f\n", cfg.player->heading,
-	cfg.cub_cfg->player.heading);
 	initialize_graphics(&cfg);
 	set_event_listeners(&cfg);
 	mlx_loop_hook(cfg.mlx_ptr, update_loop, &cfg);

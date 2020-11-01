@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:06:27 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 17:37:31 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,48 @@ void			draw_walls(t_mlx_config *cfg)
 	{
 		cfg->rays[i] = new_ray(ray_angle);
 		cfg->ray = cfg->rays[i];
-		ray_cast(cfg->rays[i], cfg);
+		ray_cast(cfg->rays[i], cfg, 1);
 		cfg->rays[i]->correct_distance = cfg->rays[i]->distance * cos(
 		cfg->rays[i]->ray_angle - cfg->player->heading);
 		distance_projection_plane = cfg->cub_cfg->width / 2 / tan(FOV / 2);
 		wall_strip_height = (GRID / cfg->rays[i]->correct_distance)
 		* distance_projection_plane;
-		draw_rect((t_coords){.x = i * 1, .y = (cfg->cub_cfg->height / 2) -
+		draw_wall((t_coords){.x = i * 1, .y = (cfg->cub_cfg->height / 2) -
 		(wall_strip_height / 2)}, (t_coords){.x = 1, .y = wall_strip_height}
 		, &cfg->img, cfg);
 		i++;
 		ray_angle += FOV / cfg->cub_cfg->width;
 	}
 }
+
+void			draw_objects(t_mlx_config *cfg)
+{
+	int		i;
+	double	ray_angle;
+	double	distance_projection_plane;
+	double	wall_strip_height;
+
+	ray_angle = cfg->player->heading - (FOV / 2);
+	i = 0;
+	while (i < cfg->cub_cfg->width)
+	{
+		cfg->rays[i] = new_ray(ray_angle);
+		cfg->ray = cfg->rays[i];
+		ray_cast(cfg->rays[i], cfg, 2);
+		cfg->rays[i]->correct_distance = cfg->rays[i]->distance * cos(
+		cfg->rays[i]->ray_angle - cfg->player->heading);
+		distance_projection_plane = cfg->cub_cfg->width / 2 / tan(FOV / 2);
+		wall_strip_height = (GRID / cfg->rays[i]->correct_distance)
+		* distance_projection_plane;
+		if (cfg->ray->found_horz_hit || cfg->ray->found_vert_hit)
+			draw_wall((t_coords){.x = i * 1, .y = (cfg->cub_cfg->height / 2) -
+		(wall_strip_height / 2)}, (t_coords){.x = 1, .y = wall_strip_height}
+		, &cfg->img, cfg);
+		i++;
+		ray_angle += FOV / cfg->cub_cfg->width;
+	}
+}
+
 
 void			initialize_graphics(t_mlx_config *cfg)
 {
@@ -119,5 +148,6 @@ void			initialize_graphics(t_mlx_config *cfg)
 	cfg->img.ptr = 0;
 	cfg->rays = ft_calloc(cfg->cub_cfg->width, sizeof(t_ray *));
 	draw_walls(cfg);
+	draw_objects(cfg);
 	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 }

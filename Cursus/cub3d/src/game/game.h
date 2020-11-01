@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:31:46 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 17:45:04 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../../minilibx/mlx.h"
 
 # ifndef FOV
-#  define FOV  60 * (M_PI / 180)
+#  define FOV 60 * (M_PI / 180)
 # endif
 
 # ifndef DELTATIME
@@ -106,7 +106,7 @@ typedef struct		s_mlx_config
 	t_img			sprite;
 	t_keys			keys;
 	float			time;
-	int				color;
+	unsigned int	color;
 }					t_mlx_config;
 
 void				clear_mlx_config(t_mlx_config *config);
@@ -131,16 +131,16 @@ int					rgba_to_hex(int rgb[3]);
 */
 
 t_ray				*new_ray(double ray_angle);
-void				ray_cast(t_ray *ray, t_mlx_config *cfg);
+void				ray_cast(t_ray *ray, t_mlx_config *cfg, int wall_type);
 
 /*
 ** Defining rays2.c functions
 */
 
 void				ray_cast_loopv(t_ray *ray, double next_vert_touch_x,
-					double next_vert_touch_y, t_mlx_config *cfg);
+					double next_vert_touch_y, t_mlx_config *cfg, int wall_type);
 void				ray_cast_looph(t_ray *ray, double next_horz_touch_x,
-					double next_horz_touch_y, t_mlx_config *cfg);
+					double next_horz_touch_y, t_mlx_config *cfg, int wall_type);
 
 /*
 ** Defining map.c functions
@@ -167,12 +167,13 @@ double				normalize_angle(double angle);
 
 void				initialize_graphics(t_mlx_config *cfg);
 void				draw_walls(t_mlx_config *cfg);
+void				draw_objects(t_mlx_config *cfg);
 
 /*
 ** Defining draw.c
 */
 
-void				draw_rect(t_coords a, t_coords b, t_img *img,
+void				draw_wall(t_coords a, t_coords b, t_img *img,
 					t_mlx_config *cfg);
 void				draw_line(t_coords a, t_coords b, t_img *img,
 					t_mlx_config *cfg);
@@ -183,7 +184,7 @@ void				draw_line(t_coords a, t_coords b, t_img *img,
 
 t_img				create_image_from_file(char *filename, t_mlx_config *cfg);
 t_img				create_image(int w, int h, t_mlx_config *cfg);
-void				pick_wall_color(t_ray *ray, t_coords coords,
+void				pick_color(t_ray *ray, t_coords coords,
 					t_coords coords2, t_mlx_config *cfg);
 
 #endif

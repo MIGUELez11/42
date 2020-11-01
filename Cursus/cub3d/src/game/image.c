@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 15:12:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:29:41 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 18:05:35 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,19 @@ double			rem(double a, double b)
 ** In order: WENS
 */
 
-/*
-** if (ray->hit_type == 2)
-** 	if (ray->was_hit_vert)
-** 	get_color_from_pixel((t_coords){.x = (rem(ray->wall_hit_y, GRID) +
-** 	coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y *
-** 	cfg->sprite.h}, &cfg->sprite, cfg);
-** 	else
-** 	get_color_from_pixel((t_coords){.x = (rem(ray->wall_hit_x, GRID) +
-** 	coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y *
-** 	cfg->sprite.h}, &cfg->sprite, cfg);
-*/
+void			pick_object_color(t_ray *ray, t_coords coords, t_coords coords2
+				, t_mlx_config *cfg)
+{
+	if (ray->was_hit_vert)
+		get_color_from_pixel((t_coords){.x = (rem(ray->wall_hit_y, GRID)
+		+ coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y *
+		cfg->sprite.h}, &cfg->sprite, cfg);
+	else
+		get_color_from_pixel((t_coords){.x = (rem(ray->wall_hit_x, GRID)
+		+ coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y *
+		cfg->sprite.h}, &cfg->sprite, cfg);
+	// cfg->color = 0xff000000;
+}
 
 void			pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2,
 				t_mlx_config *cfg)
@@ -105,6 +107,15 @@ void			pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2,
 			+ coords.x) * cfg->south.w / GRID, .y = coords.y / coords2.y *
 			cfg->south.h}, &cfg->south, cfg);
 	}
+}
+
+void			pick_color(t_ray *ray, t_coords coords, t_coords coords2,
+				t_mlx_config *cfg)
+{
+	if (ray->hit_type == 1)
+		pick_wall_color(ray, coords, coords2, cfg);
+	else if (ray->hit_type == 2)
+		pick_object_color(ray, coords, coords2, cfg);
 }
 
 /*

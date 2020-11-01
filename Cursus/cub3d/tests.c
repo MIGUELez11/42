@@ -8,8 +8,8 @@
 void			put_color_to_pixel(t_coords coords,
 t_img *img, t_mlx_config *cfg)
 {
-	int pixel;
-	int	color;
+	int 			pixel;
+	unsigned int	color;
 
 	color = cfg->color;
 	coords.x = floor(coords.x);
@@ -17,19 +17,24 @@ t_img *img, t_mlx_config *cfg)
 	if (img->bpp != 32)
 		color = mlx_get_color_value(cfg->mlx_ptr, color);
 	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
-	if (img->endian == 1)
+	ft_printf("%d", 0xFF000000 > cfg->color);
+	if (color < 0xFF000000)
 	{
-		img->buff[pixel + 0] = (color >> 24);
-		img->buff[pixel + 1] = (color >> 16) & 0xFF;
-		img->buff[pixel + 2] = (color >> 8) & 0xFF;
-		img->buff[pixel + 3] = (color) & 0xFF;
-	}
-	else if (img->endian == 0)
-	{
-		img->buff[pixel + 0] = (color) & 0xFF;
-		img->buff[pixel + 1] = (color >> 8) & 0xFF;
-		img->buff[pixel + 2] = (color >> 16) & 0xFF;
-		img->buff[pixel + 3] = (color >> 24);
+		ft_printf("Dentro");
+		if (img->endian == 1)
+		{
+			img->buff[pixel + 0] = (color >> 24) & 0xFF;
+			img->buff[pixel + 1] = (color >> 16) & 0xFF;
+			img->buff[pixel + 2] = (color >> 8) & 0xFF;
+			img->buff[pixel + 3] = (color) & 0xFF;
+		}
+		else if (img->endian == 0)
+		{
+			img->buff[pixel + 0] = (color) & 0xFF;
+			img->buff[pixel + 1] = (color >> 8) & 0xFF;
+			img->buff[pixel + 2] = (color >> 16) & 0xFF;
+			img->buff[pixel + 3] = (color >> 24) & 0xFF;
+		}
 	}
 }
 /*
@@ -92,8 +97,11 @@ int	main()
 	for (int x = 0; x < img.w; x++)
 		for (int y = 0; y < img.h; y++)
 		{
-			get_color_from_pixel((t_coords){.x = x, .y = y}, &img, &cfg);
+			// get_color_from_pixel((t_coords){.x = x, .y = y}, &img, &cfg);
+			cfg.color = 0xffff0000;
 			put_color_to_pixel((t_coords){.x = x, .y = y}, &cfg.img, &cfg);
+			cfg.color = 0x00ff0000;
+			put_color_to_pixel((t_coords){.x = img.w + x, .y = y}, &cfg.img, &cfg);
 		}
 	mlx_put_image_to_window(cfg.mlx_ptr, cfg.win_ptr, cfg.img.ptr, 0, 0);
 	mlx_loop(cfg.mlx_ptr);

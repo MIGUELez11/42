@@ -6,13 +6,13 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 09:46:00 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 16:08:05 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 17:27:04 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	draw_rect(t_coords a, t_coords b, t_img *img, t_mlx_config *cfg)
+void	draw_wall(t_coords a, t_coords b, t_img *img, t_mlx_config *cfg)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,7 @@ void	draw_rect(t_coords a, t_coords b, t_img *img, t_mlx_config *cfg)
 			if (a.x + i < img->w && a.x + i >= 0 && a.y + j < img->h && a.y +
 			j >= 0)
 			{
-				pick_wall_color(cfg->ray, (t_coords){.x = i, .y = j},
+				pick_color(cfg->ray, (t_coords){.x = i, .y = j},
 				(t_coords){.x = b.x, .y = b.y}, cfg);
 				put_color_to_pixel((t_coords){.x = a.x + i, .y = a.y + j}, img,
 				cfg);
