@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 15:12:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 10:27:27 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 12:06:53 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_img			create_image_from_file(char *filename, t_mlx_config *cfg)
 	if (check_extension(filename, "xpm"))
 		img.ptr = mlx_xpm_file_to_image(cfg->mlx_ptr, filename, &img.w, &img.h);
 	else if (check_extension(filename, "png"))
-		img.ptr = mlx_png_file_to_image(cfg->mlx_ptr, filename, &img.w, &img.h);
+		img.ptr = 0;//mlx_png_file_to_image(cfg->mlx_ptr, filename, &img.w, &img.h);
 	if (!img.ptr)
 		return img;
 	img.buff = mlx_get_data_addr(img.ptr, &img.bpp,
@@ -54,11 +54,9 @@ void			pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2, t_mlx_conf
 	if (ray->hit_type == 2)
 	{
 		if (ray->was_hit_vert)
-			get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_y, GRID) + coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y * cfg->sprite.h}, &cfg->sprite, cfg);
+			get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_y, GRID)) > 0 ? (remainder(ray->wall_hit_y, GRID)) : -(remainder(ray->wall_hit_y, GRID))) + coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y * cfg->sprite.h}, &cfg->sprite, cfg);
 		else
-			get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_x, GRID) + coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y * cfg->sprite.h}, &cfg->sprite, cfg);
-		if (cfg->color == (int)0xff000000)
-			cfg->color = 0x000000;
+			get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_x, GRID)) > 0 ? (remainder(ray->wall_hit_x, GRID)) : -(remainder(ray->wall_hit_x, GRID))) + coords.x) * cfg->sprite.w / GRID, .y = coords.y / coords2.y * cfg->sprite.h}, &cfg->sprite, cfg);
 	}
 
 	else
@@ -66,18 +64,18 @@ void			pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2, t_mlx_conf
 		{
 			if (ray->wall_hit_x < cfg->player->position.x)
 				//O
-				get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_y, GRID) + coords.x) * cfg->west.w / GRID, .y = coords.y / coords2.y * cfg->west.h}, &cfg->west, cfg);
+				get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_y, GRID)) > 0 ? (remainder(ray->wall_hit_y, GRID)) : -(remainder(ray->wall_hit_y, GRID))) + coords.x) * cfg->west.w / GRID, .y = coords.y / coords2.y * cfg->west.h}, &cfg->west, cfg);
 			else //E
-				get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_y, GRID) + coords.x) * cfg->east.w / GRID, .y = coords.y / coords2.y * cfg->east.h}, &cfg->east, cfg);
+				get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_y, GRID)) > 0 ? (remainder(ray->wall_hit_y, GRID)) : -(remainder(ray->wall_hit_y, GRID))) + coords.x) * cfg->east.w / GRID, .y = coords.y / coords2.y * cfg->east.h}, &cfg->east, cfg);
 		}
 		else
 		{
 			if (ray->wall_hit_y < cfg->player->position.y)
 				//N
-				get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_x, GRID) + coords.x) * cfg->north.w / GRID, .y = coords.y / coords2.y * cfg->north.h}, &cfg->north, cfg);
+				get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_x, GRID)) > 0 ? (remainder(ray->wall_hit_x, GRID)) : -(remainder(ray->wall_hit_x, GRID))) + coords.x) * cfg->north.w / GRID, .y = coords.y / coords2.y * cfg->north.h}, &cfg->north, cfg);
 			else
 				//S
-				get_color_from_pixel((t_coords){.x = (remainder(ray->wall_hit_x, GRID) + coords.x) * cfg->south.w / GRID, .y = coords.y / coords2.y * cfg->south.h}, &cfg->south, cfg);
+				get_color_from_pixel((t_coords){.x = (((remainder(ray->wall_hit_x, GRID)) > 0 ? (remainder(ray->wall_hit_x, GRID)) : -(remainder(ray->wall_hit_x, GRID))) + coords.x) * cfg->south.w / GRID, .y = coords.y / coords2.y * cfg->south.h}, &cfg->south, cfg);
 		}
 }
 

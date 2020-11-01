@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:00:03 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 09:57:15 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 12:09:49 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ray_cast(t_ray *ray, t_mlx_config *cfg)
 	ray_cast_h(ray, cfg);
 	ray_cast_v(ray, cfg);
 	ray_cast_near(ray, cfg);
-	ray->hit_type = map_check(cfg, ray->wall_hit_x - (!ray->is_ray_facing_right
-	? 1 : 0), ray->wall_hit_y - (!ray->is_ray_facing_down ? 1 : 0));
+	ray->hit_type = map_check(cfg, ray->wall_hit_x - (!ray->is_ray_facing_right && ray->was_hit_vert
+	? 1 : 0), ray->wall_hit_y - (!ray->is_ray_facing_down && !ray->was_hit_vert ? 1 : 0));
 }
 
 t_ray	*new_ray(double ray_angle)

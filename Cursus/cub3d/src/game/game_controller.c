@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_controller.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 00:31:02 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 12:03:24 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ void	clear_mlx_config(t_mlx_config *config)
 		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 		config->win_ptr = 0;
 	}
-	// if (config->north.ptr)
-	// 	mlx_destroy_image(config->mlx_ptr, config->north.ptr);
-	// if (config->south.ptr)
-	// 	mlx_destroy_image(config->mlx_ptr, config->south.ptr);
-	// if (config->west.ptr)
-	// 	mlx_destroy_image(config->mlx_ptr, config->west.ptr);
-	// if (config->east.ptr)
-	// 	mlx_destroy_image(config->mlx_ptr, config->east.ptr);
-	// if (config->sprite.ptr)
-	// 	mlx_destroy_image(config->mlx_ptr, config->sprite.ptr);
+	if (config->north.ptr)
+		mlx_destroy_image(config->mlx_ptr, config->north.ptr);
+	if (config->south.ptr)
+		mlx_destroy_image(config->mlx_ptr, config->south.ptr);
+	if (config->west.ptr)
+		mlx_destroy_image(config->mlx_ptr, config->west.ptr);
+	if (config->east.ptr)
+		mlx_destroy_image(config->mlx_ptr, config->east.ptr);
+	if (config->sprite.ptr)
+	 	mlx_destroy_image(config->mlx_ptr, config->sprite.ptr);
 	if (config->img.ptr)
 		mlx_destroy_image(config->mlx_ptr, config->img.ptr);
 	if (config->mlx_ptr)
