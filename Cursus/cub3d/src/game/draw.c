@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 09:46:00 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 00:00:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 16:08:05 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	draw_rect(t_coords a, t_coords b, t_img *img, t_mlx_config *cfg)
 			if (a.x + i < img->w && a.x + i >= 0 && a.y + j < img->h && a.y +
 			j >= 0)
 			{
-				pick_wall_color(cfg->ray, (t_coords){.x = i, .y = j}, (t_coords){.x = b.x, .y = b.y}, cfg);
+				pick_wall_color(cfg->ray, (t_coords){.x = i, .y = j},
+				(t_coords){.x = b.x, .y = b.y}, cfg);
 				put_color_to_pixel((t_coords){.x = a.x + i, .y = a.y + j}, img,
 				cfg);
 			}

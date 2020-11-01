@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 00:36:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 16:31:46 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include "../cub3d.h"
 # include "../../minilibx/mlx.h"
-
-# ifndef GRID
-#  define GRID 64
-# endif
 
 # ifndef FOV
 #  define FOV  60 * (M_PI / 180)
@@ -29,10 +25,12 @@
 # endif
 
 # ifndef OS
+
 /*
-*linux -> 0
-*macos -> 1
+** linux -> 0
+** macos -> 1
 */
+
 #  define OS 1
 # endif
 
@@ -185,6 +183,7 @@ void				draw_line(t_coords a, t_coords b, t_img *img,
 
 t_img				create_image_from_file(char *filename, t_mlx_config *cfg);
 t_img				create_image(int w, int h, t_mlx_config *cfg);
-void				pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2, t_mlx_config *cfg);
+void				pick_wall_color(t_ray *ray, t_coords coords,
+					t_coords coords2, t_mlx_config *cfg);
 
 #endif

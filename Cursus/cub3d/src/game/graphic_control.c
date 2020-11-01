@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 12:03:12 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 16:06:27 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_img *img, t_mlx_config *cfg)
 	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
 	if (img->endian == 1)
 	{
-		img->buff[pixel + 0] = (color >> 24) &0xFF;
+		img->buff[pixel + 0] = (color >> 24) & 0xFF;
 		img->buff[pixel + 1] = (color >> 16) & 0xFF;
 		img->buff[pixel + 2] = (color >> 8) & 0xFF;
 		img->buff[pixel + 3] = (color) & 0xFF;
@@ -38,6 +38,20 @@ t_img *img, t_mlx_config *cfg)
 		img->buff[pixel + 2] = (color >> 16) & 0xFF;
 		img->buff[pixel + 3] = (color >> 24) & 0xFF;
 	}
+}
+
+int				get_hex_from_pixel(char a, char r, char g, char b)
+{
+	int	color;
+
+	color = a & 0xFF;
+	color <<= 8;
+	color |= r & 0xFF;
+	color <<= 8;
+	color |= g & 0xFF;
+	color <<= 8;
+	color |= b & 0xFF;
+	return (color);
 }
 
 /*
@@ -52,39 +66,16 @@ t_img *img, t_mlx_config *cfg)
 
 	coords.x = floor(coords.x);
 	coords.y = floor(coords.y);
-	// printf("%f %f\n\n", coords.x, coords.y);
-	cfg->color = 0xff000000;
-	if (coords.x >= 0 && coords.x < img->w && coords.y >= 0 && coords.y < img->h)
+	if (coords.x >= 0 && coords.x < img->w
+	&& coords.y >= 0 && coords.y < img->h)
 	{
 		pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
 		if (img->endian == 1)
-		{
-			//AA
-			color = img->buff[pixel + 0] & 0xFF;
-			color <<= 8;
-			//RR
-			color |= img->buff[pixel + 1] & 0xFF;
-			color <<= 8;
-			// //GG
-			color |= img->buff[pixel + 2] & 0xFF;
-			color <<= 8;
-			// //BB
-			color |= img->buff[pixel + 3] & 0xFF;
-		}
+			color = get_hex_from_pixel(img->buff[pixel + 0],
+			img->buff[pixel + 1], img->buff[pixel + 2], img->buff[pixel + 3]);
 		else
-		{
-			//AA
-			color = img->buff[pixel + 3] & 0xFF;
-			color <<= 8;
-			//RR
-			color |= img->buff[pixel + 2] & 0xFF;
-			color <<= 8;
-			// //GG
-			color |= img->buff[pixel + 1] & 0xFF;
-			color <<= 8;
-			// //BB
-			color |= img->buff[pixel + 0] & 0xFF;
-		}
+			color = get_hex_from_pixel(img->buff[pixel + 3],
+			img->buff[pixel + 2], img->buff[pixel + 1], img->buff[pixel + 0]);
 		cfg->color = color;
 	}
 }
@@ -125,6 +116,8 @@ void			initialize_graphics(t_mlx_config *cfg)
 	cfg->east = create_image_from_file(cfg->cub_cfg->east, cfg);
 	//this makes errors
 	cfg->sprite = create_image_from_file(cfg->cub_cfg->sprite, cfg);
-	cfg->img = create_image(cfg->cub_cfg->width, cfg->cub_cfg->height, cfg);
+	cfg->img.ptr = 0;
 	cfg->rays = ft_calloc(cfg->cub_cfg->width, sizeof(t_ray *));
+	draw_walls(cfg);
+	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 }

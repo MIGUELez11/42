@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 11:47:15 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 15:08:00 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # ifndef SCREEN_MAX_X
 #  define SCREEN_MAX_X 0
 # endif
+
 # ifndef SCREEN_MAX_Y
 #  define SCREEN_MAX_Y 0
+# endif
+
+# ifndef GRID
+#  define GRID 64
 # endif
 
 # include "../libft/libft.h"

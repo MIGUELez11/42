@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:12:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/30 11:27:25 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 15:11:26 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ void	set_init_player_pos(t_mlx_config *cfg)
 void	player_move(t_mlx_config *cfg, int direction)
 {
 	t_player *player;
+	t_coords position;
 
 	player = cfg->player;
-	player->position.x += player->velocity.x * direction *
+	position = player->position;
+	position.x += player->velocity.x * direction *
 	cos(player->heading) * DELTATIME;
-	player->position.y += player->velocity.y * direction *
+	position.y += player->velocity.y * direction *
 	sin(player->heading) * DELTATIME;
+	if (map_check(cfg, position.x, position.y) == 0)
+		player->position = position;
 }
 
 void	player_rotate(t_mlx_config *cfg, int direction)
@@ -39,7 +43,7 @@ void	player_rotate(t_mlx_config *cfg, int direction)
 	t_player	*player;
 	double		speed;
 
-	speed = 10 * (M_PI / 180);
+	speed = (GRID / 2) * (M_PI / 180);
 	player = &cfg->cub_cfg->player;
 	player->heading += speed * direction * DELTATIME;
 	if (player->heading < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/28 12:43:18 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 15:07:36 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	setup_player(t_cub_config *config)
 
 	coords = (t_coords){.x = 0.0, .y = 0.0};
 	config->player = (t_player){.position = coords,
-	.velocity = (t_coords){.x = 10.0, .y = 10.0}, .heading_set = 0,
+	.velocity = (t_coords){.x = GRID, .y = GRID}, .heading_set = 0,
 	.heading = 0};
 }
 

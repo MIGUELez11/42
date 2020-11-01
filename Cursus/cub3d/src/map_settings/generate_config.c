@@ -6,13 +6,13 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 11:12:42 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 15:58:01 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_settings.h"
 
-void set_cub_config_value(char **value, t_cub_config *config)
+void	set_cub_config_value(char **value, t_cub_config *config)
 {
 	if (!ft_strncmp(value[0], "R", 1))
 	{
@@ -26,16 +26,16 @@ void set_cub_config_value(char **value, t_cub_config *config)
 		config->resolution_set = 1;
 	}
 	else if (!ft_strncmp(value[0], "NO", 2) ||
-			 !ft_strncmp(value[0], "SO", 2) ||
-			 !ft_strncmp(value[0], "WE", 2) ||
-			 !ft_strncmp(value[0], "EA", 2) ||
-			 !ft_strncmp(value[0], "S", 1))
+			!ft_strncmp(value[0], "SO", 2) ||
+			!ft_strncmp(value[0], "WE", 2) ||
+			!ft_strncmp(value[0], "EA", 2) ||
+			!ft_strncmp(value[0], "S", 1))
 		set_sprites(value[0], value[1], config);
 	else if (!ft_strncmp(value[0], "F", 1) || !ft_strncmp(value[0], "C", 1))
 		set_colors(value[0], value[1], config);
 }
 
-void get_cub_config_value(char **line, t_cub_config *config)
+void	get_cub_config_value(char **line, t_cub_config *config)
 {
 	char **splitted;
 	char *word[2];
@@ -63,7 +63,7 @@ void get_cub_config_value(char **line, t_cub_config *config)
 		free(*line);
 }
 
-void get_cub_config(int fd, t_cub_config *config)
+void	get_cub_config(int fd, t_cub_config *config)
 {
 	char *line;
 
@@ -74,7 +74,7 @@ void get_cub_config(int fd, t_cub_config *config)
 	parse_map(config);
 }
 
-void clear_cub_config(t_cub_config *config)
+void	clear_cub_config(t_cub_config *config)
 {
 	if (config->north)
 		free(config->north);

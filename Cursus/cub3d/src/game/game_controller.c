@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 12:03:24 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 16:08:31 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	clear_mlx_config(t_mlx_config *config)
 	if (config->east.ptr)
 		mlx_destroy_image(config->mlx_ptr, config->east.ptr);
 	if (config->sprite.ptr)
-	 	mlx_destroy_image(config->mlx_ptr, config->sprite.ptr);
+		mlx_destroy_image(config->mlx_ptr, config->sprite.ptr);
 	if (config->img.ptr)
 		mlx_destroy_image(config->mlx_ptr, config->img.ptr);
 	if (config->mlx_ptr)
