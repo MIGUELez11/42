@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 11:04:43 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/01 00:36:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../../minilibx/mlx.h"
 
 # ifndef GRID
-#  define GRID 32
+#  define GRID 64
 # endif
 
 # ifndef FOV
@@ -88,6 +88,8 @@ typedef struct		s_ray
 	double			ystep;
 	double			xintercept;
 	double			yintercept;
+	double			correct_distance;
+	int				hit_type;
 }					t_ray;
 
 typedef struct		s_mlx_config
@@ -97,7 +99,13 @@ typedef struct		s_mlx_config
 	void			*win_ptr;
 	t_player		*player;
 	t_ray			**rays;
+	t_ray			*ray;
 	t_img			img;
+	t_img			north;
+	t_img			south;
+	t_img			west;
+	t_img			east;
+	t_img			sprite;
 	t_keys			keys;
 	float			time;
 	int				color;
@@ -113,10 +121,12 @@ void				player_rotate(t_mlx_config *cfg, int direction);
 char				cub_map(t_mlx_config *cfg, int x, int y);
 
 void				put_color_to_pixel(t_coords coords,
-t_img *img, t_mlx_config *cfg);
+					t_img *img, t_mlx_config *cfg);
+void				get_color_from_pixel(t_coords coords,
+					t_img *img, t_mlx_config *cfg);
 
 void				paint_walls(t_mlx_config *cfg);
-unsigned long		rgba_to_hex(int rgb[3]);
+int					rgba_to_hex(int rgb[3]);
 
 /*
 ** Defining rays.c functions
@@ -158,7 +168,6 @@ double				normalize_angle(double angle);
 */
 
 void				initialize_graphics(t_mlx_config *cfg);
-t_img				create_image(int w, int h, t_mlx_config *cfg);
 void				draw_walls(t_mlx_config *cfg);
 
 /*
@@ -169,5 +178,13 @@ void				draw_rect(t_coords a, t_coords b, t_img *img,
 					t_mlx_config *cfg);
 void				draw_line(t_coords a, t_coords b, t_img *img,
 					t_mlx_config *cfg);
+
+/*
+** Defining image.c
+*/
+
+t_img				create_image_from_file(char *filename, t_mlx_config *cfg);
+t_img				create_image(int w, int h, t_mlx_config *cfg);
+void				pick_wall_color(t_ray *ray, t_coords coords, t_coords coords2, t_mlx_config *cfg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/30 18:17:42 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/01 00:31:02 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ void	clear_mlx_config(t_mlx_config *config)
 		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 		config->win_ptr = 0;
 	}
+	// if (config->north.ptr)
+	// 	mlx_destroy_image(config->mlx_ptr, config->north.ptr);
+	// if (config->south.ptr)
+	// 	mlx_destroy_image(config->mlx_ptr, config->south.ptr);
+	// if (config->west.ptr)
+	// 	mlx_destroy_image(config->mlx_ptr, config->west.ptr);
+	// if (config->east.ptr)
+	// 	mlx_destroy_image(config->mlx_ptr, config->east.ptr);
+	// if (config->sprite.ptr)
+	// 	mlx_destroy_image(config->mlx_ptr, config->sprite.ptr);
 	if (config->img.ptr)
 		mlx_destroy_image(config->mlx_ptr, config->img.ptr);
 	if (config->mlx_ptr)
 		mlx_free_mlx_ptr(config->mlx_ptr);
 	if (config->rays)
 		free(config->rays);
-}
-
-void	clear_img(t_img *img)
-{
-	if (img->ptr)
-		mlx_free_mlx_ptr(img->ptr);
 }
 
 int		update_loop(t_mlx_config *cfg)
