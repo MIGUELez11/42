@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 17:37:31 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 11:11:02 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,31 @@
 void			put_color_to_pixel(t_coords coords,
 t_img *img, t_mlx_config *cfg)
 {
-	int pixel;
-	int	color;
+	int 			pixel;
+	unsigned int	color;
 
 	color = cfg->color;
 	coords.x = floor(coords.x);
 	coords.y = floor(coords.y);
 	if (img->bpp != 32)
 		color = mlx_get_color_value(cfg->mlx_ptr, color);
-	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
-	if (img->endian == 1)
+	if (color < 0xFF000000)
 	{
-		img->buff[pixel + 0] = (color >> 24) & 0xFF;
-		img->buff[pixel + 1] = (color >> 16) & 0xFF;
-		img->buff[pixel + 2] = (color >> 8) & 0xFF;
-		img->buff[pixel + 3] = (color) & 0xFF;
-	}
-	else if (img->endian == 0)
-	{
-		img->buff[pixel + 0] = (color) & 0xFF;
-		img->buff[pixel + 1] = (color >> 8) & 0xFF;
-		img->buff[pixel + 2] = (color >> 16) & 0xFF;
-		img->buff[pixel + 3] = (color >> 24) & 0xFF;
+		pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
+		if (img->endian == 1)
+		{
+			img->buff[pixel + 0] = (color >> 24) & 0xFF;
+			img->buff[pixel + 1] = (color >> 16) & 0xFF;
+			img->buff[pixel + 2] = (color >> 8) & 0xFF;
+			img->buff[pixel + 3] = (color) & 0xFF;
+		}
+		else if (img->endian == 0)
+		{
+			img->buff[pixel + 0] = (color) & 0xFF;
+			img->buff[pixel + 1] = (color >> 8) & 0xFF;
+			img->buff[pixel + 2] = (color >> 16) & 0xFF;
+			img->buff[pixel + 3] = (color >> 24) & 0xFF;
+		}
 	}
 }
 
@@ -44,7 +47,7 @@ int				get_hex_from_pixel(char a, char r, char g, char b)
 {
 	int	color;
 
-	color = a & 0xFF;
+	color = OS == 0 ? 0xFF - (a & 0xFF) : a & 0xFF;
 	color <<= 8;
 	color |= r & 0xFF;
 	color <<= 8;
