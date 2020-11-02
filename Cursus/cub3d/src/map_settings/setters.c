@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 12:09:19 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 14:26:45 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	setup_window(t_cub_config *cfg)
 		cfg->max_x = SCREEN_MAX_X;
 		cfg->max_y = SCREEN_MAX_Y;
 	}
-
 }
 
 void	setup_player(t_cub_config *config)
@@ -82,8 +81,8 @@ void	set_colors(char *position, char *value, t_cub_config *config)
 
 void	set_sprites(char *position, char *value, t_cub_config *config)
 {
-	if (!check_extension(value, "xpm") && !check_extension(value, "png"))
-		cub_exit("Invalid image extension", EINVAL, config);
+	if (!check_extension(value, "xpm"))
+		cub_exit("Invalid image extension. Only .xpm accepted", EINVAL, config);
 	if (open(value, O_RDONLY) == -1)
 		cub_exit("Image does not exist", EEXIST, config);
 	if (!ft_strncmp(position, "NO", 2) && !config->north)

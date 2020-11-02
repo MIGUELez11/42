@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 12:11:52 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 14:53:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # include "../cub3d.h"
 # include "../../minilibx/mlx.h"
 
+/*
+** FOV = angle * (M_PI / 180)
+** angle 60 = 1.0471975511965976
+*/
+
 # ifndef FOV
-#  define FOV 60 * (M_PI / 180)
+#  define FOV 1.0471975511965976
 # endif
 
 # ifndef DELTATIME
@@ -77,9 +82,11 @@ typedef struct		s_ray
 	double			xintercept;
 	double			yintercept;
 	double			correct_distance;
+	int				wall_type;
 	int				hit_type;
 	int				v_hit_type;
 	int				h_hit_type;
+	double			wall_strip_height;
 }					t_ray;
 
 typedef struct		s_mlx_config
@@ -116,7 +123,6 @@ void				get_color_from_pixel(t_coords coords,
 					t_img *img, t_mlx_config *cfg);
 
 void				paint_walls(t_mlx_config *cfg);
-int					rgba_to_hex(int rgb[3]);
 
 /*
 ** Defining rays.c functions
@@ -130,9 +136,9 @@ void				ray_cast(t_ray *ray, t_mlx_config *cfg, int wall_type);
 */
 
 void				ray_cast_loopv(t_ray *ray, double next_vert_touch_x,
-					double next_vert_touch_y, t_mlx_config *cfg, int wall_type);
+					double next_vert_touch_y, t_mlx_config *cfg);
 void				ray_cast_looph(t_ray *ray, double next_horz_touch_x,
-					double next_horz_touch_y, t_mlx_config *cfg, int wall_type);
+					double next_horz_touch_y, t_mlx_config *cfg);
 
 /*
 ** Defining map.c functions
@@ -178,5 +184,13 @@ t_img				create_image_from_file(char *filename, t_mlx_config *cfg);
 t_img				create_image(int w, int h, t_mlx_config *cfg);
 void				pick_color(t_ray *ray, t_coords coords,
 					t_coords coords2, t_mlx_config *cfg);
+
+/*
+** Defining math.c
+*/
+
+double				rem(double a, double b);
+int					rgba_to_hex(int rgb[3]);
+int					get_hex_from_pixel(char a, char r, char g, char b);
 
 #endif
