@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 11:13:57 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 12:11:52 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,6 @@
 
 # ifndef DELTATIME
 #  define DELTATIME 0.25
-# endif
-
-# ifndef OS
-
-/*
-** linux -> 0
-** macos -> 1
-*/
-
-#  define OS 1
 # endif
 
 # if OS == 0

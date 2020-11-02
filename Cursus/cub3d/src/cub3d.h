@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 15:08:00 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 12:05:29 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@
 
 # ifndef GRID
 #  define GRID 64
+# endif
+
+# ifndef OS
+
+/*
+** linux -> 0
+** macos -> 1
+*/
+
+#  define OS 1
 # endif
 
 # include "../libft/libft.h"
@@ -52,6 +62,8 @@ typedef struct	s_cub_config
 	int			map_width;
 	int			width;
 	int			height;
+	int			max_x;
+	int			max_y;
 	char		*north;
 	char		*south;
 	char		*west;

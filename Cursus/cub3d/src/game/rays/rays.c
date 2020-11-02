@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:00:03 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 11:39:18 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 11:40:11 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,6 @@ void	ray_cast(t_ray *ray, t_mlx_config *cfg, int wall_type)
 	ray_cast_h(ray, cfg, wall_type);
 	ray_cast_v(ray, cfg, wall_type);
 	ray_cast_near(ray, cfg);
-	// ray->hit_type = wall_type;
-	//  map_check(cfg, ray->wall_hit_x - (!ray->is_ray_facing_right
-	// && ray->was_hit_vert ? 1 : 0), ray->wall_hit_y - (!ray->is_ray_facing_down
-	// && !ray->was_hit_vert ? 1 : 0));
 }
 
 t_ray	*new_ray(double ray_angle)

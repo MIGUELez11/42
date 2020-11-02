@@ -6,11 +6,32 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 15:07:36 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 12:09:19 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_settings.h"
+#include "../../minilibx_linux/mlx.h"
+
+void	setup_window(t_cub_config *cfg)
+{
+	void	*mlx;
+
+	if (OS == 0)
+	{
+		mlx = mlx_init();
+		if (!mlx)
+			cub_exit("Can not initialize mlx", ENOMEM, cfg);
+		mlx_get_screen_size(mlx, &cfg->max_x, &cfg->max_y);
+		mlx_free_mlx_ptr(mlx);
+	}
+	else
+	{
+		cfg->max_x = SCREEN_MAX_X;
+		cfg->max_y = SCREEN_MAX_Y;
+	}
+
+}
 
 void	setup_player(t_cub_config *config)
 {
@@ -33,6 +54,7 @@ void	setup_config(t_cub_config *config)
 	config->east = 0;
 	config->sprite = 0;
 	config->lst_map = NULL;
+	setup_window(config);
 	setup_player(config);
 }
 

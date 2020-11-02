@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 15:58:01 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 12:06:57 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	set_cub_config_value(char **value, t_cub_config *config)
 {
 	if (!ft_strncmp(value[0], "R", 1))
 	{
-		ft_printf("x %d y %d", SCREEN_MAX_X, SCREEN_MAX_Y);
+		ft_printf("x %d y %d", config->max_x, config->max_y);
 		config->width = ft_atoi(value[1]);
-		if (SCREEN_MAX_X && config->width > SCREEN_MAX_X)
-			config->width = SCREEN_MAX_X;
+		if (config->max_x && config->width > config->max_x)
+			config->width = config->max_x;
 		config->height = ft_atoi(value[2]);
-		if (SCREEN_MAX_Y && config->height > SCREEN_MAX_Y)
-			config->height = SCREEN_MAX_Y;
+		if (config->max_y && config->height > config->max_y)
+			config->height = config->max_y;
 		config->resolution_set = 1;
 	}
 	else if (!ft_strncmp(value[0], "NO", 2) ||

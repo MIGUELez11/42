@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 18:39:59 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 11:38:10 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 11:41:24 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double next_vert_touch_y, t_mlx_config *cfg, int wall_type)
 	{
 		ray->v_hit_type = map_check(cfg, next_vert_touch_x - (!ray->is_ray_facing_right ? 1 :
 		0), next_vert_touch_y);
-		if (ray->v_hit_type == wall_type)
+		if (ray->v_hit_type <= wall_type && ray->v_hit_type > 0)
 		{
 			ray->found_vert_hit = 1;
 			ray->vwall_hit_x = next_vert_touch_x;
@@ -45,7 +45,7 @@ double next_horz_touch_y, t_mlx_config *cfg, int wall_type)
 	{
 		ray->h_hit_type = map_check(cfg, next_horz_touch_x, next_horz_touch_y -
 		(!ray->is_ray_facing_down ? 1 : 0));
-		if (ray->h_hit_type == wall_type)
+		if (ray->h_hit_type <= wall_type && ray->h_hit_type > 0)
 		{
 			ray->found_horz_hit = 1;
 			ray->hwall_hit_x = next_horz_touch_x;
