@@ -6,7 +6,7 @@
 /*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 17:45:04 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/02 11:13:57 by miguelez11       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct		s_ray
 	double			yintercept;
 	double			correct_distance;
 	int				hit_type;
+	int				v_hit_type;
+	int				h_hit_type;
 }					t_ray;
 
 typedef struct		s_mlx_config
