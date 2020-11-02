@@ -1,108 +1,110 @@
-#include "minilibx_linux/mlx.h"
-#include "src/cub3d.h"
-#include "src/game/game.h"
-#include "src/map_settings/map_settings.h"
-#include "libft/libft.h"
 #include <stdio.h>
 
-void			put_color_to_pixel(t_coords coords,
-t_img *img, t_mlx_config *cfg)
+const int BYTES_PER_PIXEL = 3; /// red, green, & blue
+const int FILE_HEADER_SIZE = 14;
+const int INFO_HEADER_SIZE = 40;
+
+void generateBitmapImage(unsigned char* image, int height, int width, char* imageFileName);
+unsigned char* createBitmapFileHeader(int height, int stride);
+unsigned char* createBitmapInfoHeader(int height, int width);
+
+
+int main ()
 {
-	int 			pixel;
-	unsigned int	color;
+    int height = 361;
+    int width = 867;
+    unsigned char image[height][width][BYTES_PER_PIXEL];
+    char* imageFileName = (char*) "bitmapImage.bmp";
 
-	color = cfg->color;
-	coords.x = floor(coords.x);
-	coords.y = floor(coords.y);
-	if (img->bpp != 32)
-		color = mlx_get_color_value(cfg->mlx_ptr, color);
-	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
-	ft_printf("%d", 0xFF000000 > cfg->color);
-	if (color < 0xFF000000)
-	{
-		ft_printf("Dentro");
-		if (img->endian == 1)
-		{
-			img->buff[pixel + 0] = (color >> 24) & 0xFF;
-			img->buff[pixel + 1] = (color >> 16) & 0xFF;
-			img->buff[pixel + 2] = (color >> 8) & 0xFF;
-			img->buff[pixel + 3] = (color) & 0xFF;
-		}
-		else if (img->endian == 0)
-		{
-			img->buff[pixel + 0] = (color) & 0xFF;
-			img->buff[pixel + 1] = (color >> 8) & 0xFF;
-			img->buff[pixel + 2] = (color >> 16) & 0xFF;
-			img->buff[pixel + 3] = (color >> 24) & 0xFF;
-		}
-	}
-}
-/*
-** AARRGGBB
-*/
+    int i, j;
+    for (i = 0; i < height; i++) {
+        for (j = 0; j < width; j++) {
+            image[i][j][2] = (unsigned char) ( 255);            ///red
+            image[i][j][1] = (unsigned char) ( 0 );             ///green
+            image[i][j][0] = (unsigned char) ( 255 ); 			///blue
+        }
+    }
 
-void			get_color_from_pixel(t_coords coords,
-t_img *img, t_mlx_config *cfg)
-{
-	int pixel;
-	int	color;
-
-	coords.x = floor(coords.x);
-	coords.y = floor(coords.y);
-	pixel = ((int)coords.y * img->line_size) + ((int)coords.x * 4);
-	if (img->endian == 1)
-	{
-		//AA
-		color = img->buff[pixel + 0] & 0xFF;
-		color <<= 8;
-		//RR
-		color |= img->buff[pixel + 1] & 0xFF;
-		color <<= 8;
-		// //GG
-		color |= img->buff[pixel + 2] & 0xFF;
-		color <<= 8;
-		// //BB
-		color |= img->buff[pixel + 3] & 0xFF;
-	}
-	else
-	{
-		//AA
-		color = img->buff[pixel + 3] & 0xFF;
-		color <<= 8;
-		//RR
-		color |= img->buff[pixel + 2] & 0xFF;
-		color <<= 8;
-		// //GG
-		color |= img->buff[pixel + 1] & 0xFF;
-		color <<= 8;
-		// //BB
-		color |= img->buff[pixel + 0] & 0xFF;
-	}
-	cfg->color = color;
+    generateBitmapImage((unsigned char*) image, height, width, imageFileName);
+    printf("Image generated!!");
 }
 
-int	main()
-{
-	t_mlx_config	cfg;
-	t_img			img;
 
-	cfg.mlx_ptr = mlx_init();
-	cfg.win_ptr = mlx_new_window(cfg.mlx_ptr, 500, 500, "Hola");
-	cfg.img.ptr = mlx_new_image(cfg.mlx_ptr, 500, 500);
-	cfg.img.w = 500;
-	cfg.img.h = 500;
-	cfg.img.buff = mlx_get_data_addr(cfg.img.ptr, &cfg.img.bpp, &cfg.img.line_size, &cfg.img.endian);
-	img.ptr = mlx_xpm_file_to_image(cfg.mlx_ptr, "assets/banner.xpm", &img.w, &img.h);
-	img.buff = mlx_get_data_addr(img.ptr, &img.bpp, &img.line_size, &img.endian);
-	for (int x = 0; x < img.w; x++)
-		for (int y = 0; y < img.h; y++)
-		{
-			// get_color_from_pixel((t_coords){.x = x, .y = y}, &img, &cfg);
-			cfg.color = 0xffff0000;
-			put_color_to_pixel((t_coords){.x = x, .y = y}, &cfg.img, &cfg);
-			cfg.color = 0x00ff0000;
-			put_color_to_pixel((t_coords){.x = img.w + x, .y = y}, &cfg.img, &cfg);
-		}
-	mlx_put_image_to_window(cfg.mlx_ptr, cfg.win_ptr, cfg.img.ptr, 0, 0);
-	mlx_loop(cfg.mlx_ptr);
+void generateBitmapImage (unsigned char* image, int height, int width, char* imageFileName)
+{
+    int widthInBytes = width * BYTES_PER_PIXEL;
+
+    unsigned char padding[3] = {0, 0, 0};
+    int paddingSize = (4 - (widthInBytes) % 4) % 4;
+
+    int stride = (widthInBytes) + paddingSize;
+
+    FILE* imageFile = fopen(imageFileName, "wb");
+
+    unsigned char* fileHeader = createBitmapFileHeader(height, stride);
+    fwrite(fileHeader, 1, FILE_HEADER_SIZE, imageFile);
+
+    unsigned char* infoHeader = createBitmapInfoHeader(height, width);
+    fwrite(infoHeader, 1, INFO_HEADER_SIZE, imageFile);
+
+    int i;
+    for (i = 0; i < height; i++) {
+        fwrite(image + (i*widthInBytes), BYTES_PER_PIXEL, width, imageFile);
+        fwrite(padding, 1, paddingSize, imageFile);
+    }
+
+    fclose(imageFile);
+}
+
+unsigned char* createBitmapFileHeader (int height, int stride)
+{
+    int fileSize = FILE_HEADER_SIZE + INFO_HEADER_SIZE + (stride * height);
+
+    static unsigned char fileHeader[] = {
+        0,0,     /// signature
+        0,0,0,0, /// image file size in bytes
+        0,0,0,0, /// reserved
+        0,0,0,0, /// start of pixel array
+    };
+
+    fileHeader[ 0] = (unsigned char)('B');
+    fileHeader[ 1] = (unsigned char)('M');
+    fileHeader[ 2] = (unsigned char)(fileSize      );
+    fileHeader[ 3] = (unsigned char)(fileSize >>  8);
+    fileHeader[ 4] = (unsigned char)(fileSize >> 16);
+    fileHeader[ 5] = (unsigned char)(fileSize >> 24);
+    fileHeader[10] = (unsigned char)(FILE_HEADER_SIZE + INFO_HEADER_SIZE);
+
+    return fileHeader;
+}
+
+unsigned char* createBitmapInfoHeader (int height, int width)
+{
+    static unsigned char infoHeader[] = {
+        0,0,0,0, /// header size
+        0,0,0,0, /// image width
+        0,0,0,0, /// image height
+        0,0,     /// number of color planes
+        0,0,     /// bits per pixel
+        0,0,0,0, /// compression
+        0,0,0,0, /// image size
+        0,0,0,0, /// horizontal resolution
+        0,0,0,0, /// vertical resolution
+        0,0,0,0, /// colors in color table
+        0,0,0,0, /// important color count
+    };
+
+    infoHeader[ 0] = (unsigned char)(INFO_HEADER_SIZE);
+    infoHeader[ 4] = (unsigned char)(width      );
+    infoHeader[ 5] = (unsigned char)(width >>  8);
+    infoHeader[ 6] = (unsigned char)(width >> 16);
+    infoHeader[ 7] = (unsigned char)(width >> 24);
+    infoHeader[ 8] = (unsigned char)(height      );
+    infoHeader[ 9] = (unsigned char)(height >>  8);
+    infoHeader[10] = (unsigned char)(height >> 16);
+    infoHeader[11] = (unsigned char)(height >> 24);
+    infoHeader[12] = (unsigned char)(1);
+    infoHeader[14] = (unsigned char)(BYTES_PER_PIXEL*8);
+
+    return infoHeader;
 }
