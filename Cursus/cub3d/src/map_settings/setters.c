@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 19:36:39 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 22:22:47 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	set_colors(char *position, char *value, t_cub_config *config)
 		config->floor[0] = ft_atoi(numbers[0]);
 		config->floor[1] = ft_atoi(numbers[1]);
 		config->floor[2] = ft_atoi(numbers[2]);
+		if (config->floor[0] > 255 || config->floor[1] > 255
+		|| config->floor[2] > 255)
+			cub_exit("RGB values can't be greater than 255", ERANGE, config);
 		config->floor_set = 1;
 	}
 	else
@@ -75,6 +78,9 @@ void	set_colors(char *position, char *value, t_cub_config *config)
 		config->ceiling[0] = ft_atoi(numbers[0]);
 		config->ceiling[1] = ft_atoi(numbers[1]);
 		config->ceiling[2] = ft_atoi(numbers[2]);
+		if (config->ceiling[0] > 255 || config->ceiling[1] > 255
+		|| config->ceiling[2] > 255)
+			cub_exit("RGB values can't be greater than 255", ERANGE, config);
 		config->ceiling_set = 1;
 	}
 	ft_freedouble((void **)numbers);
