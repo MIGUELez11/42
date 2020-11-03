@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:39:50 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 17:55:08 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 23:16:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct	s_cub_config
 	int			resolution_set;
 	int			save;
 	char		**map;
+	int			setting_map;
+	int			prev_blank;
 	t_player	player;
 }				t_cub_config;
 

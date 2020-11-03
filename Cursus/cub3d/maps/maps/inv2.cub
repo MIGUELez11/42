@@ -1,11 +1,9 @@
-R -1 -1
-
+R 1920 1080
 NO ./assets/brick.xpm
 SO ./assets/blue.xpm
 WE ./assets/wood.xpm
 EA ./assets/grey.xpm
-
-S ./assets/chest.xpm
+S  ./assets/chest.xpm
 F 224,172,105
 C 205,249,255
 
@@ -23,3 +21,10 @@ C 205,249,255
 11000000110101011111011110001
 11110111111101011111011110001
 11111111111111111111111111111
+
+
+
+
+
+
+
