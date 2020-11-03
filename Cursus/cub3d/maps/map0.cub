@@ -1,0 +1,19 @@
+R 1920 1080
+NO ./assets/blue.xpm
+SO ./assets/brick.xpm
+WE ./assets/wood.xpm
+EA ./assets/grey.xpm
+S ./assets/barrel.xpm
+F 0,165,79
+C 255,165,79
+
+1111111111
+1000000001
+1000200001
+1000000001
+1000000001
+1000N00001
+1000000001
+1000000001
+1000000001
+1111111111

@@ -6,12 +6,11 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:41:46 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/06 17:24:06 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 20:08:24 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "game/game.h"
 
 char	*ft_strremovechar(const char *str, char c)
 {
@@ -91,10 +90,14 @@ int		main(int argc, char **argv)
 {
 	t_cub_config	config;
 
-	ft_printf("argv: %s", argv[1]);
-	if (argc == 2 && validate_cub_file(argv[1], &config))
+	if (argc > 1 && argc < 4 && validate_cub_file(argv[1], &config))
 	{
-		ft_printf("Starting with the libx part\n");
+		if (argc == 3 && !ft_strncmp("--save", argv[2], 7))
+			config.save = 1;
+		else if (argc == 2)
+			config.save = 0;
+		else
+			cub_exit("Invalid argument", EINVAL, &config);
 		initialize(&config);
 	}
 	else

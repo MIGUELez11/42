@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:54:30 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/24 19:17:39 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:31:59 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	cub_exit(char *msg, int code, t_cub_config *config)
 {
 	if (config)
 	{
-		print_config(config);
 		clear_cub_config(config);
 	}
 	if (code != 0)

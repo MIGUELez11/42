@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 18:08:35 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 14:26:45 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:36:39 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	setup_config(t_cub_config *config)
 	config->west = 0;
 	config->east = 0;
 	config->sprite = 0;
-	config->lst_map = NULL;
+	config->lst_map = 0;
+	config->map = 0;
 	setup_window(config);
 	setup_player(config);
 }

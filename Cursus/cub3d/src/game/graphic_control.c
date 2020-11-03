@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:33:42 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 14:58:43 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:59:34 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ void			draw_objects(t_mlx_config *cfg)
 		if ((cfg->ray->found_horz_hit || cfg->ray->found_vert_hit)
 		&& cfg->ray->hit_type == 2)
 		{
-			cfg->rays[i]->correct_distance = cfg->rays[i]->distance * cos(
-			cfg->rays[i]->ray_angle - cfg->player->heading);
+			cfg->rays[i]->correct_distance = cfg->rays[i]->distance * cos(0);
 			distance_projection_plane = cfg->cub_cfg->width / 2 / tan(FOV / 2);
 			cfg->ray->wall_strip_height = (GRID /
 			cfg->rays[i]->correct_distance) * distance_projection_plane;
@@ -135,5 +134,10 @@ void			initialize_graphics(t_mlx_config *cfg)
 	cfg->rays = ft_calloc(cfg->cub_cfg->width, sizeof(t_ray *));
 	draw_walls(cfg);
 	draw_objects(cfg);
+	if (cfg->cub_cfg->save)
+	{
+		save_bmp(cfg);
+		mlx_exit(cfg);
+	}
 	mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr, cfg->img.ptr, 0, 0);
 }

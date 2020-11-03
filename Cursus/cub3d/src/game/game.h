@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 14:53:08 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 19:59:01 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,11 @@ void				pick_color(t_ray *ray, t_coords coords,
 double				rem(double a, double b);
 int					rgba_to_hex(int rgb[3]);
 int					get_hex_from_pixel(char a, char r, char g, char b);
+
+/*
+** Defining save_image.c
+*/
+
+int					save_bmp(t_mlx_config *cfg);
 
 #endif
