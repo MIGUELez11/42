@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 15:23:23 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:51:43 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	clear_mlx_config(t_mlx_config *config)
 {
-	ft_printf("win %p mlx %p\n", config->win_ptr, config->mlx_ptr);
 	if (config->win_ptr)
 	{
 		mlx_clear_window(config->mlx_ptr, config->win_ptr);
@@ -39,19 +38,28 @@ void	clear_mlx_config(t_mlx_config *config)
 		free(config->rays);
 }
 
+/*
+** ft_printf("\e[1;31mw = %d \e[1;32ma = %d \e[1;33ms = %d \e[1;34md = %d\
+** lA = %d rA = %d\e[0m\r", cfg->keys.w, cfg->keys.a, cfg->keys.s, cfg->keys.d,
+** cfg->keys.larr, cfg->keys.rarr);
+*/
+
 int		update_loop(t_mlx_config *cfg)
 {
-	ft_printf("\e[1;31mw = %d \e[1;32ma = %d \e[1;33ms = %d \e[1;34md = %d\
-	\e[0m\r", cfg->keys.w, cfg->keys.a, cfg->keys.s, cfg->keys.d);
 	if (cfg->keys.w)
 		player_move(cfg, 1);
 	if (cfg->keys.s)
 		player_move(cfg, -1);
 	if (cfg->keys.a)
-		player_rotate(cfg, -1);
+		player_strafe(cfg, 1);
 	if (cfg->keys.d)
+		player_strafe(cfg, -1);
+	if (cfg->keys.larr)
+		player_rotate(cfg, -1);
+	if (cfg->keys.rarr)
 		player_rotate(cfg, 1);
-	if (cfg->keys.w || cfg->keys.s || cfg->keys.a || cfg->keys.d)
+	if (cfg->keys.w || cfg->keys.s || cfg->keys.a || cfg->keys.d
+	|| cfg->keys.larr || cfg->keys.rarr)
 	{
 		if (cfg->img.ptr)
 			mlx_destroy_image(cfg->mlx_ptr, cfg->img.ptr);
@@ -67,7 +75,7 @@ void	initialize(t_cub_config *cub_config)
 	t_mlx_config cfg;
 
 	cfg.cub_cfg = cub_config;
-	cfg.keys = (t_keys){.w = 0, .s = 0, .a = 0, .d = 0};
+	cfg.keys = (t_keys){.w = 0, .s = 0, .a = 0, .d = 0, .larr = 0, .rarr = 0};
 	generate_window(&cfg);
 	player_controller(&cfg);
 	initialize_graphics(&cfg);

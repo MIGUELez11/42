@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 19:59:01 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:21:51 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 #  define A 0
 #  define S 1
 #  define D 2
+#  define LARR 123
+#  define RARR 124
 #  define ESC 53
 # endif
 
@@ -60,6 +62,8 @@ typedef struct		s_keys
 	int				a;
 	int				s;
 	int				d;
+	int				larr;
+	int				rarr;
 }					t_keys;
 
 typedef struct		s_ray
@@ -114,6 +118,7 @@ void				generate_window(t_mlx_config *config);
 void				set_event_listeners(t_mlx_config *config);
 void				player_controller(t_mlx_config *cfg);
 void				player_move(t_mlx_config *cfg, int direction);
+void				player_strafe(t_mlx_config *cfg, int direction);
 void				player_rotate(t_mlx_config *cfg, int direction);
 char				cub_map(t_mlx_config *cfg, int x, int y);
 

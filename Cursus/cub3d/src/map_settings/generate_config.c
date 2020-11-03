@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_config.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/02 12:06:57 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/03 20:11:16 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	set_cub_config_value(char **value, t_cub_config *config)
 {
 	if (!ft_strncmp(value[0], "R", 1))
 	{
-		ft_printf("x %d y %d", config->max_x, config->max_y);
 		config->width = ft_atoi(value[1]);
 		if (config->max_x && config->width > config->max_x)
 			config->width = config->max_x;

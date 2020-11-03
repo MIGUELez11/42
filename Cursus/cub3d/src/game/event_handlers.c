@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 11:41:10 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/31 11:10:11 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/03 21:35:58 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		mlx_exit(void *config)
 {
-	ft_printf("Hola");
 	if (config)
 	{
 		clear_mlx_config(config);
@@ -36,8 +35,10 @@ int		release_key(int keycode, t_mlx_config *config)
 		config->keys.s = 0;
 	else if (keycode == D)
 		config->keys.d = 0;
-	else
-		ft_printf("key %d released\n", keycode);
+	else if (keycode == LARR)
+		config->keys.larr = 0;
+	else if (keycode == RARR)
+		config->keys.rarr = 0;
 	return (1);
 }
 
@@ -53,8 +54,10 @@ int		press_key(int keycode, t_mlx_config *config)
 		config->keys.s = 1;
 	else if (keycode == D)
 		config->keys.d = 1;
-	else
-		ft_printf("key %d pressed\n\n", keycode);
+	else if (keycode == LARR)
+		config->keys.larr = 1;
+	else if (keycode == RARR)
+		config->keys.rarr = 1;
 	return (1);
 }
 

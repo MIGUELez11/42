@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 19:50:48 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 20:02:52 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 20:11:58 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int
 	int			file;
 	int			pad;
 
-	ft_printf("Saving screenshot\n");
+	ft_printf("\e[1;33mSaving screenshot");
 	pad = (4 - ((int)cfg->img.w * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)cfg->img.w + pad) * (int)cfg->img.h);
 	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT
@@ -102,6 +102,6 @@ int
 	if (!write_bmp_data(file, cfg, pad))
 		return (0);
 	close(file);
-	ft_printf("Saving screenshot ./screenshot.bmp");
+	ft_printf("\e\r[1;32mScreenshot saved ./screenshot.bmp\n\n\n\e[0m");
 	return (1);
 }

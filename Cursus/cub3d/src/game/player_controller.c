@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:12:39 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 15:11:26 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/03 21:51:26 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ void	player_move(t_mlx_config *cfg, int direction)
 	cos(player->heading) * DELTATIME;
 	position.y += player->velocity.y * direction *
 	sin(player->heading) * DELTATIME;
+	if (map_check(cfg, position.x, position.y) == 0)
+		player->position = position;
+}
+
+void	player_strafe(t_mlx_config *cfg, int direction)
+{
+	t_player *player;
+	t_coords position;
+
+	player = cfg->player;
+	position = player->position;
+	position.x += player->velocity.x * direction *
+	cos(player->heading - M_PI / 2) * DELTATIME;
+	position.y += player->velocity.y * direction *
+	sin(player->heading - M_PI / 2) * DELTATIME;
 	if (map_check(cfg, position.x, position.y) == 0)
 		player->position = position;
 }

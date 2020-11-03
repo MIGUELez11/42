@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:29:21 by mflorido          #+#    #+#             */
-/*   Updated: 2020/10/17 20:17:00 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/03 20:11:20 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int		validate_cub_file(char *filename, t_cub_config *config)
 			cub_exit("Map file does not exist", EINVAL, NULL);
 		else
 		{
-			ft_printf("File exists\n");
 			get_cub_config(fd, config);
 			close(fd);
 		}

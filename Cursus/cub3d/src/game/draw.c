@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelez11 <miguelez11@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 09:46:00 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/01 17:27:04 by miguelez11       ###   ########.fr       */
+/*   Updated: 2020/11/03 20:09:04 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	draw_line(t_coords a, t_coords b, t_img *img, t_mlx_config *cfg)
 	vector = vector_2points(a, b);
 	i = 0;
 	j = 0;
-	ft_printf("Entra %d\n", (a.x < b.x ? a.x + i <= b.x : a.x + i >= b.x) &&
-	(a.y < b.y ? a.y + j <= b.y : a.y + j >= b.y));
 	while ((a.x < b.x ? a.x + i <= b.x : a.x + i >= b.x) && (a.y < b.y ? a.y +
 	j <= b.y : a.y + j >= b.y))
 	{
