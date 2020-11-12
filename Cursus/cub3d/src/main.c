@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:41:46 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 20:08:24 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/12 16:23:29 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*ft_removeduplicates(const char *str, const char *set)
 int		main(int argc, char **argv)
 {
 	t_cub_config	config;
-
 	if (argc > 1 && argc < 4 && validate_cub_file(argv[1], &config))
 	{
 		if (argc == 3 && !ft_strncmp("--save", argv[2], 7))

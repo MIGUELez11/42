@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:42:52 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 21:21:51 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/11 17:02:25 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GAME_H
 
 # include "../cub3d.h"
-# include "../../minilibx/mlx.h"
+# include "../../minilibx_linux/mlx.h"
 
 /*
 ** FOV = angle * (M_PI / 180)

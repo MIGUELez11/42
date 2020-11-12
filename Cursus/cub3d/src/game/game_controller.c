@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:47:36 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 21:51:43 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/11 17:01:10 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ void	clear_mlx_config(t_mlx_config *config)
 	if (config->rays)
 		free(config->rays);
 }
-
-/*
-** ft_printf("\e[1;31mw = %d \e[1;32ma = %d \e[1;33ms = %d \e[1;34md = %d\
-** lA = %d rA = %d\e[0m\r", cfg->keys.w, cfg->keys.a, cfg->keys.s, cfg->keys.d,
-** cfg->keys.larr, cfg->keys.rarr);
-*/
 
 int		update_loop(t_mlx_config *cfg)
 {

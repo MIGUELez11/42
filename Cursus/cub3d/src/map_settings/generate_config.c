@@ -6,7 +6,7 @@
 /*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 14:48:53 by mflorido          #+#    #+#             */
-/*   Updated: 2020/11/03 23:40:35 by mflorido         ###   ########.fr       */
+/*   Updated: 2020/11/11 17:01:29 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	set_cub_config_value(char **value, t_cub_config *config)
 		if (config->max_y && config->height > config->max_y)
 			config->height = config->max_y;
 		config->resolution_set = 1;
-		ft_printf("Resolution = %d %d", config->width, config->height);
 		if (config->width <= 0 || config->height <= 0)
 			cub_exit("Resolution can't be lower than 1", ERANGE, config);
 	}
