@@ -1,0 +1,14 @@
+R 642982 516464
+
+NO ./assets/brick.xpm
+SO ./assets/blue.xpm
+WE ./assets/wood.xpm
+EA ./assets/grey.xpm
+
+S ./assets/barrel.xpm
+F 100,0,100
+C 0,0,0
+
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 W 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
