@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: test1
+    labels:
+        app: test1
+spec:
+    replicas: 5
+    selector:
+        matchLabels:
+            app: test1
+    template:
+        metadata:
+            labels:
+                app: test1
+        spec:
+            containers:
+            -   name: test1
+                image: node_dock:latest
+                imagePullPolicy: Never
+                args:
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: test1
+  labels:
+    app: test1
+spec:
+  type: LoadBalancer
+  selector:
+    app: test1
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30000
+    name: test1

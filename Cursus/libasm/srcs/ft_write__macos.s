@@ -13,7 +13,9 @@ _ft_write:
     ret                 ;else return
     error:
         push rbp        ;Push to stack
+        mov rdi, rax    ;move to parameter error
         call ___error   ;Set errno
+        mov  [rax], rdi ;add to rax the error code
         pop  rbp        ;reset stack
         mov  rax, -1    ;set return to -1
         ret

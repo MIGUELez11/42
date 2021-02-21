@@ -14,5 +14,5 @@ _ft_strcpy:
 		inc rax						;i++
 		jmp while					;goto while again
 	end:
-		mov	rax, rsi				;return = dst
+		mov	rax, rdi				;return = dst
 		ret							;return
