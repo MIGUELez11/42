@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		writer(t_printf_list *p_lst)
+int	writer(t_printf_list *p_lst)
 {
 	while (p_lst->str[p_lst->i])
 	{

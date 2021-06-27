@@ -6,7 +6,7 @@
 /*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 09:43:03 by mflorido          #+#    #+#             */
-/*   Updated: 2020/02/17 17:06:36 by miguelez1        ###   ########.fr       */
+/*   Updated: 2019/11/23 10:28:42 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -41,7 +41,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 char			*ft_strnstr(const char *haystack, const char *needle,
-		size_t loc);
+					size_t loc);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 void			*ft_memset(void *b, int c, size_t len);
@@ -82,14 +82,6 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
-		void (*del)(void *));
-
-/*
-** Extra functions
-*/
-
-int				ft_intlen(int n);
-void			ft_uppercase(char *str);
-char			*ft_itoh(unsigned long int n);
+					void (*del)(void *));
 
 #endif

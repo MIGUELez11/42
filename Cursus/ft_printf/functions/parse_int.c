@@ -12,18 +12,19 @@
 
 #include "ft_printf.h"
 
-int		parse_int(t_printf_list *p_lst)
+int	parse_int(t_printf_list *p_lst)
 {
 	long int	n;
 	int			len;
 
 	n = va_arg(p_lst->ap, int);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_intlen(n));
+	len = 0;
+	if (!(p_lst->flags.precision == 0 && n == 0))
+		len = ft_intlen(n);
 	if (p_lst->flags.width < 0)
-	{
-		p_lst->flags.width *= -1;
 		p_lst->flags.minus = 1;
-	}
+	if (p_lst->flags.width < 0)
+		p_lst->flags.width *= -1;
 	if (n < 0 && p_lst->flags.width > 0)
 		p_lst->flags.width--;
 	width_spaces_before(p_lst, len);

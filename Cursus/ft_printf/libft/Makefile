@@ -33,11 +33,7 @@ SRC		=	ft_atoi.c\
 			ft_strtrim.c\
 			ft_substr.c\
 			ft_tolower.c\
-			ft_toupper.c\
-			ft_intlen.c\
-			ft_itoh.c\
-			ft_uppercase.c
-
+			ft_toupper.c
 
 SRB		=	ft_lstadd_back_bonus.c\
 			ft_lstadd_front_bonus.c\
@@ -71,12 +67,10 @@ fclean:		clean
 
 re:			fclean	all
 
-bonus:		$(OBJ) $(OBB)
-			@$(AR) $(NAME) $(OBJ) $(OBB)
+bonus:		$(OBB)
+			@$(AR) $(NAME) $(OBB)
 main:		$(OBJ) $(OBB)
 			@$(CC) $(FLAGS) $(OBJ) $(OBB) main.c
 			./a.out
-so:
-			@gcc -shared -o libft.so -fPIC $(SRC)
 
 #.PHONY:		all $(NAME) OBJ OBB bonus clean fclean re

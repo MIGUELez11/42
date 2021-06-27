@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int			flags_init(t_printf_list *p_lst)
+int	flags_init(t_printf_list *p_lst)
 {
 	p_lst->flags.minus = 0;
 	p_lst->flags.width = 0;
@@ -23,7 +23,7 @@ int			flags_init(t_printf_list *p_lst)
 	return (1);
 }
 
-int			lst_init(t_printf_list **p_lst, const char *str)
+int	lst_init(t_printf_list **p_lst, const char *str)
 {
 	*p_lst = malloc(sizeof(t_printf_list));
 	if (!*p_lst)

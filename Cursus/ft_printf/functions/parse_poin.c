@@ -12,6 +12,17 @@
 
 #include "ft_printf.h"
 
+void static	parse_int_aux(t_printf_list *p_lst, char *num, unsigned long int n,
+	int len) {
+	if (p_lst->flags.precision != -1)
+		p_lst->flags.precision -= 2;
+	if (!(p_lst->flags.precision == 0 && n == 0))
+		ft_putstr_fd(num, 1);
+	free(num);
+	p_lst->printed_chars += len - 2;
+	width_spaces_after(p_lst, len);
+}
+
 int	parse_poin(t_printf_list *p_lst)
 {
 	unsigned long int	n;
@@ -20,7 +31,9 @@ int	parse_poin(t_printf_list *p_lst)
 
 	n = va_arg(p_lst->ap, unsigned long int);
 	num = ft_itoh(n);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 2 : ft_strlen(num) + 2);
+	len = 2;
+	if (!(p_lst->flags.precision == 0 && n == 0))
+		len = ft_strlen(num) + 2;
 	if (p_lst->flags.width < 0)
 	{
 		p_lst->flags.width *= -1;
@@ -31,12 +44,6 @@ int	parse_poin(t_printf_list *p_lst)
 	if (p_lst->flags.precision != -1)
 		p_lst->flags.precision += 2;
 	width_put_zeroes(p_lst, len);
-	if (p_lst->flags.precision != -1)
-		p_lst->flags.precision -= 2;
-	if (!(p_lst->flags.precision == 0 && n == 0))
-		ft_putstr_fd(num, 1);
-	free(num);
-	p_lst->printed_chars += len - 2;
-	width_spaces_after(p_lst, len);
+	parse_int_aux(p_lst, num, n, len);
 	return (1);
 }

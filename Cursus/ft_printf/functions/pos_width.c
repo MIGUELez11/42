@@ -27,8 +27,8 @@ int	pos_width(t_printf_list *p_lst, int strlen)
 				put_repeated_char(' ', p_lst->flags.width - strlen);
 			}
 			else if (!p_lst->flags.zero)
-				put_repeated_char(' ', p_lst->flags.width -
-						p_lst->flags.precision);
+				put_repeated_char(' ', p_lst->flags.width
+					- p_lst->flags.precision);
 		}
 		p_lst->printed_chars += p_lst->flags.width - strlen;
 	}

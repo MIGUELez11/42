@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int		parser(t_printf_list *p_lst)
+int	parser(t_printf_list *p_lst)
 {
-	char c;
+	char	c;
 
 	if (parse_flags(p_lst) == 1)
 	{

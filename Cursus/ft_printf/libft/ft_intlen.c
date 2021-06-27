@@ -14,7 +14,7 @@
 
 int	ft_intlen(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n != 0)

@@ -12,7 +12,7 @@
 
 int	ft_uintlen(unsigned int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n != 0)

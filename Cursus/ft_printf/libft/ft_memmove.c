@@ -23,20 +23,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (p1 == NULL && p2 == NULL)
 		return (NULL);
 	i = 0;
-	if (src > dst)
-		while (i < len)
-		{
-			p1[i] = p2[i];
-			i++;
-		}
-	else
+	while (src > dst && i < len)
 	{
-		while (len > 0)
-		{
-			p1[len - 1] = p2[len - 1];
-			len--;
-		}
+		p1[i] = p2[i];
+		i++;
 	}
-	i = 0;
+	while (src <= dst && len > 0)
+	{
+		p1[len - 1] = p2[len - 1];
+		len--;
+	}
 	return (dst);
 }

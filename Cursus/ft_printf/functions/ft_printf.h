@@ -32,7 +32,7 @@
 **	zero		->	(0 - 1)
 */
 
-typedef struct	s_flags {
+typedef struct s_flags {
 	char		minus;
 	int			width;
 	int			precision;
@@ -55,7 +55,7 @@ typedef struct	s_flags {
 **	str				->	the main string passed
 */
 
-typedef struct	s_printf_list {
+typedef struct s_printf_list {
 	char		*conversors;
 	va_list		ap;
 	int			printed_chars;
