@@ -15,7 +15,7 @@
 static int	ft_isspace(int c)
 {
 	if (c == '\n' || c == '\t' || c == '\v' || c == '\f' || c == '\r'
-			|| c == ' ')
+		|| c == ' ')
 		return (1);
 	return (0);
 }
@@ -33,11 +33,11 @@ static int	ft_returnvalue(int i, int numstart, int isneg, int r)
 	return (r);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int r;
-	int i;
-	int isneg;
+	int	r;
+	int	i;
+	int	isneg;
 	int	numstart;
 
 	i = 0;

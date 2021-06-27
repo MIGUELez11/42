@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int		ft_get_nsep(char const *s, char c)
+int	ft_get_nsep(char const *s, char c)
 {
-	int i;
+	int	i;
 	int	nsep;
 
 	i = 0;
