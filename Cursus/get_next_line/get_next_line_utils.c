@@ -20,7 +20,7 @@
 **	to the new values (old buffer_size - \n position
 */
 
-static void		fix_sizes(t_fd_lst *this, ssize_t i, ssize_t npos)
+static void	fix_sizes(t_fd_lst *this, ssize_t i, ssize_t npos)
 {
 	if ((this->line_avg_size + npos) / 2 > BUFFER_SIZE)
 		this->line_avg_size = (this->line_avg_size + npos) / 2;
@@ -40,7 +40,7 @@ static void		fix_sizes(t_fd_lst *this, ssize_t i, ssize_t npos)
 **		Valid Pointer	: A line was generated
 */
 
-static char		*split_buffer(t_fd_lst *this, ssize_t npos)
+static char	*split_buffer(t_fd_lst *this, ssize_t npos)
 {
 	char		*aux_buf;
 	char		*line;
@@ -78,7 +78,7 @@ static char		*split_buffer(t_fd_lst *this, ssize_t npos)
 **		 1	: Succes
 */
 
-static int		buffer_realloc(t_fd_lst *this)
+static int	buffer_realloc(t_fd_lst *this)
 {
 	char	*aux;
 	ssize_t	i;
@@ -111,18 +111,18 @@ static int		buffer_realloc(t_fd_lst *this)
 **						  allocated string.
 */
 
-static void		read_line_aux(ssize_t *i, int *nfound, t_fd_lst *this)
+static void	read_line_aux(ssize_t *i, int *nfound, t_fd_lst *this)
 {
 	while (*i < this->buffer_size && !*nfound)
 	{
 		if (this->buffer[*i] == '\n'
-				|| (this->file_ended && !this->buffer[*i]))
+			|| (this->file_ended && !this->buffer[*i]))
 			*nfound = 1;
 		(*i)++;
 	}
 }
 
-char			*read_line(int fd, t_fd_lst *this)
+char	*read_line(int fd, t_fd_lst *this)
 {
 	ssize_t	read_size;
 	ssize_t	i;
@@ -142,7 +142,7 @@ char			*read_line(int fd, t_fd_lst *this)
 		{
 			read_size = read(fd, this->buffer + this->buffer_size, BUFFER_SIZE);
 			if (read_size <= 0)
-				this->file_ended = (read_size == 0 ? 1 : -1);
+				this->file_ended = -1 + ((read_size == 0) * 2);
 			this->buffer_size += read_size;
 		}
 		read_line_aux(&i, &nfound, this);

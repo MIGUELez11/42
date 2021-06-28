@@ -39,7 +39,7 @@
 **		*next		: This pointer is the anchor to the next node.
 */
 
-typedef struct		s_fd_lst
+typedef struct s_fd_lst
 {
 	int					fd;
 	char				*buffer;
@@ -49,9 +49,9 @@ typedef struct		s_fd_lst
 	int					file_ended;
 	struct s_fd_lst		*next;
 	struct s_fd_lst		*prev;
-}					t_fd_lst;
+}	t_fd_lst;
 
-int					get_next_line(int fd, char **line);
-char				*read_line(int fd, t_fd_lst *this);
+int		get_next_line(int fd, char **line);
+char	*read_line(int fd, t_fd_lst *lst);
 
 #endif

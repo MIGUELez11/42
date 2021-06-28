@@ -57,8 +57,8 @@ static t_fd_lst	*lst_init(int fd, t_fd_lst *prev)
 
 static t_fd_lst	*find_fd_node(int fd, t_fd_lst **fd_lst_adress)
 {
-	t_fd_lst *this;
-	t_fd_lst *prev;
+	t_fd_lst	*this;
+	t_fd_lst	*prev;
 
 	this = *fd_lst_adress;
 	prev = NULL;
@@ -86,7 +86,7 @@ static t_fd_lst	*find_fd_node(int fd, t_fd_lst **fd_lst_adress)
 **	list is equals to the node it sets it to NULL or to the next node.
 */
 
-static void		delete_fd_node(t_fd_lst *this, t_fd_lst **fd_lst_adress)
+static void	delete_fd_node(t_fd_lst *this, t_fd_lst **fd_lst_adress)
 {
 	if (this->prev)
 		this->prev->next = this->next;
@@ -113,7 +113,7 @@ static void		delete_fd_node(t_fd_lst *this, t_fd_lst **fd_lst_adress)
 **		-1 : An error happened.
 */
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static t_fd_lst	*fd_lst;
 	t_fd_lst		*this;
@@ -134,7 +134,7 @@ int				get_next_line(int fd, char **line)
 		}
 		return_value = this->file_ended;
 		delete_fd_node(this, &fd_lst);
-		return ((return_value == -1 ? -1 : 0));
+		return ((return_value == -1) * -1);
 	}
 	return (1);
 }
