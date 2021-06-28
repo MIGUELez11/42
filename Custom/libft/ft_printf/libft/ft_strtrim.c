@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:11:00 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/03 21:14:56 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/20 19:59:29 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "o_libft.h"
-#include <stdio.h>
 
-int			ft_ischar(char s1, char const *set)
+int	ft_ischar(char s1, char const *set)
 {
 	int	i;
 
@@ -27,9 +26,9 @@ int			ft_ischar(char s1, char const *set)
 	return (0);
 }
 
-int			ft_frstocc(char const *s1, char const *set)
+int	ft_frstocc(char const *s1, char const *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] && ft_ischar(s1[i], set))
@@ -39,10 +38,10 @@ int			ft_frstocc(char const *s1, char const *set)
 	return (i);
 }
 
-int			ft_lsttocc(char const *s1, char const *set)
+int	ft_lsttocc(char const *s1, char const *set)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	size = ft_strlen(s1) - 1;
 	i = 0;
@@ -53,7 +52,7 @@ int			ft_lsttocc(char const *s1, char const *set)
 	return (size - i + 1);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*r;
 	int		start;
@@ -63,7 +62,10 @@ char		*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (NULL);
 	start = ft_frstocc(s1, set);
-	end = ((size_t)start == ft_strlen(s1) ? start : ft_lsttocc(s1, set));
+	if ((size_t)start == ft_strlen(s1))
+		end = start;
+	else
+		end = ft_lsttocc(s1, set);
 	i = 0;
 	r = ft_calloc((end - start) + 1, sizeof(char));
 	if (!r)

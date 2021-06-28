@@ -84,4 +84,12 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 
+/*
+** Extra functions
+*/
+
+int				ft_intlen(int n);
+void			ft_uppercase(char *str);
+char			*ft_itoh(unsigned long int n);
+
 #endif

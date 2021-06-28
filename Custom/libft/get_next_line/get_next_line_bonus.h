@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 11:29:34 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/14 17:30:45 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/09 19:10:45 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/14 17:30:49 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
 
-# define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 25
@@ -31,7 +31,7 @@
 ** work.
 **
 ** The variables saved in the structure are used to:
-**		fd			: Saves the file binary ID (File Descriptor).
+**		fd			: Saves :the file binary ID (File Descriptor).
 **		*buffer		: The current reading buffer is saved here, it is used
 **					  to save the extra information read the last time.
 **		buffer_size	: equivalent to strlen(buffer), created for saving

@@ -14,17 +14,16 @@
 
 int	width_spaces_after(t_printf_list *p_lst, int len)
 {
-	if (p_lst->flags.minus && p_lst->flags.width > len &&
-		p_lst->flags.width > p_lst->flags.precision)
+	int	print_chars;
+
+	if (p_lst->flags.minus && p_lst->flags.width > len
+		&& p_lst->flags.width > p_lst->flags.precision)
 	{
-		put_repeated_char(' ', p_lst->flags.width -
-			(p_lst->flags.precision > len ?
-				p_lst->flags.precision :
-				len));
-		p_lst->printed_chars += p_lst->flags.width -
-			(p_lst->flags.precision > len ?
-				p_lst->flags.precision :
-				len);
+		print_chars = p_lst->flags.width - len;
+		if (p_lst->flags.precision > len)
+			print_chars = p_lst->flags.width - p_lst->flags.precision;
+		put_repeated_char(' ', print_chars);
+		p_lst->printed_chars += print_chars;
 	}
 	return (1);
 }

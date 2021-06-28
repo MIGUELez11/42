@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		parse_char(t_printf_list *p_lst)
+int	parse_char(t_printf_list *p_lst)
 {
 	char	c;
 

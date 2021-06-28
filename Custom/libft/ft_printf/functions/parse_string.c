@@ -12,14 +12,15 @@
 
 #include "ft_printf.h"
 
-int		parse_string(t_printf_list *p_lst)
+int	parse_string(t_printf_list *p_lst)
 {
 	int		i;
 	char	*str;
 	int		strlen;
 
 	i = 0;
-	if (!(str = va_arg(p_lst->ap, char*)))
+	str = va_arg(p_lst->ap, char *);
+	if (!str)
 		str = ft_strdup("(null)");
 	strlen = ft_strlen(str);
 	pos_precision(p_lst, &strlen);

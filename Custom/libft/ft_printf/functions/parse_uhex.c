@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		parse_uhex(t_printf_list *p_lst)
+int	parse_uhex(t_printf_list *p_lst)
 {
 	long int	n;
 	int			len;
@@ -21,7 +21,9 @@ int		parse_uhex(t_printf_list *p_lst)
 	n = va_arg(p_lst->ap, unsigned int);
 	num = ft_itoh(n);
 	ft_uppercase(num);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_strlen(num));
+	len = 0;
+	if (!(p_lst->flags.precision == 0 && n == 0))
+		len = ft_strlen(num);
 	if (p_lst->flags.width < 0)
 	{
 		p_lst->flags.width *= -1;

@@ -12,13 +12,15 @@
 
 #include "ft_printf.h"
 
-int		parse_percent(t_printf_list *p_lst)
+int	parse_percent(t_printf_list *p_lst)
 {
 	char	c;
 	char	fill;
 
 	c = '%';
-	fill = (p_lst->flags.zero ? '0' : ' ');
+	fill = ' ';
+	if (p_lst->flags.zero)
+		fill = '0';
 	if (!p_lst->flags.minus && p_lst->flags.width > 0)
 		put_repeated_char(fill, p_lst->flags.width - 1);
 	write(1, &c, 1);

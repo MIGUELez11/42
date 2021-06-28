@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 09:00:54 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/03 21:14:56 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/18 22:43:08 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_isspace(int c)
 {
 	if (c == '\n' || c == '\t' || c == '\v' || c == '\f' || c == '\r'
-			|| c == ' ')
+		|| c == ' ')
 		return (1);
 	return (0);
 }
@@ -33,11 +33,11 @@ static int	ft_returnvalue(int i, int numstart, int isneg, int r)
 	return (r);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int r;
-	int i;
-	int isneg;
+	int	r;
+	int	i;
+	int	isneg;
 	int	numstart;
 
 	i = 0;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:44:10 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/03 21:14:56 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/22 08:45:21 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "o_libft.h"
 
-int		ft_get_nsep(char const *s, char c)
+int	ft_get_nsep(char const *s, char c)
 {
-	int i;
+	int	i;
 	int	nsep;
 
 	i = 0;

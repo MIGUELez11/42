@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 11:29:16 by mflorido          #+#    #+#             */
-/*   Updated: 2020/01/14 17:30:52 by mflorido         ###   ########.fr       */
+/*   Created: 2020/01/09 19:11:02 by mflorido          #+#    #+#             */
+/*   Updated: 2020/01/14 17:30:54 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **	fix_sizes(current node, old buffer_size,\n position)

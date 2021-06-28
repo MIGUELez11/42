@@ -12,13 +12,15 @@
 
 #include "ft_printf.h"
 
-int		parse_uint(t_printf_list *p_lst)
+int	parse_uint(t_printf_list *p_lst)
 {
 	unsigned int	n;
 	int				len;
 
 	n = va_arg(p_lst->ap, unsigned int);
-	len = (p_lst->flags.precision == 0 && n == 0 ? 0 : ft_uintlen(n));
+	len = 0;
+	if (!(p_lst->flags.precision == 0 && n == 0))
+		len = ft_uintlen(n);
 	if (p_lst->flags.width < 0)
 	{
 		p_lst->flags.width *= -1;

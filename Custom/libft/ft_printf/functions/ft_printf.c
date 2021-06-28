@@ -38,7 +38,7 @@
 **		Output: "Hola    que 00042 tal   "
 */
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	t_printf_list	*p_lst;
 	int				printed_chars;

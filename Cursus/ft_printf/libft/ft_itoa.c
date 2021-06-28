@@ -12,20 +12,6 @@
 
 #include "libft.h"
 
-static int	ft_intlen(int n)
-{
-	int	i;
-
-	i = 0;
-	while (n != 0)
-	{
-		n /= 10;
-		if (n != 0)
-			i++;
-	}
-	return (++i);
-}
-
 char	*ft_itoa(int n)
 {
 	int			i;

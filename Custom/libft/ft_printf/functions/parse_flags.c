@@ -30,7 +30,7 @@ static void	parse_precision(t_printf_list *p_lst, char c)
 	p_lst->i += ft_intlen(p_lst->flags.precision) - 1;
 }
 
-int			parse_flags(t_printf_list *p_lst)
+int	parse_flags(t_printf_list *p_lst)
 {
 	char	c;
 	int		prev_i;

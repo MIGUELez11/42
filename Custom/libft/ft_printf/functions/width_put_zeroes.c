@@ -14,16 +14,17 @@
 
 int	width_put_zeroes(t_printf_list *p_lst, int len)
 {
-	if ((!p_lst->flags.minus && p_lst->flags.width > len &&
-		p_lst->flags.precision == -1 && p_lst->flags.zero) ||
-		(p_lst->flags.precision > len))
+	int	print_chars;
+
+	if ((!p_lst->flags.minus && p_lst->flags.width > len
+			&& p_lst->flags.precision == -1 && p_lst->flags.zero)
+		|| (p_lst->flags.precision > len))
 	{
-		put_repeated_char('0', (p_lst->flags.precision == -1 ?
-			p_lst->flags.width :
-			p_lst->flags.precision) - len);
-		p_lst->printed_chars += (p_lst->flags.precision == -1 ?
-			p_lst->flags.width :
-			p_lst->flags.precision) - len;
+		print_chars = p_lst->flags.width - len;
+		if (p_lst->flags.precision != -1)
+			print_chars = p_lst->flags.precision - len;
+		put_repeated_char('0', print_chars);
+		p_lst->printed_chars += print_chars;
 	}
 	return (1);
 }

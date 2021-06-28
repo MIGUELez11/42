@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflorido <mflorido@student.42madrid.co>    +#+  +:+       +#+        */
+/*   By: mflorido <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 12:37:57 by mflorido          #+#    #+#             */
-/*   Updated: 2020/09/03 21:14:56 by mflorido         ###   ########.fr       */
+/*   Updated: 2019/11/18 22:45:01 by mflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (p1 == NULL && p2 == NULL)
 		return (NULL);
 	i = 0;
-	if (src > dst)
-		while (i < len)
-		{
-			p1[i] = p2[i];
-			i++;
-		}
-	else
+	while (src > dst && i < len)
 	{
-		while (len > 0)
-		{
-			p1[len - 1] = p2[len - 1];
-			len--;
-		}
+		p1[i] = p2[i];
+		i++;
 	}
-	i = 0;
+	while (src <= dst && len > 0)
+	{
+		p1[len - 1] = p2[len - 1];
+		len--;
+	}
 	return (dst);
 }

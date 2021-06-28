@@ -14,7 +14,7 @@
 
 void	ft_freedouble(void **pointer)
 {
-	int length;
+	int	length;
 
 	length = 0;
 	while (pointer[length])
